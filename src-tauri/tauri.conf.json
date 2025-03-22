@@ -1,63 +1,35 @@
 {
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "vigi",
+  "version": "0.1.0",
+  "identifier": "com.vigi.app",
   "build": {
     "beforeDevCommand": "pnpm dev",
+    "devUrl": "http://localhost:1420",
     "beforeBuildCommand": "pnpm build",
-    "devPath": "http://localhost:1420",
-    "distDir": "../build"
+    "frontendDist": "../build"
   },
-  "package": {
-    "productName": "vigi",
-    "version": "1.0.0-0"
-  },
-  "tauri": {
-    "updater": {
-      "active": true,
-      "endpoints": [
-        "https://github.com/txtdot/vigi/releases/latest/download/latest.json"
-      ],
-      "dialog": true,
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEMzQTRGNjZDOTNENzEyREMKUldUY0V0ZVRiUGFrd3h5U0l3c3Z1aTVaNGJHZ3JtK2ZzeDZjeWt4bFF0RjhDT0ZPVjArbWVERGIK"
-    },
-    "allowlist": {
-      "all": false,
-      "shell": {
-        "all": false,
-        "open": true
-      },
-      "window": {
-        "all": false,
-        "close": true,
-        "hide": true,
-        "show": true,
-        "maximize": true,
-        "minimize": true,
-        "unmaximize": true,
-        "unminimize": true,
-        "startDragging": true
-      }
-    },
+  "app": {
     "windows": [
       {
         "title": "vigi",
         "width": 800,
-        "height": 600,
-        "decorations": false
+        "height": 600
       }
     ],
     "security": {
       "csp": null
-    },
-    "bundle": {
-      "active": true,
-      "targets": "all",
-      "identifier": "org.txtdot.vigi",
-      "icon": [
-        "icons/32x32.png",
-        "icons/128x128.png",
-        "icons/128x128@2x.png",
-        "icons/icon.icns",
-        "icons/icon.ico"
-      ]
     }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
   }
 }

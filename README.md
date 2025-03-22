@@ -1,40 +1,7 @@
-<div align="center">
+# Tauri + SvelteKit + TypeScript
 
-![vigi logo](https://github.com/TxtDot/.github/raw/main/imgs/vigi.png)
+This template should help get you started developing with Tauri, SvelteKit and TypeScript in Vite.
 
-# vigi
+## Recommended IDE Setup
 
-</div>
-
-Browser for dalet, text, gemtext with native support of txtdot proxy and local txtdot engines
-
-## Features
-
-Browser is WIP.
-
-See also: [Dalet](https://github.com/TxtDot/dalet).
-
-### Protocols support
-
-- [x] Http/s
-- [x] Gemini
-- [ ] Gopher
-
-### Mime type support
-
-- [ ] application/daletpack
-- [x] text/plain
-- [x] text/gemini
-- [ ] text/html (through local txtdot)
-
-### Browser features
-
-- [x] browser window: url processing, reload page
-- [ ] browser window: go forward, go backward
-- [x] current tabs: add,remove,change,save,restore,cache
-- [ ] favorite tabs: add,remove,change,save,restore,cache
-- [x] sidebar hiding
-- [ ] history
-- [ ] txtdot proxy support
-- [ ] local txtdot
-- [ ] proxy support
+[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer).
