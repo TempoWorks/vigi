@@ -1,0 +1,232 @@
+@import "tailwindcss";
+
+:root {
+  --colorspace: oklch;
+
+  /* Theme Colors */
+  /* Green */
+  --min-bg: #96e28a;
+  --max-bg: #193815;
+
+  --min-text: #82de73;
+  --max-text: #fff;
+
+  /* Dark */
+  /* --min-bg: #555;
+  --max-bg: #000;
+
+  --min-text: #555;
+  --max-text: #fff; */
+}
+
+@theme {
+  --color-text-0: color-mix(in var(--colorspace), var(--max-text) 0%, var(--min-text))
+  --color-bg-0: color-mix(in var(--colorspace), var(--max-bg) 0%, var(--min-bg))
+  --color-text-5: color-mix(in var(--colorspace), var(--max-text) 5%, var(--min-text))
+  --color-bg-5: color-mix(in var(--colorspace), var(--max-bg) 5%, var(--min-bg))
+  --color-text-10: color-mix(in var(--colorspace), var(--max-text) 10%, var(--min-text))
+  --color-bg-10: color-mix(in var(--colorspace), var(--max-bg) 10%, var(--min-bg))
+  --color-text-15: color-mix(in var(--colorspace), var(--max-text) 15%, var(--min-text))
+  --color-bg-15: color-mix(in var(--colorspace), var(--max-bg) 15%, var(--min-bg))
+  --color-text-20: color-mix(in var(--colorspace), var(--max-text) 20%, var(--min-text))
+  --color-bg-20: color-mix(in var(--colorspace), var(--max-bg) 20%, var(--min-bg))
+  --color-text-25: color-mix(in var(--colorspace), var(--max-text) 25%, var(--min-text))
+  --color-bg-25: color-mix(in var(--colorspace), var(--max-bg) 25%, var(--min-bg))
+  --color-text-30: color-mix(in var(--colorspace), var(--max-text) 30%, var(--min-text))
+  --color-bg-30: color-mix(in var(--colorspace), var(--max-bg) 30%, var(--min-bg))
+  --color-text-35: color-mix(in var(--colorspace), var(--max-text) 35%, var(--min-text))
+  --color-bg-35: color-mix(in var(--colorspace), var(--max-bg) 35%, var(--min-bg))
+  --color-text-40: color-mix(in var(--colorspace), var(--max-text) 40%, var(--min-text))
+  --color-bg-40: color-mix(in var(--colorspace), var(--max-bg) 40%, var(--min-bg))
+  --color-text-45: color-mix(in var(--colorspace), var(--max-text) 45%, var(--min-text))
+  --color-bg-45: color-mix(in var(--colorspace), var(--max-bg) 45%, var(--min-bg))
+  --color-text-50: color-mix(in var(--colorspace), var(--max-text) 50%, var(--min-text))
+  --color-bg-50: color-mix(in var(--colorspace), var(--max-bg) 50%, var(--min-bg))
+  --color-text-55: color-mix(in var(--colorspace), var(--max-text) 55%, var(--min-text))
+  --color-bg-55: color-mix(in var(--colorspace), var(--max-bg) 55%, var(--min-bg))
+  --color-text-60: color-mix(in var(--colorspace), var(--max-text) 60%, var(--min-text))
+  --color-bg-60: color-mix(in var(--colorspace), var(--max-bg) 60%, var(--min-bg))
+  --color-text-65: color-mix(in var(--colorspace), var(--max-text) 65%, var(--min-text))
+  --color-bg-65: color-mix(in var(--colorspace), var(--max-bg) 65%, var(--min-bg))
+  --color-text-70: color-mix(in var(--colorspace), var(--max-text) 70%, var(--min-text))
+  --color-bg-70: color-mix(in var(--colorspace), var(--max-bg) 70%, var(--min-bg))
+  --color-text-75: color-mix(in var(--colorspace), var(--max-text) 75%, var(--min-text))
+  --color-bg-75: color-mix(in var(--colorspace), var(--max-bg) 75%, var(--min-bg))
+  --color-text-80: color-mix(in var(--colorspace), var(--max-text) 80%, var(--min-text))
+  --color-bg-80: color-mix(in var(--colorspace), var(--max-bg) 80%, var(--min-bg))
+  --color-text-85: color-mix(in var(--colorspace), var(--max-text) 85%, var(--min-text))
+  --color-bg-85: color-mix(in var(--colorspace), var(--max-bg) 85%, var(--min-bg))
+  --color-text-90: color-mix(in var(--colorspace), var(--max-text) 90%, var(--min-text))
+  --color-bg-90: color-mix(in var(--colorspace), var(--max-bg) 90%, var(--min-bg))
+  --color-text-95: color-mix(in var(--colorspace), var(--max-text) 95%, var(--min-text))
+  --color-bg-95: color-mix(in var(--colorspace), var(--max-bg) 95%, var(--min-bg))
+  --color-text-100: color-mix(in var(--colorspace), var(--max-text) 100%, var(--min-text))
+  --color-bg-100: color-mix(in var(--colorspace), var(--max-bg) 100%, var(--min-bg))
+}
+
+@utility theme-* {
+  color: --value(--color-text-*),
+  background-color: --value(--color-bg-*),
+  border-color: --value(--color-text-*),
+}
+
+/* End theme */
+/* Components */
+
+body {
+  @apply theme-90 cursor-default overflow-clip;
+  user-select: none;
+}
+
+.common-window {
+  @apply p-3 gap-3 w-screen h-screen;
+  @apply flex;
+
+  @apply ease-out duration-100;
+}
+
+.common-window.collapsed {
+  @apply gap-0;
+}
+
+.main-window {
+  @apply grow flex flex-col gap-3 w-3/4;
+}
+
+.browser-window {
+  @apply grow overflow-y-auto text-wrap select-text cursor-auto overflow-x-hidden;
+}
+
+.window-controls {
+  @apply flex justify-start;
+}
+
+.button {
+  @apply p-1 rounded-lg;
+  @apply ease-out duration-150;
+
+  @apply hover:theme-90;
+  @apply cursor-pointer;
+
+  @apply active:theme-100;
+}
+
+.tabs-category {
+  @apply flex justify-between mt-2 mx-2;
+}
+
+.tabs-category-text {
+  @apply overflow-hidden;
+  white-space: nowrap;
+}
+
+.block {
+  @apply p-2 rounded-xl theme-60;
+}
+
+.sidebar {
+  @apply shrink-0 grow-0 flex flex-col w-1/5;
+  @apply ease-out duration-300;
+
+  @apply max-md:hidden;
+}
+
+.sidebar.collapsed {
+  @apply basis-0 w-0;
+
+  @apply p-0 m-0;
+  @apply overflow-hidden;
+}
+
+.top-bar {
+  @apply flex max-md:flex-row-reverse gap-3;
+}
+
+.top-bar-buttons {
+  @apply flex;
+}
+
+.hide-sidebar-button,
+.back-button,
+.forward-button {
+  @apply max-md:hidden;
+}
+
+.open-tabs-page-button {
+  @apply md:hidden;
+}
+
+.search-input {
+  @apply px-2 py-1 rounded-xl grow min-w-0;
+
+  @apply theme-60 outline-none;
+  @apply focus:theme-50 hover:theme-55;
+
+  @apply ease-out duration-100;
+}
+
+input::placeholder {
+  @apply theme-60;
+  @apply focus:theme-50 hover:theme-55;
+  @apply ease-out duration-100;
+}
+
+.tabs {
+  @apply flex flex-col-reverse gap-1 mt-2 grow overflow-auto justify-end;
+}
+
+.tab {
+  @apply p-2 rounded-xl theme-50;
+  @apply cursor-pointer;
+  @apply ease-out duration-100;
+
+  @apply hover:theme-55;
+
+  @apply hover:px-4;
+
+  @apply flex items-center gap-2 w-full truncate;
+}
+
+.tab.loading {
+  @apply animate-load-pulse;
+}
+
+.close-button {
+  @apply p-1 rounded-lg;
+  @apply ease-out duration-100;
+
+  @apply hover:theme-90 active:theme-100;
+}
+
+.tab.active {
+  @apply theme-40 font-bold;
+  @apply hover:theme-45;
+}
+
+::selection {
+  @apply theme-60;
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+  height: 15px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-xl theme-70 bg-clip-content;
+  border: 6px solid transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply theme-75;
+  border: 5px solid transparent;
+}
+
+::-webkit-scrollbar-thumb:active {
+  @apply theme-100;
+  border: 4px solid transparent;
+}
