@@ -1,27 +1,20 @@
-use dalet::typed::HeadingLevel;
+mod processing;
+mod types;
+
 use dalet::typed::Page;
-use dalet::typed::Tag::*;
-// Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
+use processing::process_input;
+use types::VigiError;
+
 #[tauri::command]
-fn greet(name: &str) -> Page {
-    Page {
-        title: dalet::typed::TextOrNull::Null,
-        description: "Hi".into(),
-        body: vec![El {
-            body: vec![H {
-                body: "Здрасьте".to_owned(),
-                heading: HeadingLevel::One,
-            }]
-            .into(),
-        }],
-    }
+async fn process_url(input: &str) -> Result<Page, VigiError> {
+    process_input(input).await
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
-        .invoke_handler(tauri::generate_handler![greet])
+        .invoke_handler(tauri::generate_handler![process_url])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
