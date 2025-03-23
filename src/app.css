@@ -248,6 +248,10 @@ body {
   user-select: none;
 }
 
+@utility drag-region {
+  app-region: drag;
+}
+
 .common-window {
   @apply p-3 gap-3 w-screen h-screen;
   @apply flex;
