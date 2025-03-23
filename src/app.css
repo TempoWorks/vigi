@@ -1,10 +1,8 @@
 @import "tailwindcss";
 
-:root {
-  --colorspace: oklch;
-}
-
 .green-theme {
+  --colorspace: oklch;
+
   --min-bg: #96e28a;
   --max-bg: #193815;
 
@@ -13,6 +11,8 @@
 }
 
 .dark-theme {
+  --colorspace: oklch;
+
   --min-bg: #555;
   --max-bg: #000;
 
@@ -21,54 +21,223 @@
 }
 
 @theme {
-  --color-vtt-0: color-mix(in var(--colorspace), var(--max-text) 0%, var(--min-text))
-  --color-vtbg-0: color-mix(in var(--colorspace), var(--max-bg) 0%, var(--min-bg))
-  --color-vtt-5: color-mix(in var(--colorspace), var(--max-text) 5%, var(--min-text))
-  --color-vtbg-5: color-mix(in var(--colorspace), var(--max-bg) 5%, var(--min-bg))
-  --color-vtt-10: color-mix(in var(--colorspace), var(--max-text) 10%, var(--min-text))
-  --color-vtbg-10: color-mix(in var(--colorspace), var(--max-bg) 10%, var(--min-bg))
-  --color-vtt-15: color-mix(in var(--colorspace), var(--max-text) 15%, var(--min-text))
-  --color-vtbg-15: color-mix(in var(--colorspace), var(--max-bg) 15%, var(--min-bg))
-  --color-vtt-20: color-mix(in var(--colorspace), var(--max-text) 20%, var(--min-text))
-  --color-vtbg-20: color-mix(in var(--colorspace), var(--max-bg) 20%, var(--min-bg))
-  --color-vtt-25: color-mix(in var(--colorspace), var(--max-text) 25%, var(--min-text))
-  --color-vtbg-25: color-mix(in var(--colorspace), var(--max-bg) 25%, var(--min-bg))
-  --color-vtt-30: color-mix(in var(--colorspace), var(--max-text) 30%, var(--min-text))
-  --color-vtbg-30: color-mix(in var(--colorspace), var(--max-bg) 30%, var(--min-bg))
-  --color-vtt-35: color-mix(in var(--colorspace), var(--max-text) 35%, var(--min-text))
-  --color-vtbg-35: color-mix(in var(--colorspace), var(--max-bg) 35%, var(--min-bg))
-  --color-vtt-40: color-mix(in var(--colorspace), var(--max-text) 40%, var(--min-text))
-  --color-vtbg-40: color-mix(in var(--colorspace), var(--max-bg) 40%, var(--min-bg))
-  --color-vtt-45: color-mix(in var(--colorspace), var(--max-text) 45%, var(--min-text))
-  --color-vtbg-45: color-mix(in var(--colorspace), var(--max-bg) 45%, var(--min-bg))
-  --color-vtt-50: color-mix(in var(--colorspace), var(--max-text) 50%, var(--min-text))
-  --color-vtbg-50: color-mix(in var(--colorspace), var(--max-bg) 50%, var(--min-bg))
-  --color-vtt-55: color-mix(in var(--colorspace), var(--max-text) 55%, var(--min-text))
-  --color-vtbg-55: color-mix(in var(--colorspace), var(--max-bg) 55%, var(--min-bg))
-  --color-vtt-60: color-mix(in var(--colorspace), var(--max-text) 60%, var(--min-text))
-  --color-vtbg-60: color-mix(in var(--colorspace), var(--max-bg) 60%, var(--min-bg))
-  --color-vtt-65: color-mix(in var(--colorspace), var(--max-text) 65%, var(--min-text))
-  --color-vtbg-65: color-mix(in var(--colorspace), var(--max-bg) 65%, var(--min-bg))
-  --color-vtt-70: color-mix(in var(--colorspace), var(--max-text) 70%, var(--min-text))
-  --color-vtbg-70: color-mix(in var(--colorspace), var(--max-bg) 70%, var(--min-bg))
-  --color-vtt-75: color-mix(in var(--colorspace), var(--max-text) 75%, var(--min-text))
-  --color-vtbg-75: color-mix(in var(--colorspace), var(--max-bg) 75%, var(--min-bg))
-  --color-vtt-80: color-mix(in var(--colorspace), var(--max-text) 80%, var(--min-text))
-  --color-vtbg-80: color-mix(in var(--colorspace), var(--max-bg) 80%, var(--min-bg))
-  --color-vtt-85: color-mix(in var(--colorspace), var(--max-text) 85%, var(--min-text))
-  --color-vtbg-85: color-mix(in var(--colorspace), var(--max-bg) 85%, var(--min-bg))
-  --color-vtt-90: color-mix(in var(--colorspace), var(--max-text) 90%, var(--min-text))
-  --color-vtbg-90: color-mix(in var(--colorspace), var(--max-bg) 90%, var(--min-bg))
-  --color-vtt-95: color-mix(in var(--colorspace), var(--max-text) 95%, var(--min-text))
-  --color-vtbg-95: color-mix(in var(--colorspace), var(--max-bg) 95%, var(--min-bg))
-  --color-vtt-100: color-mix(in var(--colorspace), var(--max-text) 100%, var(--min-text))
-  --color-vtbg-100: color-mix(in var(--colorspace), var(--max-bg) 100%, var(--min-bg))
+  --color-vtt-0: color-mix(
+    in var(--colorspace),
+    var(--max-text) 0%,
+    var(--min-text)
+  );
+  --color-vtt-5: color-mix(
+    in var(--colorspace),
+    var(--max-text) 5%,
+    var(--min-text)
+  );
+  --color-vtt-10: color-mix(
+    in var(--colorspace),
+    var(--max-text) 10%,
+    var(--min-text)
+  );
+  --color-vtt-15: color-mix(
+    in var(--colorspace),
+    var(--max-text) 15%,
+    var(--min-text)
+  );
+  --color-vtt-20: color-mix(
+    in var(--colorspace),
+    var(--max-text) 20%,
+    var(--min-text)
+  );
+  --color-vtt-25: color-mix(
+    in var(--colorspace),
+    var(--max-text) 25%,
+    var(--min-text)
+  );
+  --color-vtt-30: color-mix(
+    in var(--colorspace),
+    var(--max-text) 30%,
+    var(--min-text)
+  );
+  --color-vtt-35: color-mix(
+    in var(--colorspace),
+    var(--max-text) 35%,
+    var(--min-text)
+  );
+  --color-vtt-40: color-mix(
+    in var(--colorspace),
+    var(--max-text) 40%,
+    var(--min-text)
+  );
+  --color-vtt-45: color-mix(
+    in var(--colorspace),
+    var(--max-text) 45%,
+    var(--min-text)
+  );
+  --color-vtt-50: color-mix(
+    in var(--colorspace),
+    var(--max-text) 50%,
+    var(--min-text)
+  );
+  --color-vtt-55: color-mix(
+    in var(--colorspace),
+    var(--max-text) 55%,
+    var(--min-text)
+  );
+  --color-vtt-60: color-mix(
+    in var(--colorspace),
+    var(--max-text) 60%,
+    var(--min-text)
+  );
+  --color-vtt-65: color-mix(
+    in var(--colorspace),
+    var(--max-text) 65%,
+    var(--min-text)
+  );
+  --color-vtt-70: color-mix(
+    in var(--colorspace),
+    var(--max-text) 70%,
+    var(--min-text)
+  );
+  --color-vtt-75: color-mix(
+    in var(--colorspace),
+    var(--max-text) 75%,
+    var(--min-text)
+  );
+  --color-vtt-80: color-mix(
+    in var(--colorspace),
+    var(--max-text) 80%,
+    var(--min-text)
+  );
+  --color-vtt-85: color-mix(
+    in var(--colorspace),
+    var(--max-text) 85%,
+    var(--min-text)
+  );
+  --color-vtt-90: color-mix(
+    in var(--colorspace),
+    var(--max-text) 90%,
+    var(--min-text)
+  );
+  --color-vtt-95: color-mix(
+    in var(--colorspace),
+    var(--max-text) 95%,
+    var(--min-text)
+  );
+  --color-vtt-100: color-mix(
+    in var(--colorspace),
+    var(--max-text) 100%,
+    var(--min-text)
+  );
+
+  --color-vtbg-0: color-mix(
+    in var(--colorspace),
+    var(--max-bg) 0%,
+    var(--min-bg)
+  );
+  --color-vtbg-5: color-mix(
+    in var(--colorspace),
+    var(--max-bg) 5%,
+    var(--min-bg)
+  );
+  --color-vtbg-10: color-mix(
+    in var(--colorspace),
+    var(--max-bg) 10%,
+    var(--min-bg)
+  );
+  --color-vtbg-15: color-mix(
+    in var(--colorspace),
+    var(--max-bg) 15%,
+    var(--min-bg)
+  );
+  --color-vtbg-20: color-mix(
+    in var(--colorspace),
+    var(--max-bg) 20%,
+    var(--min-bg)
+  );
+  --color-vtbg-25: color-mix(
+    in var(--colorspace),
+    var(--max-bg) 25%,
+    var(--min-bg)
+  );
+  --color-vtbg-30: color-mix(
+    in var(--colorspace),
+    var(--max-bg) 30%,
+    var(--min-bg)
+  );
+  --color-vtbg-35: color-mix(
+    in var(--colorspace),
+    var(--max-bg) 35%,
+    var(--min-bg)
+  );
+  --color-vtbg-40: color-mix(
+    in var(--colorspace),
+    var(--max-bg) 40%,
+    var(--min-bg)
+  );
+  --color-vtbg-45: color-mix(
+    in var(--colorspace),
+    var(--max-bg) 45%,
+    var(--min-bg)
+  );
+  --color-vtbg-50: color-mix(
+    in var(--colorspace),
+    var(--max-bg) 50%,
+    var(--min-bg)
+  );
+  --color-vtbg-55: color-mix(
+    in var(--colorspace),
+    var(--max-bg) 55%,
+    var(--min-bg)
+  );
+  --color-vtbg-60: color-mix(
+    in var(--colorspace),
+    var(--max-bg) 60%,
+    var(--min-bg)
+  );
+  --color-vtbg-65: color-mix(
+    in var(--colorspace),
+    var(--max-bg) 65%,
+    var(--min-bg)
+  );
+  --color-vtbg-70: color-mix(
+    in var(--colorspace),
+    var(--max-bg) 70%,
+    var(--min-bg)
+  );
+  --color-vtbg-75: color-mix(
+    in var(--colorspace),
+    var(--max-bg) 75%,
+    var(--min-bg)
+  );
+  --color-vtbg-80: color-mix(
+    in var(--colorspace),
+    var(--max-bg) 80%,
+    var(--min-bg)
+  );
+  --color-vtbg-85: color-mix(
+    in var(--colorspace),
+    var(--max-bg) 85%,
+    var(--min-bg)
+  );
+  --color-vtbg-90: color-mix(
+    in var(--colorspace),
+    var(--max-bg) 90%,
+    var(--min-bg)
+  );
+  --color-vtbg-95: color-mix(
+    in var(--colorspace),
+    var(--max-bg) 95%,
+    var(--min-bg)
+  );
+  --color-vtbg-100: color-mix(
+    in var(--colorspace),
+    var(--max-bg) 100%,
+    var(--min-bg)
+  );
 }
 
 @utility theme-* {
-  color: --value(--color-vtt-*),
-  background-color: --value(--color-vtbg-*),
-  border-color: --value(--color-vtt-*),
+  color: --value(--color-vtt- *);
+  background-color: --value(--color-vtbg- *);
+  border-color: --value(--color-vtt- *);
 }
 
 /* End theme */

@@ -1,7 +1,20 @@
+use dalet::typed::HeadingLevel;
+use dalet::typed::Page;
+use dalet::typed::Tag::*;
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 #[tauri::command]
-fn greet(name: &str) -> String {
-    format!("Hello, {}! You've been greeted from Rust!", name)
+fn greet(name: &str) -> Page {
+    Page {
+        title: dalet::typed::TextOrNull::Null,
+        description: "Hi".into(),
+        body: vec![El {
+            body: vec![H {
+                body: "Здрасьте".to_owned(),
+                heading: HeadingLevel::One,
+            }]
+            .into(),
+        }],
+    }
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
