@@ -1,0 +1,29 @@
+.green-theme {
+  --colorspace: oklch;
+
+  --min-bg: #96e28a;
+  --max-bg: #193815;
+
+  --min-text: #82de73;
+  --max-text: #fff;
+}
+
+.blue-theme {
+  --colorspace: oklch;
+
+  --min-bg: #3e4ed6;
+  --max-bg: #0a1043;
+
+  --min-text: #7586ff;
+  --max-text: #fff;
+}
+
+.dark-theme {
+  --colorspace: srgb;
+
+  --min-bg: #777;
+  --max-bg: #111;
+
+  --min-text: #555;
+  --max-text: #fff;
+}

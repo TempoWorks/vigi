@@ -1,0 +1,21 @@
+@utility theme-* {
+  color: color-mix(
+    in var(--colorspace),
+    var(--max-text) --value(integer)%,
+    var(--min-text)
+  );
+  background-color: color-mix(
+    in var(--colorspace),
+    var(--max-bg) --value(integer)%,
+    var(--min-bg)
+  );
+  border-color: color-mix(
+    in var(--colorspace),
+    var(--max-text) --value(integer)%,
+    var(--min-text)
+  );
+}
+
+@utility theme-transition {
+  @apply ease-in-out;
+}
