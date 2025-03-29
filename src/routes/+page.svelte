@@ -8,7 +8,9 @@
   async function greet(event: Event) {
     event.preventDefault();
     // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    greetMsg = await invoke("greet", { name: "aboba" });
+    greetMsg = await invoke("process_url", {
+      input: "gemini://geminiprotocol.net/docs/specification.gmi",
+    });
   }
 </script>
 

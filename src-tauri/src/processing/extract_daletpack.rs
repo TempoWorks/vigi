@@ -27,8 +27,8 @@ async fn process_text(data: &str) -> Page {
     let description = truncate(data, 100);
 
     Page {
-        title: title.into(),
-        description: description.into(),
+        title: Some(title.into()),
+        description: Some(description.into()),
         body: vec![El { body: data.into() }],
     }
 }

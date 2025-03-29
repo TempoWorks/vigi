@@ -2,12 +2,12 @@ use bytes::Bytes;
 use dalet::typed::Page;
 use url::Url;
 
-mod process_data;
-mod process_url;
+mod extract_daletpack;
+mod extract_data;
 mod utils;
 
-use process_data::process_data;
-use process_url::process_url;
+use extract_daletpack::process_data;
+use extract_data::process_url;
 
 use crate::types::VigiError;
 

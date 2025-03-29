@@ -18,8 +18,8 @@ importers:
         specifier: ^2
         version: 2.2.6
       '@txtdot/dalet':
-        specifier: 1.0.0-pre3
-        version: 1.0.0-pre3
+        specifier: 1.0.0-pre5
+        version: 1.0.0-pre5
       tailwindcss:
         specifier: ^4.0.15
         version: 4.0.15
@@ -510,8 +510,8 @@ packages:
   '@tauri-apps/plugin-opener@2.2.6':
     resolution: {integrity: sha512-bSdkuP71ZQRepPOn8BOEdBKYJQvl6+jb160QtJX/i2H9BF6ZySY/kYljh76N2Ne5fJMQRge7rlKoStYQY5Jq1w==}
 
-  '@txtdot/dalet@1.0.0-pre3':
-    resolution: {integrity: sha512-qxjhKykLK9fFRvOQDtM/K8yaMmCPxAOGXkEQpepqU03DqU6ENDrZmUUyTOsMxT3E6kF/qkD/lQF3WCVdr8I3FQ==}
+  '@txtdot/dalet@1.0.0-pre5':
+    resolution: {integrity: sha512-gwtdfZmZPxG/FCA0zmVO+MaTqv1gPgtet+Mi04c4M4Ep65c0iQp7BDKHh52dmQAr2vnwz4469goCH1Sj6r66Kw==}
 
   '@types/cookie@0.6.0':
     resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
@@ -1127,7 +1127,7 @@ snapshots:
     dependencies:
       '@tauri-apps/api': 2.4.0
 
-  '@txtdot/dalet@1.0.0-pre3':
+  '@txtdot/dalet@1.0.0-pre5':
     dependencies:
       zod: 3.24.2
 

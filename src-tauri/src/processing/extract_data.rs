@@ -10,16 +10,16 @@ use super::{utils::mime_to_type, Response};
 
 pub async fn process_url(url: Url) -> Result<Response, VigiError> {
     let result = match url.scheme() {
-        "http" | "https" => process_http(url.to_string()).await?,
-        "gemini" => process_gemini(url.to_string()).await?,
+        "http" | "https" => process_http(url.as_str()).await?,
+        "gemini" => process_gemini(url.as_str()).await?,
         _ => Err(VigiError::UnsupportedProtocol)?,
     };
 
     Ok(result)
 }
 
-async fn process_http(url: String) -> Result<Response, VigiError> {
-    let res = reqwest::get(&url).await.map_err(|_| VigiError::Network)?;
+async fn process_http(url: &str) -> Result<Response, VigiError> {
+    let res = reqwest::get(url).await.map_err(|_| VigiError::Network)?;
 
     let mime = {
         match res.headers().get(CONTENT_TYPE) {
@@ -39,7 +39,7 @@ async fn process_http(url: String) -> Result<Response, VigiError> {
     })
 }
 
-async fn process_gemini(url: String) -> Result<Response, VigiError> {
+async fn process_gemini(url: &str) -> Result<Response, VigiError> {
     let client = tokio_gemini::Client::builder()
         .with_selfsigned_cert_verifier(CertVerifier)
         .build();
