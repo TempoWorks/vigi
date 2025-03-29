@@ -17,7 +17,7 @@
     "@tailwindcss/vite": "^4.0.15",
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-opener": "^2",
-    "@txtdot/dalet": "1.0.0-pre5",
+    "@txtdot/dalet": "1.0.0-pre8",
     "tailwindcss": "^4.0.15"
   },
   "devDependencies": {

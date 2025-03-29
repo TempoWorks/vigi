@@ -240,23 +240,45 @@
   border-color: --value(--color-vtt- *);
 }
 
+@utility theme-transition {
+  @apply ease-in-out;
+}
+
 /* End theme */
 /* Components */
 
 body {
   @apply theme-90 cursor-default overflow-clip;
   user-select: none;
+
+  @apply p-3 gap-3 w-screen h-screen;
+  @apply flex;
+
+  @apply ease-out duration-100;
 }
 
 @utility drag-region {
   app-region: drag;
 }
 
-.window {
-  @apply p-3 gap-3 w-screen h-screen;
-  @apply flex;
+.browser-window {
+  @apply overflow-y-auto text-wrap select-text cursor-auto overflow-x-hidden;
+}
 
-  @apply ease-out duration-100;
+.button {
+  @apply theme-70 px-2 py-1 rounded-xl hover:theme-80 active:theme-90 transition-colors theme-transition;
+}
+
+.render a {
+  @apply underline hover:no-underline;
+}
+
+.render p {
+  @apply my-1;
+}
+
+.render .unsupported {
+  @apply theme-100 p-2 m-2 rounded-2xl;
 }
 
 ::selection {

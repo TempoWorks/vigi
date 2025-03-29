@@ -1,3 +1,5 @@
+export type EngineType = "auto";
+
 export interface StateTab {
   title?: string;
   description?: string;
