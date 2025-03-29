@@ -2,6 +2,7 @@ import type { VigiState } from "./types";
 
 export const state: VigiState = $state({
   current_tab_index: 0,
+  sidebar_open: true,
   tabs: [
     {
       id: 0,

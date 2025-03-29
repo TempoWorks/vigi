@@ -1,6 +1,6 @@
 export type EngineType = "auto";
 
-export interface StateTab {
+export interface SiteTab {
   title?: string;
   description?: string;
   url: string;
@@ -9,5 +9,6 @@ export interface StateTab {
 
 export interface VigiState {
   current_tab_index: number;
-  tabs: StateTab[];
+  sidebar_open: boolean;
+  tabs: SiteTab[];
 }

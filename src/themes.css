@@ -1,10 +1,10 @@
 .green-theme {
   --colorspace: oklch;
 
-  --min-bg: #96e28a;
+  --min-bg: #7cb972;
   --max-bg: #193815;
 
-  --min-text: #82de73;
+  --min-text: #b5e4ad;
   --max-text: #fff;
 }
 

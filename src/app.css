@@ -7,6 +7,10 @@
   app-region: drag;
 }
 
+@utility block {
+  @apply theme-60 p-2 rounded-xl;
+}
+
 body {
   @apply theme-90 cursor-default overflow-clip;
   user-select: none;
@@ -17,8 +21,12 @@ body {
   @apply ease-out duration-100;
 }
 
-.browser-window {
-  @apply overflow-y-auto text-wrap select-text cursor-auto overflow-x-hidden;
+.browser {
+  @apply overflow-y-auto text-wrap select-text cursor-auto overflow-x-hidden block;
+}
+
+.tabs {
+  @apply overflow-y-auto text-wrap overflow-x-hidden;
 }
 
 .button {
