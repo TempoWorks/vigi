@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Tag } from "@txtdot/dalet";
   import BodyRenderer from "./BodyRenderer.svelte";
-  import { convertLink } from "$lib/utils";
+  import { renderLnk } from "$lib/utils";
 
   export let tag: Tag;
 </script>
@@ -11,7 +11,7 @@
 {:else if tag.P}
   <p><BodyRenderer body={tag.P.body} /></p>
 {:else if tag.NavLink}
-  <a href={convertLink("auto", tag.NavLink.dref)}>
+  <a href={renderLnk("auto", tag.NavLink.dref)}>
     {#if tag.NavLink.body}
       <BodyRenderer body={tag.NavLink.body} />
     {:else}
