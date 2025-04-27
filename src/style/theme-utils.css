@@ -17,5 +17,6 @@
 }
 
 @utility theme-transition {
-  @apply ease-in-out;
+  transition-timing-function: var(--transition);
+  transition-duration: var(--duration);
 }

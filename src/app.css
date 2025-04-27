@@ -1,24 +1,13 @@
 @import "tailwindcss";
 
-@import "./theme-utils.css";
-@import "./themes.css";
+@import "./style/themes.css";
+@import "./style/theme-utils.css";
 
-@import "./code.css";
-
-@utility drag-region {
-  app-region: drag;
-}
+@import "./style/render.css";
+@import "./style/code.css";
 
 @utility block {
   @apply theme-60 p-2 rounded-xl;
-}
-
-@utility interactive {
-  @apply theme-70 hover:theme-80 active:theme-90 transition-colors theme-transition;
-}
-
-@utility interactive-block {
-  @apply p-2 rounded-xl interactive;
 }
 
 body {
@@ -43,68 +32,15 @@ body {
   @apply overflow-y-auto text-wrap overflow-x-hidden flex flex-col;
 }
 
-.button {
-  @apply px-2 py-1 rounded-xl interactive;
-}
+.tab {
+  @apply p-2 rounded-xl theme-60;
+  @apply cursor-pointer theme-transition;
 
-.render {
-  @apply max-w-(--breakpoint-lg) mx-auto;
-}
+  @apply hover:theme-55 active:theme-45;
 
-.render a {
-  @apply underline hover:no-underline font-semibold;
-}
+  @apply hover:px-4;
 
-.render h6 {
-  @apply text-lg font-bold my-0.5;
-}
-
-.render h5 {
-  @apply text-xl font-bold my-1;
-}
-
-.render h4 {
-  @apply text-2xl font-bold my-2;
-}
-
-.render h3 {
-  @apply text-3xl font-bold my-3;
-}
-
-.render h2 {
-  @apply text-4xl font-bold my-4;
-}
-
-.render h1 {
-  @apply text-5xl font-extrabold my-5;
-}
-
-.render ol {
-  @apply ml-5;
-}
-
-.render .Disc {
-  @apply list-disc;
-}
-
-.render .Decimal {
-  @apply list-decimal;
-}
-
-.render .None {
-  @apply list-none;
-}
-
-.render p {
-  @apply my-1;
-}
-
-.render blockquote {
-  @apply theme-95 p-2 border-l-4 rounded-2xl overflow-auto;
-}
-
-.render .unsupported {
-  @apply theme-100 p-2 m-2 rounded-2xl;
+  @apply flex items-center gap-2 w-full truncate;
 }
 
 ::selection {

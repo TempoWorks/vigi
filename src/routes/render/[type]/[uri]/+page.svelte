@@ -3,6 +3,4 @@
   let { data } = $props();
 </script>
 
-{#if data.page}
-  <DaletRenderer page={data.page} />
-{/if}
+<DaletRenderer page={data.page} />

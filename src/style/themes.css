@@ -1,5 +1,7 @@
 :root,
 .green-theme {
+  --transition: ease-in-out;
+  --duration: 150ms;
   --colorspace: oklch;
 
   --min-bg: #7cb972;

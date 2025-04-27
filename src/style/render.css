@@ -1,0 +1,59 @@
+.render {
+  @apply max-w-(--breakpoint-lg) mx-auto;
+}
+
+.render a {
+  @apply underline hover:no-underline font-semibold;
+}
+
+.render h6 {
+  @apply text-sm font-bold my-0.5;
+}
+
+.render h5 {
+  @apply text-lg font-bold my-1;
+}
+
+.render h4 {
+  @apply text-xl font-bold my-2;
+}
+
+.render h3 {
+  @apply text-2xl font-bold my-3;
+}
+
+.render h2 {
+  @apply text-3xl font-bold my-4;
+}
+
+.render h1 {
+  @apply text-4xl font-extrabold my-5;
+}
+
+.render ol {
+  @apply ml-5;
+}
+
+.render .Disc {
+  @apply list-disc;
+}
+
+.render .Decimal {
+  @apply list-decimal;
+}
+
+.render .None {
+  @apply list-none;
+}
+
+.render p {
+  @apply my-1;
+}
+
+.render blockquote {
+  @apply theme-95 p-2 border-l-4 rounded-2xl overflow-auto;
+}
+
+.render .unsupported {
+  @apply theme-100 p-2 m-2 rounded-2xl;
+}
