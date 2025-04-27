@@ -1,3 +1,4 @@
+:root,
 .green-theme {
   --colorspace: oklch;
 
@@ -6,11 +7,28 @@
 
   --min-text: #b5e4ad;
   --max-text: #fff;
+
+  --code-bg: #10250e;
+  --code-color: #fff;
+  --code-keyword: #ff7b72;
+  --code-title: #d2a8ff;
+  --code-attribute: #79c0ff;
+  --code-string: #a5d6ff;
+  --code-symbol: #ffa657;
+  --code-comment: #8b949e;
+  --code-quote: #7ee787;
+  --code-subst: #c9d1d9;
+  --code-section: #1f6feb;
+  --code-bullet: #f2cc60;
+  --code-emphasis: #c9d1d9;
+  --code-strong: #c9d1d9;
+  --code-addition-color: #aff5b4;
+  --code-addition-bg: #033a16;
+  --code-deletion-color: #ffdcd7;
+  --code-deletion-bg: #67060c;
 }
 
 .blue-theme {
-  --colorspace: oklch;
-
   --min-bg: #3e4ed6;
   --max-bg: #0a1043;
 
