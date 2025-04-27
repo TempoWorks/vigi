@@ -3,6 +3,8 @@
 @import "./theme-utils.css";
 @import "./themes.css";
 
+@import "./code.css";
+
 @utility drag-region {
   app-region: drag;
 }
@@ -95,10 +97,6 @@ body {
 
 .render p {
   @apply my-1;
-}
-
-.render pre {
-  @apply theme-95 p-2 rounded-2xl overflow-auto;
 }
 
 .render blockquote {

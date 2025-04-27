@@ -9,7 +9,7 @@ export const state: VigiState = $state({
       id: 0,
       link: {
         type: "render",
-        uri: "gemini://geminiprotocol.net/docs/faq.gmi", //"gemini://geminiprotocol.net/docs/gemtext-specification.gmi",
+        uri: "gemini://geminiprotocol.net/docs/gemtext-specification.gmi",
       },
     },
   ],
