@@ -1,10 +1,16 @@
 export type EngineType = "auto";
-
+export type TabType = "render" | "browser";
 export interface SiteTab {
+  id: number;
+  link: TabUrl;
   title?: string;
   description?: string;
-  url: string;
-  id: number;
+}
+
+export interface TabUrl {
+  type: TabType;
+  uri: string;
+  renderType?: EngineType;
 }
 
 export interface VigiState {

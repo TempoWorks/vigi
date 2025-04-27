@@ -4,6 +4,6 @@
   export let tab: SiteTab;
 </script>
 
-<div class="block">
+<div class="interactive-block">
   {tab.title ? tab.title : "No title"}
 </div>

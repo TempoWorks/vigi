@@ -3,8 +3,6 @@
   import { state } from "$lib/state.svelte";
   import "../app.css";
 
-  let sidebarOpen = true;
-
   document.addEventListener("keypress", (e: KeyboardEvent) => {
     if (
       ["INPUT", "TEXTAREA", "SELECT", "OPTION"].includes(
@@ -13,17 +11,17 @@
     ) {
       return;
     }
-    if (e.code === "KeyQ") sidebarOpen = !sidebarOpen;
+    if (e.code === "KeyQ") state.sidebar_open = !state.sidebar_open;
   });
 </script>
 
-<div class="grid grid-cols-6 gap-2">
-  <div class="col-span-1 flex flex-col h-full">
+<div class="grid grid-cols-6 gap-2 w-full">
+  <div class="tabs">
     {#each state.tabs as tab}
       <Tab {tab} />
     {/each}
   </div>
-  <div class="browser col-span-5">
+  <div class="browser">
     <slot />
   </div>
 </div>

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Page, Tag } from "@txtdot/dalet";
+  import type { Page } from "@txtdot/dalet";
   import TagRenderer from "./TagRenderer.svelte";
 
   export let page: Page;

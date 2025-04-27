@@ -18,8 +18,11 @@ importers:
         specifier: ^2
         version: 2.2.6
       '@txtdot/dalet':
-        specifier: 1.0.0-pre8
-        version: 1.0.0-pre8
+        specifier: 1.0.0-pre9
+        version: 1.0.0-pre9
+      svelte-highlight:
+        specifier: ^7.8.3
+        version: 7.8.3
       tailwindcss:
         specifier: ^4.0.15
         version: 4.0.15
@@ -510,8 +513,8 @@ packages:
   '@tauri-apps/plugin-opener@2.2.6':
     resolution: {integrity: sha512-bSdkuP71ZQRepPOn8BOEdBKYJQvl6+jb160QtJX/i2H9BF6ZySY/kYljh76N2Ne5fJMQRge7rlKoStYQY5Jq1w==}
 
-  '@txtdot/dalet@1.0.0-pre8':
-    resolution: {integrity: sha512-I9O21vCxJ30fLIENTQW/A2e4vEg6QYkwlqg0OPr/MRjJtjYuiqN6QzIATSPnpW6XODnVwiis5r+fELv3rgONFg==}
+  '@txtdot/dalet@1.0.0-pre9':
+    resolution: {integrity: sha512-cH9wOW0njWi508AqgW5a5PVZjphgOXy/sgqCTZZtmQyzoltAsoNyuZqMJOsxkuKG7qGLCC9ILJgPtWZ/DYlEFA==}
 
   '@types/cookie@0.6.0':
     resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
@@ -594,6 +597,10 @@ packages:
 
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
+
+  highlight.js@11.11.1:
+    resolution: {integrity: sha512-Xwwo44whKBVCYoliBQwaPvtd/2tYFkRQtXDWj1nackaV2JPXx3L0+Jvd8/qCJ2p+ML0/XVkJ2q+Mr+UVdpJK5w==}
+    engines: {node: '>=12.0.0'}
 
   import-meta-resolve@4.1.0:
     resolution: {integrity: sha512-I6fiaX09Xivtk+THaMfAwnA3MVA5Big1WHF1Dfx9hFuvNIWpXnorlkzhcQf6ehrqQiiZECRt1poOAkPmer3ruw==}
@@ -733,6 +740,9 @@ packages:
     peerDependencies:
       svelte: ^4.0.0 || ^5.0.0-next.0
       typescript: '>=5.0.0'
+
+  svelte-highlight@7.8.3:
+    resolution: {integrity: sha512-i4CE/6yda1fCh0ovUVATk1S1feu1y3+CV+l1brgtMPPRO9VTGq+hPpUjVEJWQkE7hPAgwgVpHccoa5M2gpKxYQ==}
 
   svelte@5.25.2:
     resolution: {integrity: sha512-IxmBz4x15+bNbowhygUlwoVgqMLfEIDtyjUFDfOwb1f+7Fe5qeLfwGJHMql7QUSJBqNtXcOCPsZDDmuieZcpfA==}
@@ -1127,7 +1137,7 @@ snapshots:
     dependencies:
       '@tauri-apps/api': 2.4.0
 
-  '@txtdot/dalet@1.0.0-pre8':
+  '@txtdot/dalet@1.0.0-pre9':
     dependencies:
       zod: 3.24.2
 
@@ -1204,6 +1214,8 @@ snapshots:
     optional: true
 
   graceful-fs@4.2.11: {}
+
+  highlight.js@11.11.1: {}
 
   import-meta-resolve@4.1.0: {}
 
@@ -1334,6 +1346,10 @@ snapshots:
       typescript: 5.6.3
     transitivePeerDependencies:
       - picomatch
+
+  svelte-highlight@7.8.3:
+    dependencies:
+      highlight.js: 11.11.1
 
   svelte@5.25.2:
     dependencies:

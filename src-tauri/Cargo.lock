@@ -833,9 +833,9 @@ dependencies = [
 
 [[package]]
 name = "dalet"
-version = "1.0.0-pre.24"
+version = "1.0.0-pre.27"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fdd3217a01fede9633e0ef9a713711e58387ddafa554bfce0e72adb6f5452856"
+checksum = "70474f3052cf9fb12825dd7489071ff133836b56e7d53d7906a0711e5f86da75"
 dependencies = [
  "ariadne",
  "bitcode",
