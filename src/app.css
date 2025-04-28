@@ -63,13 +63,23 @@ body {
   @apply col-span-5 flex flex-col overflow-y-auto gap-2;
 }
 
-.search-input-desktop {
-  @apply px-2 py-1 rounded-xl grow min-w-0 h-full w-full text-center;
+.top-bar-search-input-desktop {
+  @apply px-2 py-1 rounded-xl grow min-w-0 h-full w-full;
 
   @apply theme-60 outline-none;
   @apply focus:theme-20 hover:theme-50;
 
   @apply theme-transition;
+
+  @apply text-center focus:text-start;
+}
+
+.top-bar-input-button-desktop {
+  @apply m-1;
+}
+
+.top-bar-input {
+  @apply flex gap-2 w-full;
 }
 
 .button {

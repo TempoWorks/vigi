@@ -20,3 +20,12 @@ export function renderLnk(type: EngineType, link: string, inner?: boolean) {
       : link
   )}`;
 }
+
+export function formatInputUrl(urlString: string): string {
+  try {
+    const url = new URL(urlString);
+    return decodeURI(urlString.replace(`${url.protocol}//`, ""));
+  } catch (e) {
+    return urlString;
+  }
+}

@@ -5,6 +5,7 @@
   import ChevronRight from "$lib/icons/ChevronRight.svelte";
   import Reload from "$lib/icons/Reload.svelte";
   import { state } from "$lib/state.svelte";
+  import { formatInputUrl } from "$lib/utils";
 
   import Button from "./Button.svelte";
   import CompactBlock from "./CompactBlock.svelte";
@@ -12,7 +13,8 @@
 
   let iEl: HTMLInputElement;
 
-  let input = state.top_bar_input;
+  let input = formatInputUrl(state.top_bar_input);
+  let currentInput = "";
 </script>
 
 <div class="top-bar-desktop">
@@ -28,14 +30,14 @@
     </Button>
   </CompactBlock>
 
-  <ThinBlock className="flex gap-2 w-full">
-    <Button className="m-1">
+  <ThinBlock className="top-bar-input">
+    <Button className="top-bar-input-button-desktop">
       <Adjustments />
     </Button>
     <input
       type="text"
       placeholder="Search or enter URL"
-      class="search-input-desktop"
+      class="top-bar-search-input-desktop"
       bind:this={iEl}
       bind:value={input}
       on:keypress={(e) => {
@@ -45,16 +47,21 @@
         }
       }}
       on:focus={() => {
+        input = currentInput || state.top_bar_input;
+
         setTimeout(() => {
           iEl.select();
           iEl.scrollLeft = iEl.scrollWidth;
         }, 1);
       }}
       on:focusout={() => {
-        state.top_bar_input = decodeURIComponent(state.top_bar_input);
+        if (input) currentInput = input;
+        else currentInput = state.top_bar_input;
+
+        input = formatInputUrl(state.top_bar_input);
       }}
     />
-    <Button className="m-1">
+    <Button className="top-bar-input-button-desktop">
       <Bookmarks />
     </Button>
   </ThinBlock>
