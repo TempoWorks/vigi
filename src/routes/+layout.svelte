@@ -1,5 +1,6 @@
 <script lang="ts">
   import Tab from "$lib/components/Tab.svelte";
+  import TopBarDesktop from "$lib/components/TopBarDesktop.svelte";
   import { state } from "$lib/state.svelte";
   import "../app.css";
 
@@ -21,7 +22,10 @@
       <Tab {tab} />
     {/each}
   </div>
-  <div class="browser">
-    <slot />
+  <div class="main-window-desktop">
+    <TopBarDesktop />
+    <div class="browser">
+      <slot />
+    </div>
   </div>
 </div>

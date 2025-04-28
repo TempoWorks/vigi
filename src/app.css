@@ -10,6 +10,14 @@
   @apply theme-60 p-2 rounded-xl;
 }
 
+@utility compact-block {
+  @apply theme-60 p-1 rounded-xl;
+}
+
+@utility thin-block {
+  @apply theme-60 rounded-xl;
+}
+
 body {
   @apply theme-90 cursor-default overflow-clip;
   user-select: none;
@@ -21,7 +29,7 @@ body {
 }
 
 .browser {
-  @apply overflow-y-auto text-wrap select-text cursor-auto overflow-x-hidden block col-span-5;
+  @apply overflow-y-auto text-wrap select-text cursor-auto overflow-x-hidden block;
 }
 
 .sidebar {
@@ -41,6 +49,37 @@ body {
   @apply hover:px-4;
 
   @apply flex items-center gap-2 w-full truncate;
+}
+
+.top-bar-desktop {
+  @apply flex gap-2;
+}
+
+.navigation-buttons-desktop {
+  @apply flex items-center gap-1;
+}
+
+.main-window-desktop {
+  @apply col-span-5 flex flex-col overflow-y-auto gap-2;
+}
+
+.search-input-desktop {
+  @apply px-2 py-1 rounded-xl grow min-w-0 h-full w-full text-center;
+
+  @apply theme-60 outline-none;
+  @apply focus:theme-20 hover:theme-50;
+
+  @apply theme-transition;
+}
+
+.button {
+  @apply p-1 rounded-lg;
+  @apply theme-transition;
+
+  @apply hover:theme-90 hover:px-2;
+  @apply cursor-pointer;
+
+  @apply active:theme-100;
 }
 
 ::selection {
