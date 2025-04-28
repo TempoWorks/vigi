@@ -4,6 +4,9 @@
   --duration: 150ms;
   --colorspace: oklch;
 
+  --selection-color: #ffffff;
+  --selection-bg: #193815;
+
   --min-bg: #7cb972;
   --max-bg: #193815;
 

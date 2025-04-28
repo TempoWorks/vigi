@@ -93,7 +93,8 @@ body {
 }
 
 ::selection {
-  @apply theme-60;
+  color: var(--selection-color);
+  background-color: var(--selection-bg);
 }
 
 ::-webkit-scrollbar {

@@ -4,12 +4,12 @@
   import ChevronLeft from "$lib/icons/ChevronLeft.svelte";
   import ChevronRight from "$lib/icons/ChevronRight.svelte";
   import Reload from "$lib/icons/Reload.svelte";
-  import { state } from "$lib/state.svelte";
-  import { formatInputUrl } from "$lib/utils";
-
   import Button from "./Button.svelte";
   import CompactBlock from "./CompactBlock.svelte";
   import ThinBlock from "./ThinBlock.svelte";
+
+  import { state } from "$lib/state.svelte";
+  import { formatInputUrl } from "$lib/utils";
 
   let iEl: HTMLInputElement;
 
