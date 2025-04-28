@@ -24,6 +24,8 @@ pub struct Response {
 }
 
 pub async fn process_input(input: &str) -> Result<Page, VigiError> {
+    println!("processing: {}", input);
+
     let parsed = Url::parse(input);
 
     let Response { mime, data } = match parsed {

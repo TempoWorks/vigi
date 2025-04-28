@@ -20,6 +20,7 @@ export async function load({ params }) {
   if (params.type === "auto")
     return {
       page,
+      params,
     };
   else throw "Unsupported";
 }

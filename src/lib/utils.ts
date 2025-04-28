@@ -1,8 +1,12 @@
 import { state } from "./state.svelte";
 import type { EngineType, TabUrl } from "./types";
 
-export function currentTabLink() {
+export function currentTabRenderUrl() {
   return renderUrl(state.tabs[state.current_tab_index].link);
+}
+
+export function currentTabLink() {
+  return state.tabs[state.current_tab_index].link;
 }
 
 export function renderUrl(url: TabUrl): string {

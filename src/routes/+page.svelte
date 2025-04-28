@@ -1,6 +1,6 @@
 <script>
   import { goto } from "$app/navigation";
-  import { currentTabLink } from "$lib/utils";
+  import { currentTabRenderUrl } from "$lib/utils";
 
-  goto(currentTabLink());
+  goto(currentTabRenderUrl());
 </script>

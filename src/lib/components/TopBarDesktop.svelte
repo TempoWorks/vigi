@@ -8,13 +8,17 @@
   import CompactBlock from "./CompactBlock.svelte";
   import ThinBlock from "./ThinBlock.svelte";
 
-  import { state } from "$lib/state.svelte";
-  import { formatInputUrl } from "$lib/utils";
+  import { invalidateAll, onNavigate } from "$app/navigation";
+  import { currentTabLink, formatInputUrl } from "$lib/utils";
 
   let iEl: HTMLInputElement;
 
-  let input = formatInputUrl(state.top_bar_input);
+  let input = "";
   let currentInput = "";
+
+  onNavigate(() => {
+    input = formatInputUrl(currentTabLink().uri);
+  });
 </script>
 
 <div class="top-bar-desktop">
@@ -25,7 +29,7 @@
     <Button>
       <ChevronRight />
     </Button>
-    <Button>
+    <Button onclick={() => invalidateAll()}>
       <Reload />
     </Button>
   </CompactBlock>
@@ -40,25 +44,25 @@
       class="top-bar-search-input-desktop"
       bind:this={iEl}
       bind:value={input}
-      on:keypress={(e) => {
+      onkeypress={(e) => {
         if (e.key === "Enter") {
           // updateAndLoadInput(currentInput);
           iEl.blur();
         }
       }}
-      on:focus={() => {
-        input = currentInput || state.top_bar_input;
+      onfocus={() => {
+        input = currentInput || currentTabLink().uri;
 
         setTimeout(() => {
           iEl.select();
           iEl.scrollLeft = iEl.scrollWidth;
         }, 1);
       }}
-      on:focusout={() => {
+      onfocusout={() => {
         if (input) currentInput = input;
-        else currentInput = state.top_bar_input;
+        else currentInput = currentTabLink().uri;
 
-        input = formatInputUrl(state.top_bar_input);
+        input = formatInputUrl(currentTabLink().uri);
       }}
     />
     <Button className="top-bar-input-button-desktop">

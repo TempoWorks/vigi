@@ -16,6 +16,5 @@ export interface TabUrl {
 export interface VigiState {
   current_tab_index: number;
   sidebar_open: boolean;
-  top_bar_input: string;
   tabs: SiteTab[];
 }
