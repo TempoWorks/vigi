@@ -30,7 +30,10 @@
     <Button>
       <ChevronRight />
     </Button>
-    <Button onclick={() => invalidateAll()}>
+    <Button
+      onclick={() => invalidateAll()}
+      disabled={internal_state.is_loading}
+    >
       <Reload class={internal_state.is_loading ? "loading" : ""} />
     </Button>
   </CompactBlock>

@@ -7,7 +7,9 @@
 
 <button
   class={`${disabled ? "disabled-button" : "button"}${className ? " " + className : ""}`}
-  {onclick}
+  onclick={() => {
+    if (!disabled) onclick();
+  }}
 >
   <slot />
 </button>
