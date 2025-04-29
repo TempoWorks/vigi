@@ -10,7 +10,7 @@
 
   import { invalidateAll, onNavigate } from "$app/navigation";
   import { currentTabLink, formatInputUrl } from "$lib/utils";
-  import { internal_state } from "$lib/state.svelte";
+  import { internalState, vigiState } from "$lib/state.svelte";
 
   let iEl: HTMLInputElement;
 
@@ -24,17 +24,14 @@
 
 <div class="top-bar-desktop">
   <CompactBlock className="navigation-buttons-desktop">
-    <Button>
+    <Button disabled={!vigiState.tabs[vigiState.current_tab_index].link.prev}>
       <ChevronLeft />
     </Button>
-    <Button>
+    <Button disabled={!vigiState.tabs[vigiState.current_tab_index].link.next}>
       <ChevronRight />
     </Button>
-    <Button
-      onclick={() => invalidateAll()}
-      disabled={internal_state.is_loading}
-    >
-      <Reload class={internal_state.is_loading ? "loading" : ""} />
+    <Button onclick={() => invalidateAll()} disabled={internalState.isLoading}>
+      <Reload class={internalState.isLoading ? "loading" : ""} />
     </Button>
   </CompactBlock>
 

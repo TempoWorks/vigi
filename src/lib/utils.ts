@@ -1,12 +1,12 @@
-import { state } from "./state.svelte";
+import { vigiState } from "./state.svelte";
 import type { EngineType, TabUrl } from "./types";
 
 export function currentTabRenderUrl() {
-  return renderUrl(state.tabs[state.current_tab_index].link);
+  return renderUrl(vigiState.tabs[vigiState.current_tab_index].link);
 }
 
 export function currentTabLink() {
-  return state.tabs[state.current_tab_index].link;
+  return vigiState.tabs[vigiState.current_tab_index].link;
 }
 
 export function renderUrl(url: TabUrl): string {
@@ -20,7 +20,10 @@ export function renderUrl(url: TabUrl): string {
 export function renderLnk(type: EngineType, link: string, inner?: boolean) {
   return `/render/${type}/${encodeURIComponent(
     inner
-      ? new URL(link, state.tabs[state.current_tab_index].link.uri).toString()
+      ? new URL(
+          link,
+          vigiState.tabs[vigiState.current_tab_index].link.uri
+        ).toString()
       : link
   )}`;
 }

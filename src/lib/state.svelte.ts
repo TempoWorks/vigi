@@ -1,6 +1,6 @@
 import type { InternalState, VigiState } from "./types";
 
-export const state: VigiState = $state({
+export const vigiState: VigiState = $state({
   current_tab_index: 0,
   tab_counter: 1,
   sidebar_open: true,
@@ -15,6 +15,6 @@ export const state: VigiState = $state({
   ],
 });
 
-export const internal_state: InternalState = $state({
-  is_loading: true,
+export const internalState: InternalState = $state({
+  isLoading: true,
 });

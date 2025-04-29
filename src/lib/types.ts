@@ -11,6 +11,9 @@ export interface TabUrl {
   type: TabType;
   uri: string;
   renderType?: EngineType;
+
+  prev?: TabUrl;
+  next?: TabUrl;
 }
 
 export interface VigiState {
@@ -20,5 +23,5 @@ export interface VigiState {
 }
 
 export interface InternalState {
-  is_loading: boolean;
+  isLoading: boolean;
 }

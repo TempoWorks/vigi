@@ -1,7 +1,7 @@
 <script lang="ts">
   import Tab from "$lib/components/Tab.svelte";
   import TopBarDesktop from "$lib/components/TopBarDesktop.svelte";
-  import { state } from "$lib/state.svelte";
+  import { vigiState } from "$lib/state.svelte";
   import "../app.css";
 
   const { children } = $props();
@@ -14,13 +14,13 @@
     ) {
       return;
     }
-    if (e.code === "KeyQ") state.sidebar_open = !state.sidebar_open;
+    if (e.code === "KeyQ") vigiState.sidebar_open = !vigiState.sidebar_open;
   });
 </script>
 
 <div class="grid grid-cols-6 gap-2 w-full">
   <div class="tabs">
-    {#each state.tabs as tab}
+    {#each vigiState.tabs as tab}
       <Tab {tab} />
     {/each}
   </div>
