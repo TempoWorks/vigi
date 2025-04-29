@@ -1,35 +1,47 @@
 import { internalState, vigiState } from "$lib/state.svelte.js";
 import type { EngineType } from "$lib/types.js";
+import { currentTab, currentTabLink, manageNewLink } from "$lib/utils.js";
 import { invoke } from "@tauri-apps/api/core";
 import type { Page } from "@txtdot/dalet";
 
 export async function load({ params }) {
-  internalState.isLoading = true;
+  const currLink = currentTabLink();
 
-  try {
-    const page = (await invoke("process_url", {
-      input: params.uri,
-    })) as Page;
+  let page: Page;
 
-    internalState.isLoading = false;
+  if (
+    currLink.renderType === params.type &&
+    currLink.type === "render" &&
+    currLink.uri === params.uri &&
+    currLink.page
+  )
+    page = currLink.page;
+  else {
+    internalState.isLoading = true;
+    try {
+      page = (await invoke("process_url", {
+        input: params.uri,
+      })) as Page;
 
-    vigiState.tabs[vigiState.current_tab_index].description =
-      page.description || undefined;
-    vigiState.tabs[vigiState.current_tab_index].title = page.title || undefined;
-    vigiState.tabs[vigiState.current_tab_index].link = {
-      type: "render",
-      uri: params.uri,
-      renderType: params.type as EngineType,
-    };
+      if (
+        currLink.renderType === params.type &&
+        currLink.type === "render" &&
+        currLink.uri === params.uri
+      )
+        vigiState.tabs[vigiState.currentTab].links[
+          vigiState.tabs[vigiState.currentTab].currentLink
+        ].page = page;
 
-    if (params.type === "auto")
-      return {
-        page,
-        params,
-      };
-    else throw "Unsupported";
-  } catch (e) {
-    internalState.isLoading = false;
-    throw e;
+      internalState.isLoading = false;
+    } catch (e) {
+      internalState.isLoading = false;
+      throw e;
+    }
   }
+
+  manageNewLink("render", params.type as EngineType, params.uri, page);
+
+  return {
+    page,
+  };
 }

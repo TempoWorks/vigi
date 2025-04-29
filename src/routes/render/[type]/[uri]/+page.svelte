@@ -4,4 +4,4 @@
   let { data } = $props();
 </script>
 
-<DaletRenderer page={data.page} />
+<DaletRenderer body={data.page.body} />

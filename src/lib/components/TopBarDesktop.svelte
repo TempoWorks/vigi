@@ -8,8 +8,12 @@
   import CompactBlock from "./CompactBlock.svelte";
   import ThinBlock from "./ThinBlock.svelte";
 
-  import { invalidateAll, onNavigate } from "$app/navigation";
-  import { currentTabLink, formatInputUrl } from "$lib/utils";
+  import { goto, invalidateAll, onNavigate } from "$app/navigation";
+  import {
+    currentTabInnerUrl,
+    currentTabLink,
+    formatInputUrl,
+  } from "$lib/utils";
   import { internalState, vigiState } from "$lib/state.svelte";
 
   let iEl: HTMLInputElement;
@@ -24,13 +28,34 @@
 
 <div class="top-bar-desktop">
   <CompactBlock className="navigation-buttons-desktop">
-    <Button disabled={!vigiState.tabs[vigiState.current_tab_index].link.prev}>
+    <Button
+      disabled={vigiState.tabs[vigiState.currentTab].currentLink === 0}
+      onclick={() => {
+        vigiState.tabs[vigiState.currentTab].currentLink -= 1;
+        goto(currentTabInnerUrl());
+      }}
+    >
       <ChevronLeft />
     </Button>
-    <Button disabled={!vigiState.tabs[vigiState.current_tab_index].link.next}>
+    <Button
+      disabled={vigiState.tabs[vigiState.currentTab].currentLink >=
+        vigiState.tabs[vigiState.currentTab].links.length - 1}
+      onclick={() => {
+        vigiState.tabs[vigiState.currentTab].currentLink += 1;
+        goto(currentTabInnerUrl());
+      }}
+    >
       <ChevronRight />
     </Button>
-    <Button onclick={() => invalidateAll()} disabled={internalState.isLoading}>
+    <Button
+      onclick={() => {
+        vigiState.tabs[vigiState.currentTab].links[
+          vigiState.tabs[vigiState.currentTab].currentLink
+        ].page = undefined;
+        invalidateAll();
+      }}
+      disabled={internalState.isLoading}
+    >
       <Reload class={internalState.isLoading ? "loading" : ""} />
     </Button>
   </CompactBlock>

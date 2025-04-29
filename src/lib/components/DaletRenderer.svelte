@@ -1,12 +1,12 @@
 <script lang="ts">
-  import type { Page } from "@txtdot/dalet";
+  import type { Tag } from "@txtdot/dalet";
   import TagRenderer from "./TagRenderer.svelte";
 
-  export let page: Page;
+  export let body: Tag[];
 </script>
 
 <section class="render">
-  {#each page.body as tag}
+  {#each body as tag}
     <TagRenderer {tag} />
   {/each}
 </section>

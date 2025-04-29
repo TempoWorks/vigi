@@ -5,5 +5,5 @@
 </script>
 
 <button class="tab">
-  {tab.title ? tab.title : "No title"}
+  {tab.links[tab.currentLink].page?.title || "No title"}
 </button>
