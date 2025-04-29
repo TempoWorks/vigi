@@ -18,3 +18,7 @@ export interface VigiState {
   sidebar_open: boolean;
   tabs: SiteTab[];
 }
+
+export interface InternalState {
+  is_loading: boolean;
+}

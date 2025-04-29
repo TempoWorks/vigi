@@ -4,6 +4,8 @@
   --duration: 150ms;
   --colorspace: oklch;
 
+  --loading-animation-duration: 0.5s;
+
   --selection-color: #ffffff;
   --selection-bg: #193815;
 

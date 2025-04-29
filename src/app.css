@@ -92,6 +92,22 @@ body {
   @apply active:theme-100;
 }
 
+.disabled-button {
+  @apply p-1 rounded-lg opacity-50 cursor-pointer;
+}
+
+.loading {
+  animation: loading var(--loading-animation-duration) var(--transition)
+    infinite;
+}
+
+@keyframes loading {
+  to {
+    transform: rotate(360deg);
+    opacity: 0.5;
+  }
+}
+
 ::selection {
   color: var(--selection-color);
   background-color: var(--selection-bg);

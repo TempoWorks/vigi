@@ -10,11 +10,12 @@
 
   import { invalidateAll, onNavigate } from "$app/navigation";
   import { currentTabLink, formatInputUrl } from "$lib/utils";
+  import { internal_state } from "$lib/state.svelte";
 
   let iEl: HTMLInputElement;
 
-  let input = "";
-  let currentInput = "";
+  let input = $state(formatInputUrl(currentTabLink().uri));
+  let currentInput = $state("");
 
   onNavigate(() => {
     input = formatInputUrl(currentTabLink().uri);
@@ -30,12 +31,12 @@
       <ChevronRight />
     </Button>
     <Button onclick={() => invalidateAll()}>
-      <Reload />
+      <Reload class={internal_state.is_loading ? "loading" : ""} />
     </Button>
   </CompactBlock>
 
   <ThinBlock className="top-bar-input">
-    <Button className="top-bar-input-button-desktop">
+    <Button className="top-bar-input-button-desktop" disabled>
       <Adjustments />
     </Button>
     <input
@@ -65,7 +66,7 @@
         input = formatInputUrl(currentTabLink().uri);
       }}
     />
-    <Button className="top-bar-input-button-desktop">
+    <Button className="top-bar-input-button-desktop" disabled>
       <Bookmarks />
     </Button>
   </ThinBlock>

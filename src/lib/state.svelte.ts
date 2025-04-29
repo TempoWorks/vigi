@@ -1,4 +1,4 @@
-import type { VigiState } from "./types";
+import type { InternalState, VigiState } from "./types";
 
 export const state: VigiState = $state({
   current_tab_index: 0,
@@ -13,4 +13,8 @@ export const state: VigiState = $state({
       },
     },
   ],
+});
+
+export const internal_state: InternalState = $state({
+  is_loading: true,
 });

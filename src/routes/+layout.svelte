@@ -4,6 +4,8 @@
   import { state } from "$lib/state.svelte";
   import "../app.css";
 
+  const { children } = $props();
+
   document.addEventListener("keypress", (e: KeyboardEvent) => {
     if (
       ["INPUT", "TEXTAREA", "SELECT", "OPTION"].includes(
@@ -25,7 +27,7 @@
   <div class="main-window-desktop">
     <TopBarDesktop />
     <div class="browser">
-      <slot />
+      {@render children()}
     </div>
   </div>
 </div>
