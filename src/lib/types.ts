@@ -1,6 +1,5 @@
 import type { Page } from "@txtdot/dalet";
 
-export type EngineType = "auto";
 export type TabType = "render" | "browser";
 export interface SiteTab {
   id: number;
@@ -13,7 +12,6 @@ export interface TabLink {
 
   type: TabType;
   uri: string;
-  renderType?: EngineType;
 }
 
 export interface VigiState {

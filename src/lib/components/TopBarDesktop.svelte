@@ -10,19 +10,22 @@
 
   import { goto, invalidateAll, onNavigate } from "$app/navigation";
   import {
-    currentTabInnerUrl,
+    currentTabInnerURN,
     currentTabLink,
-    formatInputUrl,
+    formatInputLink,
+    gotoTBI,
+    linkToURI,
   } from "$lib/utils";
   import { internalState, vigiState } from "$lib/state.svelte";
 
   let iEl: HTMLInputElement;
 
-  let input = $state(formatInputUrl(currentTabLink().uri));
+  let input = $state(formatInputLink(currentTabLink()));
   let currentInput = $state("");
 
   onNavigate(() => {
-    input = formatInputUrl(currentTabLink().uri);
+    input = formatInputLink(currentTabLink());
+    currentInput = "";
   });
 </script>
 
@@ -32,7 +35,7 @@
       disabled={vigiState.tabs[vigiState.currentTab].currentLink === 0}
       onclick={() => {
         vigiState.tabs[vigiState.currentTab].currentLink -= 1;
-        goto(currentTabInnerUrl());
+        goto(currentTabInnerURN());
       }}
     >
       <ChevronLeft />
@@ -42,7 +45,7 @@
         vigiState.tabs[vigiState.currentTab].links.length - 1}
       onclick={() => {
         vigiState.tabs[vigiState.currentTab].currentLink += 1;
-        goto(currentTabInnerUrl());
+        goto(currentTabInnerURN());
       }}
     >
       <ChevronRight />
@@ -72,12 +75,12 @@
       bind:value={input}
       onkeypress={(e) => {
         if (e.key === "Enter") {
-          // updateAndLoadInput(currentInput);
+          gotoTBI(input);
           iEl.blur();
         }
       }}
       onfocus={() => {
-        input = currentInput || currentTabLink().uri;
+        input = currentInput || linkToURI(currentTabLink());
 
         setTimeout(() => {
           iEl.select();
@@ -85,10 +88,12 @@
         }, 1);
       }}
       onfocusout={() => {
-        if (input) currentInput = input;
-        else currentInput = currentTabLink().uri;
+        const currLink = currentTabLink();
 
-        input = formatInputUrl(currentTabLink().uri);
+        if (input) currentInput = input;
+        else currentInput = linkToURI(currLink);
+
+        input = formatInputLink(currLink);
       }}
     />
     <Button className="top-bar-input-button-desktop" disabled>

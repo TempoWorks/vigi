@@ -1,6 +1,5 @@
 import { internalState, vigiState } from "$lib/state.svelte.js";
-import type { EngineType } from "$lib/types.js";
-import { currentTab, currentTabLink, manageNewLink } from "$lib/utils.js";
+import { currentTabLink, manageLink } from "$lib/utils.js";
 import { invoke } from "@tauri-apps/api/core";
 import type { Page } from "@txtdot/dalet";
 
@@ -10,7 +9,6 @@ export async function load({ params }) {
   let page: Page;
 
   if (
-    currLink.renderType === params.type &&
     currLink.type === "render" &&
     currLink.uri === params.uri &&
     currLink.page
@@ -23,11 +21,7 @@ export async function load({ params }) {
         input: params.uri,
       })) as Page;
 
-      if (
-        currLink.renderType === params.type &&
-        currLink.type === "render" &&
-        currLink.uri === params.uri
-      )
+      if (currLink.type === "render" && currLink.uri === params.uri)
         vigiState.tabs[vigiState.currentTab].links[
           vigiState.tabs[vigiState.currentTab].currentLink
         ].page = page;
@@ -39,7 +33,7 @@ export async function load({ params }) {
     }
   }
 
-  manageNewLink("render", params.type as EngineType, params.uri, page);
+  manageLink("render", params.uri, page);
 
   return {
     page,

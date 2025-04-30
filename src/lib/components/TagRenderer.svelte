@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Tag } from "@txtdot/dalet";
   import BodyRenderer from "./BodyRenderer.svelte";
-  import { renderLnk } from "$lib/utils";
+  import { renderLink } from "$lib/utils";
   import Highlight, { HighlightAuto } from "svelte-highlight";
 
   import * as languages from "svelte-highlight/languages";
@@ -18,7 +18,7 @@
 {:else if tag.P}
   <p><BodyRenderer body={tag.P.body} /></p>
 {:else if tag.NavLink}
-  <a href={renderLnk("auto", tag.NavLink.dref, true)}>
+  <a href={renderLink(tag.NavLink.dref, true)}>
     {#if tag.NavLink.body}
       <BodyRenderer body={tag.NavLink.body} />
     {:else}

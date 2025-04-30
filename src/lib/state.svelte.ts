@@ -20,5 +20,5 @@ export const vigiState: VigiState = $state({
 });
 
 export const internalState: InternalState = $state({
-  isLoading: true,
+  isLoading: false,
 });

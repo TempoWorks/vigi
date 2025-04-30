@@ -29,7 +29,7 @@ body {
 }
 
 .browser {
-  @apply overflow-y-auto text-wrap select-text cursor-auto overflow-x-hidden block;
+  @apply overflow-y-auto text-wrap select-text cursor-auto overflow-x-hidden block h-full;
 }
 
 .sidebar {

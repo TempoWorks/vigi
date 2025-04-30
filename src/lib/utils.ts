@@ -1,6 +1,7 @@
 import type { Page } from "@txtdot/dalet";
 import { vigiState } from "./state.svelte";
-import type { EngineType, TabLink, TabType } from "./types";
+import type { TabLink, TabType } from "./types";
+import { goto } from "$app/navigation";
 
 export function currentTab() {
   return vigiState.tabs[vigiState.currentTab];
@@ -12,47 +13,44 @@ export function currentTabLink() {
   return current.links[current.currentLink];
 }
 
-export function currentTabInnerUrl() {
-  return innerUrl(currentTabLink());
+export function currentTabInnerURN() {
+  return innerURN(currentTabLink());
 }
 
-export function innerUrl(url: TabLink): string {
-  if (url.type === "render") {
-    return renderLnk(url.renderType || "auto", url.uri);
+export function innerURN(link: TabLink): string {
+  if (link.type === "render") {
+    return renderLink(link.uri);
   } else {
-    return `/${url.type}/${url.uri}`;
+    return `/${link.type}/${link.uri}`;
   }
 }
 
-export function renderLnk(type: EngineType, link: string, inner?: boolean) {
-  return `/render/${type}/${encodeURIComponent(
-    inner ? new URL(link, currentTabLink().uri).toString() : link
+export function linkToURI(link: TabLink) {
+  if (link.type === "render") return link.uri;
+  else return `${link.type}://${link.uri}`;
+}
+
+export function renderLink(uri: string, relative?: boolean) {
+  return `/render/${encodeURIComponent(
+    relative ? new URL(uri, currentTabLink().uri).toString() : uri
   )}`;
 }
 
-export function formatInputUrl(urlString: string): string {
+export function formatInputLink(link: TabLink): string {
+  const urlString = linkToURI(link);
   try {
     const url = new URL(urlString);
     return decodeURI(urlString.replace(`${url.protocol}//`, ""));
-  } catch (e) {
+  } catch {
     return urlString;
   }
 }
 
-export function manageNewLink(
-  type: TabType,
-  renderType: EngineType,
-  uri: string,
-  page?: Page
-) {
+export function manageLink(type: TabType, uri: string, page?: Page) {
   const currTab = currentTab();
   const currLink = currentTabLink();
 
-  if (
-    currLink.renderType !== renderType ||
-    currLink.type !== type ||
-    currLink.uri !== uri
-  ) {
+  if (currLink.type !== type || currLink.uri !== uri) {
     if (currTab.currentLink !== currTab.links.length - 1) {
       vigiState.tabs[vigiState.currentTab].links = currTab.links.slice(
         0,
@@ -65,7 +63,28 @@ export function manageNewLink(
       type,
       page,
       uri,
-      renderType,
     });
+  }
+}
+
+export function browserLinkManager(urn: string) {
+  return () => {
+    manageLink("browser", urn);
+  };
+}
+
+export function gotoTBI(tbi: string) {
+  const url = isUrl(tbi);
+  if (url)
+    if (url.protocol !== "browser:") goto(renderLink(tbi));
+    else goto(`/browser/${url.hostname}/${url.pathname}`);
+  else goto(`/browser/search/${encodeURIComponent(tbi)}`);
+}
+
+export function isUrl(s: string) {
+  try {
+    return new URL(s);
+  } catch {
+    return false;
   }
 }
