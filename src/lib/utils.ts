@@ -31,9 +31,15 @@ export function linkToURI(link: TabLink) {
 }
 
 export function renderLink(uri: string, relative?: boolean) {
-  return `/render/${encodeURIComponent(
-    relative ? new URL(uri, currentTabLink().uri).toString() : uri
-  )}`;
+  if (relative) {
+    try {
+      return `/render/${encodeURIComponent(
+        new URL(uri, currentTabLink().uri).toString()
+      )}`;
+    } catch {}
+  }
+
+  return `/render/${encodeURIComponent(uri)}`;
 }
 
 export function formatInputLink(link: TabLink): string {
