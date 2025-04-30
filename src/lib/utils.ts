@@ -53,27 +53,19 @@ export function manageNewLink(
     currLink.type !== type ||
     currLink.uri !== uri
   ) {
-    if (currTab.currentLink === currTab.links.length - 1) {
-      vigiState.tabs[vigiState.currentTab].currentLink += 1;
-
-      vigiState.tabs[vigiState.currentTab].links.push({
-        type,
-        page,
-        uri,
-        renderType,
-      });
-    } else {
+    if (currTab.currentLink !== currTab.links.length - 1) {
       vigiState.tabs[vigiState.currentTab].links = currTab.links.slice(
         0,
         currTab.currentLink + 1
       );
-
-      vigiState.tabs[vigiState.currentTab].links[currTab.currentLink] = {
-        type,
-        page,
-        uri,
-        renderType,
-      };
     }
+
+    vigiState.tabs[vigiState.currentTab].currentLink += 1;
+    vigiState.tabs[vigiState.currentTab].links.push({
+      type,
+      page,
+      uri,
+      renderType,
+    });
   }
 }
