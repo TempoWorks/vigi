@@ -58,12 +58,13 @@ export function manageLink(type: TabType, uri: string, page?: Page) {
       );
     }
 
-    vigiState.tabs[vigiState.currentTab].currentLink += 1;
     vigiState.tabs[vigiState.currentTab].links.push({
       type,
       page,
       uri,
     });
+
+    vigiState.tabs[vigiState.currentTab].currentLink += 1;
   }
 }
 
