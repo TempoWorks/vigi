@@ -17,6 +17,8 @@
     linkToURI,
   } from "$lib/utils";
   import { internalState, vigiState } from "$lib/state.svelte";
+  import CloseSidebar from "$lib/icons/CloseSidebar.svelte";
+  import OpenSidebar from "$lib/icons/OpenSidebar.svelte";
 
   let iEl: HTMLInputElement;
 
@@ -31,6 +33,17 @@
 
 <div class="top-bar-desktop">
   <CompactBlock className="navigation-buttons-desktop">
+    <Button
+      onclick={() => {
+        vigiState.sidebar_open = !vigiState.sidebar_open;
+      }}
+    >
+      {#if vigiState.sidebar_open}
+        <CloseSidebar />
+      {:else}
+        <OpenSidebar />
+      {/if}
+    </Button>
     <Button
       disabled={vigiState.tabs[vigiState.currentTab].currentLink === 0}
       onclick={() => {

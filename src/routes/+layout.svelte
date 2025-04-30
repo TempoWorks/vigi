@@ -18,12 +18,14 @@
   });
 </script>
 
-<div class="grid grid-cols-6 gap-2 w-full">
-  <div class="tabs">
-    {#each vigiState.tabs as tab}
-      <Tab {tab} />
-    {/each}
-  </div>
+<div class="grid gap-2 w-full" class:grid-cols-6={vigiState.sidebar_open}>
+  {#if vigiState.sidebar_open}
+    <div class="tabs">
+      {#each vigiState.tabs as tab}
+        <Tab {tab} />
+      {/each}
+    </div>
+  {/if}
   <div class="main-window-desktop">
     <TopBarDesktop />
     <div class="browser">
