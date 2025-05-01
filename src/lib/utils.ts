@@ -1,4 +1,4 @@
-import type { Page } from "@txtdot/dalet";
+import type { Page, Tag } from "@txtdot/dalet";
 import { vigiState } from "./state.svelte";
 import type { TabLink, TabType } from "./types";
 import { goto } from "$app/navigation";
@@ -45,14 +45,23 @@ export function renderLink(uri: string, relative?: boolean) {
 export function formatInputLink(link: TabLink): string {
   const urlString = linkToURI(link);
   try {
-    const url = new URL(urlString);
-    return decodeURI(urlString.replace(`${url.protocol}//`, ""));
+    if (link.type === "render") {
+      const url = new URL(urlString);
+      return decodeURI(urlString.replace(`${url.protocol}//`, ""));
+    } else {
+      return link.title || urlString;
+    }
   } catch {
     return urlString;
   }
 }
 
-export function manageLink(type: TabType, uri: string, page?: Page) {
+export function manageLink(
+  type: TabType,
+  uri: string,
+  title?: string,
+  body?: Tag[]
+) {
   const currTab = currentTab();
   const currLink = currentTabLink();
 
@@ -66,7 +75,8 @@ export function manageLink(type: TabType, uri: string, page?: Page) {
 
     vigiState.tabs[vigiState.currentTab].links.push({
       type,
-      page,
+      title: title || undefined,
+      body,
       uri,
     });
 
@@ -74,9 +84,9 @@ export function manageLink(type: TabType, uri: string, page?: Page) {
   }
 }
 
-export function browserLinkManager(urn: string) {
+export function browserLinkManager(urn: string, title: string) {
   return () => {
-    manageLink("browser", urn);
+    manageLink("browser", urn, title);
   };
 }
 

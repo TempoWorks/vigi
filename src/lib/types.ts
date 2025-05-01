@@ -1,4 +1,4 @@
-import type { Page } from "@txtdot/dalet";
+import type { Tag } from "@txtdot/dalet";
 
 export type TabType = "render" | "browser";
 export interface SiteTab {
@@ -8,7 +8,8 @@ export interface SiteTab {
 }
 
 export interface TabLink {
-  page?: Page;
+  title?: string;
+  body?: Tag[];
 
   type: TabType;
   uri: string;
