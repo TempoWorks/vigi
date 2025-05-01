@@ -6,10 +6,6 @@
 @import "./style/render.css";
 @import "./style/code.css";
 
-@utility block {
-  @apply theme-60 p-2 rounded-xl;
-}
-
 @utility compact-block {
   @apply theme-60 p-1 rounded-xl;
 }
@@ -22,14 +18,15 @@ body {
   @apply theme-90 cursor-default overflow-clip;
   user-select: none;
 
-  @apply p-3 gap-3 w-screen h-screen;
+  @apply p-0 lg:p-3 gap-3 w-screen h-screen;
   @apply flex;
 
   @apply ease-out duration-100;
 }
 
 .browser {
-  @apply overflow-y-auto text-wrap select-text cursor-auto overflow-x-hidden block h-full;
+  @apply overflow-y-auto text-wrap select-text cursor-auto overflow-x-hidden h-full;
+  @apply theme-60 p-2 rounded-t-xl lg:rounded-xl;
 }
 
 .sidebar {
@@ -51,16 +48,16 @@ body {
   @apply flex items-center gap-2 w-full truncate;
 }
 
-.top-bar-desktop {
-  @apply flex gap-2;
+.top-bar {
+  @apply flex gap-1 lg:gap-2 max-lg:theme-60 max-lg:rounded-b-xl;
 }
 
-.navigation-buttons-desktop {
+.navigation-buttons {
   @apply flex items-center gap-1;
 }
 
-.main-window-desktop {
-  @apply col-span-5 flex flex-col overflow-y-auto gap-2;
+.main-window {
+  @apply col-span-5 flex flex-col overflow-y-auto gap-1 lg:gap-2;
 }
 
 .top-bar-search-input {
@@ -115,7 +112,7 @@ body {
 
 ::-webkit-scrollbar {
   width: 24px;
-  height: 30px;
+  height: 16px;
 }
 
 ::-webkit-scrollbar-track {
