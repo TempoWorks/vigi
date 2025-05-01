@@ -16,7 +16,11 @@
     }
     if (e.code === "KeyQ") vigiState.sidebar_open = !vigiState.sidebar_open;
   });
+
+  let width: number = $state(0);
 </script>
+
+<svelte:window bind:innerWidth={width} />
 
 <div class="grid gap-2 w-full" class:grid-cols-6={vigiState.sidebar_open}>
   {#if vigiState.sidebar_open}

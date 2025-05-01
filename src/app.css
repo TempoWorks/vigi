@@ -63,7 +63,7 @@ body {
   @apply col-span-5 flex flex-col overflow-y-auto gap-2;
 }
 
-.top-bar-search-input-desktop {
+.top-bar-search-input {
   @apply px-2 py-1 rounded-xl grow min-w-0 h-full w-full;
 
   @apply theme-60 outline-none;
@@ -74,7 +74,7 @@ body {
   @apply text-center focus:text-start;
 }
 
-.top-bar-input-button-desktop {
+.top-bar-input-button {
   @apply m-1;
 }
 

@@ -26,14 +26,15 @@ export async function load({ params }) {
       body = page.body;
       title = page.title || undefined;
 
-      if (currLink.type === "render" && currLink.uri === params.uri)
+      if (currLink.type === "render" && currLink.uri === params.uri) {
         vigiState.tabs[vigiState.currentTab].links[
           vigiState.tabs[vigiState.currentTab].currentLink
         ].body = body;
 
-      vigiState.tabs[vigiState.currentTab].links[
-        vigiState.tabs[vigiState.currentTab].currentLink
-      ].title = title;
+        vigiState.tabs[vigiState.currentTab].links[
+          vigiState.tabs[vigiState.currentTab].currentLink
+        ].title = title;
+      }
 
       internalState.isLoading = false;
     } catch (e) {
