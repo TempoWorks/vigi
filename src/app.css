@@ -26,7 +26,7 @@ body {
 
 .browser {
   @apply overflow-y-auto text-wrap select-text cursor-auto overflow-x-hidden h-full;
-  @apply theme-60 p-2 rounded-t-xl lg:rounded-xl;
+  @apply border-1 theme-60 p-2 rounded-xl;
 }
 
 .sidebar {
@@ -52,8 +52,20 @@ body {
   @apply flex gap-1 lg:gap-2 max-lg:theme-60 max-lg:rounded-b-xl;
 }
 
+.bot-bar {
+  @apply flex gap-1 lg:gap-2 max-lg:theme-60 max-lg:rounded-t-xl;
+}
+
 .navigation-buttons {
   @apply flex items-center gap-1;
+}
+
+.bot-bar-navigation-buttons {
+  @apply flex items-center gap-1 w-full justify-between;
+}
+
+.tab-count {
+  @apply outline-2 font-bold p-0! hover:p-0! w-6 h-6 hover:w-8 text-center;
 }
 
 .main-window {
@@ -111,8 +123,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 24px;
-  height: 16px;
+  @apply w-[16px] h-[16px] lg:w-[24px] lg:h-[16px];
 }
 
 ::-webkit-scrollbar-track {

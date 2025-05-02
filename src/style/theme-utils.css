@@ -11,8 +11,8 @@
   );
   border-color: color-mix(
     in var(--colorspace),
-    var(--min-bg) --value(integer)%,
-    var(--max-bg)
+    var(--min-text) --value(integer)%,
+    var(--max-text)
   );
 }
 

@@ -3,9 +3,28 @@
   import TopBarDesktop from "$lib/components/TopBarDesktop.svelte";
   import TopBarMobile from "$lib/components/TopBarMobile.svelte";
   import { vigiState } from "$lib/state.svelte";
+  import { onMount } from "svelte";
   import "../app.css";
+  import { afterNavigate, beforeNavigate } from "$app/navigation";
+  import { page } from "$app/state";
+  import BotBar from "$lib/components/BotBar.svelte";
 
   const { children } = $props();
+
+  let browserEl: HTMLDivElement;
+
+  //todo: make this mess better
+  let pathname = "";
+  onMount(() => {
+    pathname = page.url.pathname;
+  });
+  beforeNavigate(() => {
+    pathname = page.url.pathname;
+  });
+  afterNavigate(() => {
+    if (pathname !== page.url.pathname)
+      browserEl.scrollTo({ top: 0, behavior: "auto" });
+  });
 
   document.addEventListener("keypress", (e: KeyboardEvent) => {
     if (
@@ -40,8 +59,11 @@
     {:else}
       <TopBarMobile />
     {/if}
-    <div class="browser">
+    <div class="browser" bind:this={browserEl}>
       {@render children()}
     </div>
+    {#if !is_desktop}
+      <BotBar />
+    {/if}
   </div>
 </div>

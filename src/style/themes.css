@@ -41,14 +41,18 @@
 
   --min-text: #7586ff;
   --max-text: #fff;
+
+  --code-bg: #0a1043;
 }
 
 .dark-theme {
   --colorspace: srgb;
 
-  --min-bg: #777;
-  --max-bg: #111;
+  --min-bg: #757575;
+  --max-bg: #000000;
 
   --min-text: #555;
   --max-text: #fff;
+
+  --code-bg: #0e0e0e;
 }
