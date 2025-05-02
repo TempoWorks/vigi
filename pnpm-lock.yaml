@@ -20,6 +20,9 @@ importers:
       '@txtdot/dalet':
         specifier: 1.0.0-pre9
         version: 1.0.0-pre9
+      svelte-dnd-action:
+        specifier: ^0.9.61
+        version: 0.9.61(svelte@5.25.2)
       svelte-highlight:
         specifier: ^7.8.3
         version: 7.8.3
@@ -741,6 +744,11 @@ packages:
       svelte: ^4.0.0 || ^5.0.0-next.0
       typescript: '>=5.0.0'
 
+  svelte-dnd-action@0.9.61:
+    resolution: {integrity: sha512-xj0jZNdV44MAMbdGIAuBYEombmK7A7ticemOtdR5ErWw0f3IxcfcnrRjlYEK0rRjsahVsU+VdGUMwjPVyXrSrA==}
+    peerDependencies:
+      svelte: '>=3.23.0 || ^5.0.0-next.0'
+
   svelte-highlight@7.8.3:
     resolution: {integrity: sha512-i4CE/6yda1fCh0ovUVATk1S1feu1y3+CV+l1brgtMPPRO9VTGq+hPpUjVEJWQkE7hPAgwgVpHccoa5M2gpKxYQ==}
 
@@ -1346,6 +1354,10 @@ snapshots:
       typescript: 5.6.3
     transitivePeerDependencies:
       - picomatch
+
+  svelte-dnd-action@0.9.61(svelte@5.25.2):
+    dependencies:
+      svelte: 5.25.2
 
   svelte-highlight@7.8.3:
     dependencies:

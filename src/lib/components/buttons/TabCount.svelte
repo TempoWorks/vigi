@@ -4,6 +4,6 @@
   import Button from "../Button.svelte";
 </script>
 
-<Button className="tab-count" onclick={() => goto("/browser/tabs")}>
+<Button disabled className="tab-count">
   {vigiState.tabs.length}
 </Button>

@@ -1,5 +1,4 @@
 <script lang="ts">
-  import Tab from "$lib/components/Tab.svelte";
   import TopBarDesktop from "$lib/components/TopBarDesktop.svelte";
   import TopBarMobile from "$lib/components/TopBarMobile.svelte";
   import { vigiState } from "$lib/state.svelte";
@@ -8,6 +7,7 @@
   import { afterNavigate, beforeNavigate } from "$app/navigation";
   import { page } from "$app/state";
   import BotBar from "$lib/components/BotBar.svelte";
+  import Tabs from "$lib/components/Tabs.svelte";
 
   const { children } = $props();
 
@@ -47,11 +47,7 @@
 
 <div class="grid gap-2 w-full" class:grid-cols-6={sidebar_open}>
   {#if sidebar_open}
-    <div class="tabs">
-      {#each vigiState.tabs as tab, idx (tab.id)}
-        <Tab {tab} {idx} />
-      {/each}
-    </div>
+    <Tabs />
   {/if}
   <div class="main-window">
     {#if is_desktop}
