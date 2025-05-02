@@ -48,8 +48,8 @@
 <div class="grid gap-2 w-full" class:grid-cols-6={sidebar_open}>
   {#if sidebar_open}
     <div class="tabs">
-      {#each vigiState.tabs as tab}
-        <Tab {tab} />
+      {#each vigiState.tabs as tab, idx (tab.id)}
+        <Tab {tab} {idx} />
       {/each}
     </div>
   {/if}

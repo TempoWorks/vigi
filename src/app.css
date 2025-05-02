@@ -26,7 +26,7 @@ body {
 
 .browser {
   @apply overflow-y-auto text-wrap select-text cursor-auto overflow-x-hidden h-full;
-  @apply border-1 theme-60 p-2 rounded-xl;
+  @apply border-2 theme-70 p-2 rounded-xl;
 }
 
 .sidebar {
@@ -34,18 +34,24 @@ body {
 }
 
 .tabs {
-  @apply overflow-y-auto text-wrap overflow-x-hidden flex flex-col;
+  @apply overflow-y-auto text-wrap overflow-x-hidden flex gap-1 flex-col-reverse justify-end;
 }
 
 .tab {
   @apply p-2 rounded-xl theme-60;
-  @apply cursor-pointer theme-transition;
+  @apply cursor-pointer transition theme-transition;
 
   @apply hover:theme-55 active:theme-45;
 
   @apply hover:px-4;
 
   @apply flex items-center gap-2 w-full truncate;
+
+  transition-property: padding, color, background-color;
+}
+
+.tab.selected {
+  @apply border-2 theme-50 hover:theme-45 active:theme-35;
 }
 
 .top-bar {
@@ -131,12 +137,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply rounded-xl theme-70 bg-clip-content;
+  @apply rounded-xl theme-80 bg-clip-content;
   border: 6px solid transparent;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply theme-75;
+  @apply theme-85;
   border: 6px solid transparent;
 }
 

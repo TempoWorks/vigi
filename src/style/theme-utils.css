@@ -9,11 +9,7 @@
     var(--max-bg) --value(integer)%,
     var(--min-bg)
   );
-  border-color: color-mix(
-    in var(--colorspace),
-    var(--min-text) --value(integer)%,
-    var(--max-text)
-  );
+  border-color: var(--min-text);
 }
 
 @utility theme-transition {

@@ -9,11 +9,16 @@
   import AdjustmentsButton from "./buttons/AdjustmentsButton.svelte";
   import TopBarInput from "./TopBarInput.svelte";
   import BookmarkButton from "./buttons/BookmarkButton.svelte";
+  import PlusTabButton from "./buttons/PlusTabButton.svelte";
 </script>
 
 <div class="top-bar">
   <CompactBlock className="navigation-buttons">
     <Sidebar />
+    <PlusTabButton />
+  </CompactBlock>
+
+  <CompactBlock className="navigation-buttons">
     <HistoryBack />
     <HistoryForward />
     <ReloadButton />

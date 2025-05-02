@@ -17,6 +17,7 @@ export interface TabLink {
 
 export interface VigiState {
   currentTab: number;
+  tabCounter: number;
   sidebar_open: boolean;
   tabs: SiteTab[];
 }

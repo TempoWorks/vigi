@@ -105,3 +105,33 @@ export function isUrl(s: string) {
     return false;
   }
 }
+
+export function openNewTab() {
+  vigiState.tabs.push({
+    id: vigiState.tabCounter,
+    currentLink: 0,
+    links: [newTabLink],
+  });
+
+  vigiState.tabCounter += 1;
+
+  goToTab(vigiState.tabs.length - 1);
+}
+
+export function goToTab(idx: number) {
+  vigiState.currentTab = idx;
+
+  goto(
+    innerURN(
+      vigiState.tabs[vigiState.currentTab].links[
+        vigiState.tabs[vigiState.currentTab].currentLink
+      ]
+    )
+  );
+}
+
+export const newTabLink: TabLink = {
+  type: "browser",
+  uri: "main",
+  title: "New tab",
+};
