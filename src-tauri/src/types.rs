@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug)]
-pub enum VigiError {
+pub enum DaletProcessingError {
     Network,
     Parse,
 
@@ -12,4 +12,10 @@ pub enum VigiError {
     InvalidCharset,
 
     GeminiCerts,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub enum VigiError {
+    StateSaveFailed,
+    NoPathToSave,
 }

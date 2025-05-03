@@ -8,7 +8,7 @@
 
 > [!WARNING]
 > Browser is W.I.P.
-> The project is currently updating to the Tauri V2. Many features from v1 is not implemented yet.
+> The project updated from tauri v1. All features from vigi v1 implemented in vigi v2.
 
 Browser for dalet, text, gemtext with native support of txtdot proxy and local txtdot engines
 
@@ -31,11 +31,13 @@ See also: [Dalet](https://github.com/TxtDot/dalet).
 
 ### Browser features
 
-- [ ] browser window: url processing, reload page
-- [ ] browser window: go forward, go backward
-- [ ] current tabs: add,remove,change,save,restore,cache
-- [ ] favorite tabs: add,remove,change,save,restore,cache
-- [ ] sidebar hiding
+- [ ] permanent browser state
+- [x] browser window: url processing, reload page
+- [x] browser window: go forward, go backward
+- [x] current tabs: add, remove, cache
+- [ ] favorite tabs: add, remove, cache
+- [ ] tabs: restore
+- [x] sidebar hiding
 - [ ] history
 - [ ] txtdot proxy support
 - [ ] local txtdot

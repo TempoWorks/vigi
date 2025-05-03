@@ -1,4 +1,4 @@
-use crate::types::VigiError;
+use crate::types::DaletProcessingError;
 use async_trait::async_trait;
 use mime::Mime;
 use reqwest::header::CONTENT_TYPE;
@@ -8,18 +8,18 @@ use tokio_gemini::certs::SelfsignedCertVerifier;
 
 use super::{utils::mime_to_type, Response};
 
-pub async fn process_url(url: Url) -> Result<Response, VigiError> {
+pub async fn process_url(url: Url) -> Result<Response, DaletProcessingError> {
     let result = match url.scheme() {
         "http" | "https" => process_http(url.as_str()).await?,
         "gemini" => process_gemini(url.as_str()).await?,
-        _ => Err(VigiError::UnsupportedProtocol)?,
+        _ => Err(DaletProcessingError::UnsupportedProtocol)?,
     };
 
     Ok(result)
 }
 
-async fn process_http(url: &str) -> Result<Response, VigiError> {
-    let res = reqwest::get(url).await.map_err(|_| VigiError::Network)?;
+async fn process_http(url: &str) -> Result<Response, DaletProcessingError> {
+    let res = reqwest::get(url).await.map_err(|_| DaletProcessingError::Network)?;
 
     let mime = {
         match res.headers().get(CONTENT_TYPE) {
@@ -31,15 +31,15 @@ async fn process_http(url: &str) -> Result<Response, VigiError> {
         }
     }
     .parse::<Mime>()
-    .map_err(|_| VigiError::InvalidMimeType)?;
+    .map_err(|_| DaletProcessingError::InvalidMimeType)?;
 
     Ok(Response {
         mime: mime_to_type(mime),
-        data: res.bytes().await.map_err(|_| VigiError::Network)?.into(),
+        data: res.bytes().await.map_err(|_| DaletProcessingError::Network)?.into(),
     })
 }
 
-async fn process_gemini(url: &str) -> Result<Response, VigiError> {
+async fn process_gemini(url: &str) -> Result<Response, DaletProcessingError> {
     let client = tokio_gemini::Client::builder()
         .with_selfsigned_cert_verifier(CertVerifier)
         .build();
@@ -47,14 +47,14 @@ async fn process_gemini(url: &str) -> Result<Response, VigiError> {
     match client
         .request(url)
         .await
-        .map_err(|_| VigiError::Network)?
+        .map_err(|_| DaletProcessingError::Network)?
         .ensure_ok()
     {
         Ok(mut resp) => Ok(Response {
-            mime: mime_to_type(resp.mime().map_err(|_| VigiError::InvalidMimeType)?),
-            data: resp.bytes().await.map_err(|_| VigiError::Network)?,
+            mime: mime_to_type(resp.mime().map_err(|_| DaletProcessingError::InvalidMimeType)?),
+            data: resp.bytes().await.map_err(|_| DaletProcessingError::Network)?,
         }),
-        Err(_) => Err(VigiError::Network),
+        Err(_) => Err(DaletProcessingError::Network),
     }
 }
 

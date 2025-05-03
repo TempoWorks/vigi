@@ -8,6 +8,8 @@
   import { page } from "$app/state";
   import BotBar from "$lib/components/BotBar.svelte";
   import Tabs from "$lib/components/Tabs.svelte";
+  import { invoke } from "@tauri-apps/api/core";
+  import type { ExportedVigiState, VigiState } from "$lib/types";
 
   const { children } = $props();
 
@@ -41,6 +43,29 @@
 
   let is_desktop = $derived(width >= 1024);
   let sidebar_open = $derived(is_desktop && vigiState.sidebar_open);
+
+  $effect(() => {
+    let state: VigiState = JSON.parse(JSON.stringify(vigiState));
+
+    let export_state: ExportedVigiState = {
+      currentTab: state.currentTab,
+      sidebar_open: state.sidebar_open,
+      tabs: state.tabs.map(({ currentLink, id, links }) => {
+        return {
+          currentLink,
+          links: links.map(({ type, uri, title }) => {
+            return {
+              type,
+              uri,
+              title,
+            };
+          }),
+        };
+      }),
+    };
+
+    invoke("save_state", { input: JSON.stringify(export_state) });
+  });
 </script>
 
 <svelte:window bind:innerWidth={width} />

@@ -26,3 +26,21 @@ export interface InternalState {
   isLoading: boolean;
   topBarOpen: boolean;
 }
+
+export interface ExportedVigiState {
+  currentTab: number;
+  sidebar_open: boolean;
+  tabs: ExportedSiteTab[];
+}
+
+export interface ExportedSiteTab {
+  currentLink: number;
+  links: ExportedTabLink[];
+}
+
+export interface ExportedTabLink {
+  title?: string;
+
+  type: TabType;
+  uri: string;
+}
