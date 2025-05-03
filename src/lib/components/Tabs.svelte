@@ -2,11 +2,13 @@
   import { internalState, vigiState } from "$lib/state.svelte";
   import { dndzone, type DndEvent } from "svelte-dnd-action";
   import { flip } from "svelte/animate";
-  import { goToTab } from "$lib/utils";
+  import { closeTab, goToTab } from "$lib/utils";
   import type { SiteTab } from "$lib/types";
-  import GooeyLoading from "$lib/icons/GooeyLoading.svelte";
+  import Loading from "$lib/icons/Loading.svelte";
   import World from "$lib/icons/World.svelte";
   import WorldCog from "$lib/icons/WorldCog.svelte";
+  import Button from "./Button.svelte";
+  import X from "$lib/icons/X.svelte";
 
   let dragging = false;
 
@@ -40,24 +42,31 @@
 >
   {#each vigiState.tabs as tab, idx (tab.id)}
     {@const currentLink = tab.links[tab.currentLink]}
-    <button
-      class="tab"
-      class:selected={!dragging && vigiState.currentTab === idx}
-      onclick={() => goToTab(idx)}
-      animate:flip={{ duration: 150 }}
-    >
-      <div>
-        {#if vigiState.currentTab === idx && internalState.isLoading}
-          <GooeyLoading />
-        {:else if currentLink.type === "render"}
-          <World />
-        {:else}
-          <WorldCog />
-        {/if}
-      </div>
-      <div class="tab-text">
-        {currentLink.title || "No title"}
-      </div>
-    </button>
+    <div class="tab-container" animate:flip={{ duration: 150 }}>
+      <button
+        class="tab"
+        class:selected={!dragging && vigiState.currentTab === idx}
+        onclick={() => goToTab(idx)}
+      >
+        <div>
+          {#if vigiState.currentTab === idx && internalState.isLoading}
+            <Loading />
+          {:else if currentLink.type === "render"}
+            <World />
+          {:else}
+            <WorldCog />
+          {/if}
+        </div>
+        <div class="tab-text">
+          {currentLink.title || "No title"}
+        </div>
+      </button>
+      <Button
+        className="tab-close"
+        onclick={() => {
+          closeTab(idx);
+        }}><X /></Button
+      >
+    </div>
   {/each}
 </div>

@@ -7,20 +7,29 @@
   import BookmarkButton from "./buttons/BookmarkButton.svelte";
   import HomeButton from "./buttons/HomeButton.svelte";
   import PlusTabButton from "./buttons/PlusTabButton.svelte";
+  import { internalState } from "$lib/state.svelte";
 </script>
 
 <div class="top-bar">
-  <CompactBlock className="navigation-buttons">
-    <HomeButton />
-  </CompactBlock>
+  {#if !internalState.topBarOpen}
+    <CompactBlock className="navigation-buttons">
+      <HomeButton />
+    </CompactBlock>
+  {/if}
 
   <ThinBlock className="top-bar-input">
-    <AdjustmentsButton />
+    {#if !internalState.topBarOpen}
+      <AdjustmentsButton />
+    {/if}
     <TopBarInput />
-    <BookmarkButton />
+    {#if !internalState.topBarOpen}
+      <BookmarkButton />
+    {/if}
   </ThinBlock>
 
-  <CompactBlock className="navigation-buttons">
-    <PlusTabButton />
-  </CompactBlock>
+  {#if !internalState.topBarOpen}
+    <CompactBlock className="navigation-buttons">
+      <PlusTabButton />
+    </CompactBlock>
+  {/if}
 </div>

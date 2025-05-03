@@ -21,4 +21,5 @@ export const vigiState: VigiState = $state({
 
 export const internalState: InternalState = $state({
   isLoading: false,
+  topBarOpen: false,
 });

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onNavigate } from "$app/navigation";
+  import { internalState } from "$lib/state.svelte";
   import {
     currentTabLink,
     formatInputLink,
@@ -28,6 +29,8 @@
     if (e.key === "Enter") {
       gotoTBI(input);
       iEl.blur();
+
+      internalState.topBarOpen = false;
     }
   }}
   onfocus={() => {
@@ -36,6 +39,8 @@
     setTimeout(() => {
       iEl.select();
       iEl.scrollLeft = iEl.scrollWidth;
+
+      internalState.topBarOpen = true;
     }, 1);
   }}
   onfocusout={() => {
@@ -45,5 +50,7 @@
     else currentInput = linkToURI(currLink);
 
     input = formatInputLink(currLink);
+
+    internalState.topBarOpen = false;
   }}
 />

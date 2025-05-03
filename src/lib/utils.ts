@@ -130,6 +130,27 @@ export function goToTab(idx: number) {
   );
 }
 
+export function closeTab(idx: number) {
+  const changed = idx === vigiState.currentTab;
+
+  if (vigiState.tabs.length === 1) {
+    vigiState.tabs[0].currentLink = 0;
+    vigiState.tabs[0].links = [
+      { type: "browser", title: "New tab", uri: "main" },
+    ];
+
+    goto("/browser/main");
+  } else {
+    vigiState.tabs.splice(idx, 1);
+
+    if (vigiState.currentTab >= idx) {
+      vigiState.currentTab -= 1;
+
+      if (changed) goToTab(vigiState.currentTab);
+    }
+  }
+}
+
 export const newTabLink: TabLink = {
   type: "browser",
   uri: "main",

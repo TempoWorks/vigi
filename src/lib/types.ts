@@ -24,4 +24,5 @@ export interface VigiState {
 
 export interface InternalState {
   isLoading: boolean;
+  topBarOpen: boolean;
 }

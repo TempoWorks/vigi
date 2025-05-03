@@ -7,11 +7,11 @@
 @import "./style/code.css";
 
 @utility compact-block {
-  @apply theme-60 p-1 rounded-xl;
+  @apply theme-60 p-1 rounded-2xl;
 }
 
 @utility thin-block {
-  @apply theme-60 rounded-xl;
+  @apply theme-60 rounded-2xl;
 }
 
 body {
@@ -26,7 +26,7 @@ body {
 
 .browser {
   @apply overflow-y-auto text-wrap select-text cursor-auto overflow-x-hidden h-full;
-  @apply lg:border-2 p-2 rounded-xl;
+  @apply lg:border-2 p-2 lg:rounded-2xl;
 
   border-color: var(--min-text);
 }
@@ -39,9 +39,13 @@ body {
   @apply overflow-y-auto text-wrap overflow-x-hidden flex gap-1 flex-col-reverse justify-end;
 }
 
+.tab-container {
+  @apply flex items-center gap-1 relative;
+}
+
 .tab {
-  @apply p-2 rounded-xl theme-60;
-  @apply cursor-pointer theme-transition;
+  @apply p-2 rounded-2xl theme-60;
+  @apply theme-transition;
 
   @apply hover:theme-55 active:theme-45;
 
@@ -56,20 +60,30 @@ body {
   transition-property: padding;
 }
 
+.tab-close {
+  @apply lg:opacity-0 absolute right-1 theme-transition;
+
+  transition-property: opacity, padding, color, background-color;
+}
+
+.tab-container:hover .tab-close {
+  @apply lg:opacity-100;
+}
+
 .tab:hover .tab-text {
   @apply px-2;
 }
 
 .tab.selected {
-  @apply border-2 theme-50 hover:theme-45 active:theme-35;
+  @apply theme-30 hover:theme-25 active:theme-15;
 }
 
 .top-bar {
-  @apply flex gap-1 lg:gap-2 max-lg:theme-60 max-lg:rounded-b-xl;
+  @apply flex gap-1 max-lg:theme-60;
 }
 
 .bot-bar {
-  @apply flex gap-1 lg:gap-2 max-lg:theme-60 max-lg:rounded-t-xl;
+  @apply flex gap-1 lg:gap-2 max-lg:theme-60;
 }
 
 .navigation-buttons {
@@ -85,11 +99,11 @@ body {
 }
 
 .main-window {
-  @apply col-span-5 flex flex-col overflow-y-auto gap-1 lg:gap-2;
+  @apply col-span-5 flex flex-col overflow-y-auto gap-0 lg:gap-2;
 }
 
 .top-bar-search-input {
-  @apply px-2 py-1 rounded-xl grow min-w-0 h-full w-full;
+  @apply px-2 py-1 grow min-w-0 h-full w-full min-h-10;
 
   @apply theme-60 outline-none;
   @apply focus:theme-20 hover:theme-50;
@@ -108,17 +122,17 @@ body {
 }
 
 .button {
-  @apply p-1 rounded-lg;
+  @apply theme-60 p-1 rounded-xl;
   @apply theme-transition;
 
-  @apply hover:theme-90 hover:px-2;
+  @apply hover:theme-95 hover:px-2;
   @apply cursor-pointer;
 
   @apply active:theme-100;
 }
 
 .disabled-button {
-  @apply p-1 rounded-lg opacity-50 cursor-pointer;
+  @apply p-1 rounded-xl opacity-50 cursor-pointer;
 }
 
 .loading {
