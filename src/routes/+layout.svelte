@@ -1,7 +1,7 @@
 <script lang="ts">
   import TopBarDesktop from "$lib/components/TopBarDesktop.svelte";
   import TopBarMobile from "$lib/components/TopBarMobile.svelte";
-  import { vigiState } from "$lib/state.svelte";
+  import { internalState, vigiState } from "$lib/state.svelte";
   import { onMount } from "svelte";
   import "../app.css";
   import { afterNavigate, beforeNavigate } from "$app/navigation";
@@ -55,7 +55,11 @@
     {:else}
       <TopBarMobile />
     {/if}
-    <div class="browser" bind:this={browserEl}>
+    <div
+      class="browser"
+      class:loading-pulse={internalState.isLoading}
+      bind:this={browserEl}
+    >
       {@render children()}
     </div>
     {#if !is_desktop}

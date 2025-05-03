@@ -18,7 +18,7 @@ body {
   @apply theme-90 cursor-default overflow-clip;
   user-select: none;
 
-  @apply p-0 lg:p-3 gap-3 w-screen h-screen;
+  @apply p-0 lg:p-2 gap-3 w-screen h-screen;
   @apply flex;
 
   @apply ease-out duration-100;
@@ -26,7 +26,9 @@ body {
 
 .browser {
   @apply overflow-y-auto text-wrap select-text cursor-auto overflow-x-hidden h-full;
-  @apply border-2 theme-70 p-2 rounded-xl;
+  @apply lg:border-2 p-2 rounded-xl;
+
+  border-color: var(--min-text);
 }
 
 .sidebar {
@@ -39,15 +41,23 @@ body {
 
 .tab {
   @apply p-2 rounded-xl theme-60;
-  @apply cursor-pointer transition theme-transition;
+  @apply cursor-pointer theme-transition;
 
   @apply hover:theme-55 active:theme-45;
-
-  @apply hover:px-4;
 
   @apply flex items-center gap-2 w-full truncate;
 
   transition-property: padding, color, background-color;
+}
+
+.tab .tab-text {
+  @apply theme-transition;
+
+  transition-property: padding;
+}
+
+.tab:hover .tab-text {
+  @apply px-2;
 }
 
 .tab.selected {
@@ -120,6 +130,17 @@ body {
   to {
     transform: rotate(360deg);
     opacity: 0.5;
+  }
+}
+
+.loading-pulse {
+  animation: loading-pulse var(--loading-animation-duration) var(--transition)
+    infinite;
+}
+
+@keyframes loading-pulse {
+  to {
+    background-color: #ffffff13;
   }
 }
 

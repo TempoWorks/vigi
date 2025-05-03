@@ -1,9 +1,12 @@
 <script lang="ts">
-  import { vigiState } from "$lib/state.svelte";
+  import { internalState, vigiState } from "$lib/state.svelte";
   import { dndzone, type DndEvent } from "svelte-dnd-action";
   import { flip } from "svelte/animate";
   import { goToTab } from "$lib/utils";
   import type { SiteTab } from "$lib/types";
+  import GooeyLoading from "$lib/icons/GooeyLoading.svelte";
+  import World from "$lib/icons/World.svelte";
+  import WorldCog from "$lib/icons/WorldCog.svelte";
 
   let dragging = false;
 
@@ -36,13 +39,25 @@
   onfinalize={handleFinalize}
 >
   {#each vigiState.tabs as tab, idx (tab.id)}
+    {@const currentLink = tab.links[tab.currentLink]}
     <button
       class="tab"
       class:selected={!dragging && vigiState.currentTab === idx}
       onclick={() => goToTab(idx)}
       animate:flip={{ duration: 150 }}
     >
-      {tab.links[tab.currentLink].title || "No title"}
+      <div>
+        {#if vigiState.currentTab === idx && internalState.isLoading}
+          <GooeyLoading />
+        {:else if currentLink.type === "render"}
+          <World />
+        {:else}
+          <WorldCog />
+        {/if}
+      </div>
+      <div class="tab-text">
+        {currentLink.title || "No title"}
+      </div>
     </button>
   {/each}
 </div>
