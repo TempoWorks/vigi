@@ -35,12 +35,5 @@ export interface ExportedVigiState {
 
 export interface ExportedSiteTab {
   currentLink: number;
-  links: ExportedTabLink[];
-}
-
-export interface ExportedTabLink {
-  title?: string;
-
-  type: TabType;
-  uri: string;
+  links: TabLink[];
 }

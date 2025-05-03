@@ -16,6 +16,7 @@ pub enum DaletProcessingError {
 
 #[derive(Serialize, Deserialize, Debug)]
 pub enum VigiError {
+    ReadStateFailed,
     StateSaveFailed,
     NoPathToSave,
 }

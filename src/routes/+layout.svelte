@@ -50,7 +50,7 @@
     let export_state: ExportedVigiState = {
       currentTab: state.currentTab,
       sidebar_open: state.sidebar_open,
-      tabs: state.tabs.map(({ currentLink, id, links }) => {
+      tabs: state.tabs.map(({ currentLink, links }) => {
         return {
           currentLink,
           links: links.map(({ type, uri, title }) => {
