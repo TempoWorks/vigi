@@ -21,7 +21,7 @@ async fn save_state(input: &str, app_handle: tauri::AppHandle) -> Result<(), Vig
         .map_err(|_| VigiError::NoPathToSave)?
         .join("state.json");
 
-    println!("save_state: {:?}", path);
+    println!("saving state to: {}", path.to_str().unwrap());
 
     Ok(fs::write(path, input).map_err(|_| VigiError::StateSaveFailed)?)
 }
@@ -34,7 +34,7 @@ async fn get_state(app_handle: tauri::AppHandle) -> Result<String, VigiError> {
         .map_err(|_| VigiError::NoPathToSave)?
         .join("state.json");
 
-    println!("get_state: {:?}", path);
+    println!("getting state from: {}", path.to_str().unwrap());
 
     Ok(fs::read_to_string(path).map_err(|_| VigiError::ReadStateFailed)?)
 }

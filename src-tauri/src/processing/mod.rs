@@ -35,7 +35,7 @@ pub async fn process_input(input: &str) -> Result<Page, DaletProcessingError> {
         Err(_) => Err(DaletProcessingError::Network)?,
     };
 
-    println!("  mime: {:?}\n  data: {} kb\n", mime, data.len() / 1000);
+    println!("  mime: {:?}\n  size: {} kb\n", mime, data.len() / 1000);
 
     let result = process_data(mime, data).await?;
 
