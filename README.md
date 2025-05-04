@@ -1,6 +1,6 @@
 <div align="center">
 
-![vigi logo](https://github.com/TempoWorks/.github/raw/main/imgs/vigi.png)
+<img alt="vigi logo" src="https://github.com/TempoWorks/.github/raw/main/imgs/vigi.png" width='256'>
 
 # vigi
 
