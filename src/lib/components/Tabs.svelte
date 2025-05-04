@@ -41,15 +41,15 @@
   onfinalize={handleFinalize}
 >
   {#each vigi.tabs as tab, idx (tab.id)}
-    {@const currentLink = tab.links[tab.currentLink]}
+    {@const currentLink = tab.links[tab.current_link]}
     <div class="tab-container" animate:flip={{ duration: 150 }}>
       <button
         class="tab"
-        class:selected={!dragging && vigi.currentTab === idx}
+        class:selected={!dragging && vigi.current_tab === idx}
         onclick={() => goToTab(idx)}
       >
         <div>
-          {#if vigi.currentTab === idx && temporal.loading}
+          {#if vigi.current_tab === idx && temporal.loading}
             <Loading />
           {:else if currentLink.ty === "RENDER"}
             <World />

@@ -20,24 +20,24 @@ export function manageLink(
   const currLink = currentTabLink();
 
   if (currLink.ty !== type || currLink.uri !== uri) {
-    if (currTab.currentLink !== currTab.links.length - 1) {
-      vigi.tabs[vigi.currentTab].links = currTab.links.slice(
+    if (currTab.current_link !== currTab.links.length - 1) {
+      vigi.tabs[vigi.current_tab].links = currTab.links.slice(
         0,
-        currTab.currentLink + 1
+        currTab.current_link + 1
       );
     }
 
-    vigi.tabs[vigi.currentTab].links.push({
+    vigi.tabs[vigi.current_tab].links.push({
       ty: type,
       title: title || undefined,
       body,
       uri,
     });
 
-    vigi.tabs[vigi.currentTab].currentLink += 1;
+    vigi.tabs[vigi.current_tab].current_link += 1;
   }
 
-  if (temporal.firstLoad) temporal.firstLoad = false;
+  if (temporal.first_load) temporal.first_load = false;
   else saveState();
 }
 
@@ -54,41 +54,43 @@ export function manageSidebar() {
 
 export function openNewTab() {
   vigi.tabs.push({
-    id: vigi.tabCounter,
-    currentLink: 0,
+    id: vigi.tab_counter,
+    current_link: 0,
     links: [newTabLink],
   });
 
-  vigi.tabCounter += 1;
+  vigi.tab_counter += 1;
 
   goToTab(vigi.tabs.length - 1);
 }
 
 export function goToTab(idx: number) {
-  vigi.currentTab = idx;
+  vigi.current_tab = idx;
 
   goto(
     innerURN(
-      vigi.tabs[vigi.currentTab].links[vigi.tabs[vigi.currentTab].currentLink]
+      vigi.tabs[vigi.current_tab].links[
+        vigi.tabs[vigi.current_tab].current_link
+      ]
     )
   );
 }
 
 export function closeTab(idx: number) {
-  const changed = idx === vigi.currentTab;
+  const changed = idx === vigi.current_tab;
 
   if (vigi.tabs.length === 1) {
-    vigi.tabs[0].currentLink = 0;
+    vigi.tabs[0].current_link = 0;
     vigi.tabs[0].links = [newTabLink];
 
     goto("/browser/main");
   } else {
     vigi.tabs.splice(idx, 1);
 
-    if (vigi.currentTab >= idx) {
-      vigi.currentTab -= 1;
+    if (vigi.current_tab >= idx) {
+      vigi.current_tab -= 1;
 
-      if (changed) goToTab(vigi.currentTab);
+      if (changed) goToTab(vigi.current_tab);
     }
   }
 }

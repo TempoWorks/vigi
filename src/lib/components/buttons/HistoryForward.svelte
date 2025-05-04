@@ -8,10 +8,10 @@
 </script>
 
 <Button
-  disabled={vigi.tabs[vigi.currentTab].currentLink >=
-    vigi.tabs[vigi.currentTab].links.length - 1}
+  disabled={vigi.tabs[vigi.current_tab].current_link >=
+    vigi.tabs[vigi.current_tab].links.length - 1}
   onclick={() => {
-    vigi.tabs[vigi.currentTab].currentLink += 1;
+    vigi.tabs[vigi.current_tab].current_link += 1;
     goto(currentTabInnerURN());
   }}
 >

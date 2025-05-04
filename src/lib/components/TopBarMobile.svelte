@@ -11,23 +11,23 @@
 </script>
 
 <div class="top-bar">
-  {#if !temporal.topBarOpen}
+  {#if !temporal.top_bar_open}
     <CompactBlock className="navigation-buttons">
       <HomeButton />
     </CompactBlock>
   {/if}
 
   <ThinBlock className="top-bar-input">
-    {#if !temporal.topBarOpen}
+    {#if !temporal.top_bar_open}
       <AdjustmentsButton />
     {/if}
     <TopBarInput />
-    {#if !temporal.topBarOpen}
+    {#if !temporal.top_bar_open}
       <BookmarkButton />
     {/if}
   </ThinBlock>
 
-  {#if !temporal.topBarOpen}
+  {#if !temporal.top_bar_open}
     <CompactBlock className="navigation-buttons">
       <PlusTabButton />
     </CompactBlock>

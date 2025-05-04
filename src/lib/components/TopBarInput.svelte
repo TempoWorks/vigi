@@ -30,7 +30,7 @@
       gotoTBI(input);
       iEl.blur();
 
-      temporal.topBarOpen = false;
+      temporal.top_bar_open = false;
     }
   }}
   onfocus={() => {
@@ -40,7 +40,7 @@
       iEl.select();
       iEl.scrollLeft = iEl.scrollWidth;
 
-      temporal.topBarOpen = true;
+      temporal.top_bar_open = true;
     }, 1);
   }}
   onfocusout={() => {
@@ -51,6 +51,6 @@
 
     input = formatInputLink(currLink);
 
-    temporal.topBarOpen = false;
+    temporal.top_bar_open = false;
   }}
 />

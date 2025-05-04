@@ -3,15 +3,15 @@ import type { Tag } from "@txtdot/dalet";
 export type TabType = "RENDER" | "BROWSER";
 
 export interface VigiState {
-  currentTab: number;
-  tabCounter: number;
+  current_tab: number;
+  tab_counter: number;
   sidebar_open: boolean;
   tabs: SiteTab[];
 }
 
 export interface SiteTab {
   id: number;
-  currentLink: number;
+  current_link: number;
   links: TabLink[];
 }
 
@@ -25,17 +25,6 @@ export interface TabLink {
 
 export interface TemporalState {
   loading: boolean;
-  topBarOpen: boolean;
-  firstLoad: boolean;
-}
-
-export interface PermanentState {
-  currentTab: number;
-  sidebar_open: boolean;
-  tabs: PermanentSiteTab[];
-}
-
-export interface PermanentSiteTab {
-  currentLink: number;
-  links: TabLink[];
+  top_bar_open: boolean;
+  first_load: boolean;
 }

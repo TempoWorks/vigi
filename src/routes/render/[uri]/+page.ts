@@ -28,12 +28,12 @@ export async function load({ params }) {
       title = page.title || undefined;
 
       if (currLink.ty === "RENDER" && currLink.uri === params.uri) {
-        vigi.tabs[vigi.currentTab].links[
-          vigi.tabs[vigi.currentTab].currentLink
+        vigi.tabs[vigi.current_tab].links[
+          vigi.tabs[vigi.current_tab].current_link
         ].body = body;
 
-        vigi.tabs[vigi.currentTab].links[
-          vigi.tabs[vigi.currentTab].currentLink
+        vigi.tabs[vigi.current_tab].links[
+          vigi.tabs[vigi.current_tab].current_link
         ].title = title;
       }
 

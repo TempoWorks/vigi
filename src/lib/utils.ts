@@ -1,56 +1,31 @@
 import { vigi } from "./state.svelte";
-import type { PermanentState, TabLink, VigiState } from "./types";
+import type { TabLink, VigiState } from "./types";
 import { goto } from "$app/navigation";
 import { invoke } from "@tauri-apps/api/core";
 
 export function saveState() {
-  let state: VigiState = JSON.parse(JSON.stringify(vigi));
-
-  let permanent: PermanentState = {
-    currentTab: state.currentTab,
-    sidebar_open: state.sidebar_open,
-    tabs: state.tabs.map(({ currentLink, links }) => {
-      return {
-        currentLink,
-        links: links.map(({ ty, uri, title }) => {
-          return {
-            ty,
-            uri,
-            title,
-          };
-        }),
-      };
-    }),
-  };
-
-  invoke("save_state", { input: JSON.stringify(permanent) });
+  invoke("save_state", { state: vigi });
 }
 
 export async function loadState() {
   try {
-    const permanent: PermanentState = JSON.parse(await invoke("get_state"));
+    const new_state: VigiState = await invoke("get_state");
 
-    vigi.currentTab = permanent.currentTab;
-    vigi.sidebar_open = permanent.sidebar_open;
-
-    let tabCounter = 0;
-
-    vigi.tabs = permanent.tabs.map(({ currentLink, links }) => {
-      return { currentLink, links, id: tabCounter++ };
-    });
-
-    vigi.tabCounter = tabCounter;
+    vigi.current_tab = new_state.current_tab;
+    vigi.sidebar_open = new_state.sidebar_open;
+    vigi.tabs = new_state.tabs;
+    vigi.tab_counter = new_state.tab_counter;
   } catch {}
 }
 
 export function currentTab() {
-  return vigi.tabs[vigi.currentTab];
+  return vigi.tabs[vigi.current_tab];
 }
 
 export function currentTabLink() {
   const current = currentTab();
 
-  return current.links[current.currentLink];
+  return current.links[current.current_link];
 }
 
 export function currentTabInnerURN() {

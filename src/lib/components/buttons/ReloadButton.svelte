@@ -8,8 +8,8 @@
 
 <Button
   onclick={() => {
-    vigi.tabs[vigi.currentTab].links[
-      vigi.tabs[vigi.currentTab].currentLink
+    vigi.tabs[vigi.current_tab].links[
+      vigi.tabs[vigi.current_tab].current_link
     ].body = undefined;
     invalidateAll();
   }}

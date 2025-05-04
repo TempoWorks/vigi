@@ -1,7 +1,7 @@
 use dalet::typed::Tag;
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub enum DaletProcessingError {
     Network,
     Parse,
@@ -15,37 +15,59 @@ pub enum DaletProcessingError {
     GeminiCerts,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub enum VigiError {
     ReadStateFailed,
     StateSaveFailed,
     NoPathToSave,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
-pub struct PermanentState {
-    current_tab: usize,
-    sidebar_open: bool,
-    tabs: Vec<PermanentSiteTab>,
-}
-
-#[derive(Serialize, Deserialize, Debug)]
-pub struct PermanentSiteTab {
-    current_link: usize,
-    links: Vec<TabLink>,
-}
-
-#[derive(Serialize, Deserialize, Debug)]
-pub struct TabLink {
-    title: String,
-    body: Vec<Tag>,
-
-    ty: TabType,
-    uri: String,
-}
-
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub enum TabType {
     RENDER,
     BROWSER,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct VigiState {
+    pub current_tab: usize,
+    pub tab_counter: usize,
+    pub sidebar_open: bool,
+    pub tabs: Vec<SiteTab>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct SiteTab {
+    pub id: usize,
+    pub current_link: usize,
+    pub links: Vec<TabLink>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct TabLink {
+    pub title: Option<String>,
+    pub body: Option<Vec<Tag>>,
+
+    pub ty: TabType,
+    pub uri: String,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct PermanentState {
+    pub current_tab: usize,
+    pub sidebar_open: bool,
+    pub tabs: Vec<PermanentSiteTab>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct PermanentSiteTab {
+    pub current_link: usize,
+    pub links: Vec<PermanentTabLink>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct PermanentTabLink {
+    pub title: Option<String>,
+    pub ty: TabType,
+    pub uri: String,
 }
