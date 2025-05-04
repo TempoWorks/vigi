@@ -51,7 +51,7 @@
 }
 
 .render blockquote {
-  @apply theme-95 p-2 border-l-4 rounded-2xl overflow-auto;
+  @apply theme-100 p-4 lg:mx-10 my-4 border-l-4 rounded-2xl overflow-auto;
 }
 
 .render .unsupported {

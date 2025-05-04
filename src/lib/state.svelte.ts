@@ -1,6 +1,6 @@
-import type { InternalState, VigiState } from "./types";
+import type { TemporalState, VigiState } from "./types";
 
-export const vigiState: VigiState = $state({
+export const vigi: VigiState = $state({
   currentTab: 0,
   tabCounter: 1,
   sidebar_open: true,
@@ -19,7 +19,8 @@ export const vigiState: VigiState = $state({
   ],
 });
 
-export const internalState: InternalState = $state({
-  isLoading: false,
+export const temporal: TemporalState = $state({
+  loading: false,
   topBarOpen: false,
+  firstLoad: true,
 });

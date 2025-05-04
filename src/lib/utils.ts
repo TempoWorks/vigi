@@ -1,10 +1,50 @@
-import type { Page, Tag } from "@txtdot/dalet";
-import { vigiState } from "./state.svelte";
-import type { TabLink, TabType } from "./types";
+import { vigi } from "./state.svelte";
+import type { PermanentState, TabLink, VigiState } from "./types";
 import { goto } from "$app/navigation";
+import { invoke } from "@tauri-apps/api/core";
+
+export function saveState() {
+  let state: VigiState = JSON.parse(JSON.stringify(vigi));
+
+  let permanent: PermanentState = {
+    currentTab: state.currentTab,
+    sidebar_open: state.sidebar_open,
+    tabs: state.tabs.map(({ currentLink, links }) => {
+      return {
+        currentLink,
+        links: links.map(({ type, uri, title }) => {
+          return {
+            type,
+            uri,
+            title,
+          };
+        }),
+      };
+    }),
+  };
+
+  invoke("save_state", { input: JSON.stringify(permanent) });
+}
+
+export async function loadState() {
+  try {
+    const permanent: PermanentState = JSON.parse(await invoke("get_state"));
+
+    vigi.currentTab = permanent.currentTab;
+    vigi.sidebar_open = permanent.sidebar_open;
+
+    let tabCounter = 0;
+
+    vigi.tabs = permanent.tabs.map(({ currentLink, links }) => {
+      return { currentLink, links, id: tabCounter++ };
+    });
+
+    vigi.tabCounter = tabCounter;
+  } catch {}
+}
 
 export function currentTab() {
-  return vigiState.tabs[vigiState.currentTab];
+  return vigi.tabs[vigi.currentTab];
 }
 
 export function currentTabLink() {
@@ -56,40 +96,6 @@ export function formatInputLink(link: TabLink): string {
   }
 }
 
-export function manageLink(
-  type: TabType,
-  uri: string,
-  title?: string,
-  body?: Tag[]
-) {
-  const currTab = currentTab();
-  const currLink = currentTabLink();
-
-  if (currLink.type !== type || currLink.uri !== uri) {
-    if (currTab.currentLink !== currTab.links.length - 1) {
-      vigiState.tabs[vigiState.currentTab].links = currTab.links.slice(
-        0,
-        currTab.currentLink + 1
-      );
-    }
-
-    vigiState.tabs[vigiState.currentTab].links.push({
-      type,
-      title: title || undefined,
-      body,
-      uri,
-    });
-
-    vigiState.tabs[vigiState.currentTab].currentLink += 1;
-  }
-}
-
-export function browserLinkManager(urn: string, title: string) {
-  return () => {
-    manageLink("browser", urn, title);
-  };
-}
-
 export function gotoTBI(tbi: string) {
   const url = isUrl(tbi);
   if (url)
@@ -103,51 +109,6 @@ export function isUrl(s: string) {
     return new URL(s);
   } catch {
     return false;
-  }
-}
-
-export function openNewTab() {
-  vigiState.tabs.push({
-    id: vigiState.tabCounter,
-    currentLink: 0,
-    links: [newTabLink],
-  });
-
-  vigiState.tabCounter += 1;
-
-  goToTab(vigiState.tabs.length - 1);
-}
-
-export function goToTab(idx: number) {
-  vigiState.currentTab = idx;
-
-  goto(
-    innerURN(
-      vigiState.tabs[vigiState.currentTab].links[
-        vigiState.tabs[vigiState.currentTab].currentLink
-      ]
-    )
-  );
-}
-
-export function closeTab(idx: number) {
-  const changed = idx === vigiState.currentTab;
-
-  if (vigiState.tabs.length === 1) {
-    vigiState.tabs[0].currentLink = 0;
-    vigiState.tabs[0].links = [
-      { type: "browser", title: "New tab", uri: "main" },
-    ];
-
-    goto("/browser/main");
-  } else {
-    vigiState.tabs.splice(idx, 1);
-
-    if (vigiState.currentTab >= idx) {
-      vigiState.currentTab -= 1;
-
-      if (changed) goToTab(vigiState.currentTab);
-    }
   }
 }
 

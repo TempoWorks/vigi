@@ -1,6 +1,6 @@
 <script>
   import Plus from "$lib/icons/Plus.svelte";
-  import { openNewTab } from "$lib/utils";
+  import { openNewTab } from "$lib/management";
   import Button from "../Button.svelte";
 </script>
 

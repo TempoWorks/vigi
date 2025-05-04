@@ -1,15 +1,13 @@
 <script lang="ts">
   import TopBarDesktop from "$lib/components/TopBarDesktop.svelte";
   import TopBarMobile from "$lib/components/TopBarMobile.svelte";
-  import { internalState, vigiState } from "$lib/state.svelte";
+  import { temporal, vigi } from "$lib/state.svelte";
   import { onMount } from "svelte";
   import "../app.css";
   import { afterNavigate, beforeNavigate } from "$app/navigation";
   import { page } from "$app/state";
   import BotBar from "$lib/components/BotBar.svelte";
   import Tabs from "$lib/components/Tabs.svelte";
-  import { invoke } from "@tauri-apps/api/core";
-  import type { ExportedVigiState, VigiState } from "$lib/types";
 
   const { children } = $props();
 
@@ -36,36 +34,13 @@
     ) {
       return;
     }
-    if (e.code === "KeyQ") vigiState.sidebar_open = !vigiState.sidebar_open;
+    if (e.code === "KeyQ") vigi.sidebar_open = !vigi.sidebar_open;
   });
 
   let width: number = $state(0);
 
   let is_desktop = $derived(width >= 1024);
-  let sidebar_open = $derived(is_desktop && vigiState.sidebar_open);
-
-  $effect(() => {
-    let state: VigiState = JSON.parse(JSON.stringify(vigiState));
-
-    let export_state: ExportedVigiState = {
-      currentTab: state.currentTab,
-      sidebar_open: state.sidebar_open,
-      tabs: state.tabs.map(({ currentLink, links }) => {
-        return {
-          currentLink,
-          links: links.map(({ type, uri, title }) => {
-            return {
-              type,
-              uri,
-              title,
-            };
-          }),
-        };
-      }),
-    };
-
-    invoke("save_state", { input: JSON.stringify(export_state) });
-  });
+  let sidebar_open = $derived(is_desktop && vigi.sidebar_open);
 </script>
 
 <svelte:window bind:innerWidth={width} />
@@ -82,7 +57,7 @@
     {/if}
     <div
       class="browser"
-      class:loading-pulse={internalState.isLoading}
+      class:loading-pulse={temporal.loading}
       bind:this={browserEl}
     >
       {@render children()}

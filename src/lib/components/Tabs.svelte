@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { internalState, vigiState } from "$lib/state.svelte";
+  import { temporal, vigi } from "$lib/state.svelte";
   import { dndzone, type DndEvent } from "svelte-dnd-action";
   import { flip } from "svelte/animate";
-  import { closeTab, goToTab } from "$lib/utils";
+  import { closeTab, goToTab } from "$lib/management";
   import type { SiteTab } from "$lib/types";
   import Loading from "$lib/icons/Loading.svelte";
   import World from "$lib/icons/World.svelte";
@@ -13,16 +13,16 @@
   let dragging = false;
 
   function handleConsider(e: CustomEvent<DndEvent<SiteTab>>) {
-    vigiState.tabs = e.detail.items;
+    vigi.tabs = e.detail.items;
 
     dragging = true;
   }
 
   function handleFinalize(e: CustomEvent<DndEvent<SiteTab>>) {
-    vigiState.tabs = e.detail.items;
+    vigi.tabs = e.detail.items;
 
     goToTab(
-      vigiState.tabs.findIndex((tab) => tab.id === parseInt(e.detail.info.id))
+      vigi.tabs.findIndex((tab) => tab.id === parseInt(e.detail.info.id))
     );
 
     dragging = false;
@@ -32,7 +32,7 @@
 <div
   class="tabs"
   use:dndzone={{
-    items: vigiState.tabs,
+    items: vigi.tabs,
     flipDurationMs: 150,
     dropTargetStyle: {},
     morphDisabled: true,
@@ -40,16 +40,16 @@
   onconsider={handleConsider}
   onfinalize={handleFinalize}
 >
-  {#each vigiState.tabs as tab, idx (tab.id)}
+  {#each vigi.tabs as tab, idx (tab.id)}
     {@const currentLink = tab.links[tab.currentLink]}
     <div class="tab-container" animate:flip={{ duration: 150 }}>
       <button
         class="tab"
-        class:selected={!dragging && vigiState.currentTab === idx}
+        class:selected={!dragging && vigi.currentTab === idx}
         onclick={() => goToTab(idx)}
       >
         <div>
-          {#if vigiState.currentTab === idx && internalState.isLoading}
+          {#if vigi.currentTab === idx && temporal.loading}
             <Loading />
           {:else if currentLink.type === "render"}
             <World />

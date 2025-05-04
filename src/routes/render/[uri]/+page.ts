@@ -1,5 +1,6 @@
-import { internalState, vigiState } from "$lib/state.svelte.js";
-import { currentTabLink, manageLink } from "$lib/utils.js";
+import { manageLink } from "$lib/management";
+import { temporal, vigi } from "$lib/state.svelte.js";
+import { currentTabLink } from "$lib/utils.js";
 import { invoke } from "@tauri-apps/api/core";
 import type { Page, Tag } from "@txtdot/dalet";
 
@@ -17,7 +18,7 @@ export async function load({ params }) {
   )
     body = currLink.body;
   else {
-    internalState.isLoading = true;
+    temporal.loading = true;
     try {
       const page = (await invoke("process_url", {
         input: params.uri,
@@ -27,18 +28,18 @@ export async function load({ params }) {
       title = page.title || undefined;
 
       if (currLink.type === "render" && currLink.uri === params.uri) {
-        vigiState.tabs[vigiState.currentTab].links[
-          vigiState.tabs[vigiState.currentTab].currentLink
+        vigi.tabs[vigi.currentTab].links[
+          vigi.tabs[vigi.currentTab].currentLink
         ].body = body;
 
-        vigiState.tabs[vigiState.currentTab].links[
-          vigiState.tabs[vigiState.currentTab].currentLink
+        vigi.tabs[vigi.currentTab].links[
+          vigi.tabs[vigi.currentTab].currentLink
         ].title = title;
       }
 
-      internalState.isLoading = false;
+      temporal.loading = false;
     } catch (e) {
-      internalState.isLoading = false;
+      temporal.loading = false;
       throw e;
     }
   }
