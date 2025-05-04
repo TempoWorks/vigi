@@ -12,9 +12,9 @@ export function saveState() {
     tabs: state.tabs.map(({ currentLink, links }) => {
       return {
         currentLink,
-        links: links.map(({ type, uri, title }) => {
+        links: links.map(({ ty, uri, title }) => {
           return {
-            type,
+            ty,
             uri,
             title,
           };
@@ -58,16 +58,16 @@ export function currentTabInnerURN() {
 }
 
 export function innerURN(link: TabLink): string {
-  if (link.type === "render") {
+  if (link.ty === "RENDER") {
     return renderLink(link.uri);
   } else {
-    return `/${link.type}/${link.uri}`;
+    return `/${link.ty.toLowerCase()}/${link.uri}`;
   }
 }
 
 export function linkToURI(link: TabLink) {
-  if (link.type === "render") return link.uri;
-  else return `${link.type}://${link.uri}`;
+  if (link.ty === "RENDER") return link.uri;
+  else return `${link.ty}://${link.uri}`;
 }
 
 export function renderLink(uri: string, relative?: boolean) {
@@ -85,7 +85,7 @@ export function renderLink(uri: string, relative?: boolean) {
 export function formatInputLink(link: TabLink): string {
   const urlString = linkToURI(link);
   try {
-    if (link.type === "render") {
+    if (link.ty === "RENDER") {
       const url = new URL(urlString);
       return decodeURI(urlString.replace(`${url.protocol}//`, ""));
     } else {
@@ -113,7 +113,7 @@ export function isUrl(s: string) {
 }
 
 export const newTabLink: TabLink = {
-  type: "browser",
+  ty: "BROWSER",
   uri: "main",
   title: "New tab",
 };

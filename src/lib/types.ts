@@ -1,6 +1,6 @@
 import type { Tag } from "@txtdot/dalet";
 
-export type TabType = "render" | "browser";
+export type TabType = "RENDER" | "BROWSER";
 
 export interface VigiState {
   currentTab: number;
@@ -19,7 +19,7 @@ export interface TabLink {
   title?: string;
   body?: Tag[];
 
-  type: TabType;
+  ty: TabType;
   uri: string;
 }
 

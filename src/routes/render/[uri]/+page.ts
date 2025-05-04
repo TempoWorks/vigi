@@ -11,7 +11,7 @@ export async function load({ params }) {
   let body: Tag[];
 
   if (
-    currLink.type === "render" &&
+    currLink.ty === "RENDER" &&
     currLink.uri === params.uri &&
     currLink.body &&
     currLink.title
@@ -27,7 +27,7 @@ export async function load({ params }) {
       body = page.body;
       title = page.title || undefined;
 
-      if (currLink.type === "render" && currLink.uri === params.uri) {
+      if (currLink.ty === "RENDER" && currLink.uri === params.uri) {
         vigi.tabs[vigi.currentTab].links[
           vigi.tabs[vigi.currentTab].currentLink
         ].body = body;
@@ -44,7 +44,7 @@ export async function load({ params }) {
     }
   }
 
-  manageLink("render", params.uri, title, body);
+  manageLink("RENDER", params.uri, title, body);
 
   return {
     body,

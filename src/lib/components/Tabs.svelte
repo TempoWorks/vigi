@@ -51,7 +51,7 @@
         <div>
           {#if vigi.currentTab === idx && temporal.loading}
             <Loading />
-          {:else if currentLink.type === "render"}
+          {:else if currentLink.ty === "RENDER"}
             <World />
           {:else}
             <WorldCog />

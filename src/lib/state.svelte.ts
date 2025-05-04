@@ -10,7 +10,7 @@ export const vigi: VigiState = $state({
       currentLink: 0,
       links: [
         {
-          type: "render",
+          ty: "RENDER",
           renderType: "auto",
           uri: "gemini://geminiprotocol.net/docs/gemtext-specification.gmi",
         },

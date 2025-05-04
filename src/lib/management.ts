@@ -19,7 +19,7 @@ export function manageLink(
   const currTab = currentTab();
   const currLink = currentTabLink();
 
-  if (currLink.type !== type || currLink.uri !== uri) {
+  if (currLink.ty !== type || currLink.uri !== uri) {
     if (currTab.currentLink !== currTab.links.length - 1) {
       vigi.tabs[vigi.currentTab].links = currTab.links.slice(
         0,
@@ -28,7 +28,7 @@ export function manageLink(
     }
 
     vigi.tabs[vigi.currentTab].links.push({
-      type,
+      ty: type,
       title: title || undefined,
       body,
       uri,
@@ -43,7 +43,7 @@ export function manageLink(
 
 export function browserLinkManager(urn: string, title: string) {
   return () => {
-    manageLink("browser", urn, title);
+    manageLink("BROWSER", urn, title);
   };
 }
 
