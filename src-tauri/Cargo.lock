@@ -608,9 +608,9 @@ dependencies = [
 
 [[package]]
 name = "chumsky"
-version = "0.10.0"
+version = "0.10.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fb7314158bb843d046a78540774db3d78518f5150ea7109e9c8da864d45a738c"
+checksum = "14377e276b2c8300513dff55ba4cc4142b44e5d6de6d00eb5b2307d650bb4ec1"
 dependencies = [
  "hashbrown 0.15.2",
  "regex-automata 0.3.9",
@@ -622,9 +622,9 @@ dependencies = [
 
 [[package]]
 name = "clap"
-version = "4.5.34"
+version = "4.5.37"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e958897981290da2a852763fe9cdb89cd36977a5d729023127095fa94d95e2ff"
+checksum = "eccb054f56cbd38340b380d4a8e69ef1f02f1af43db2f0cc817a4774d80ae071"
 dependencies = [
  "clap_builder",
  "clap_derive",
@@ -632,9 +632,9 @@ dependencies = [
 
 [[package]]
 name = "clap_builder"
-version = "4.5.34"
+version = "4.5.37"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "83b0f35019843db2160b5bb19ae09b4e6411ac33fc6a712003c33e03090e2489"
+checksum = "efd9466fac8543255d3b1fcad4762c5e116ffe808c8a3043d4263cd4fd4862a2"
 dependencies = [
  "anstream",
  "anstyle",
@@ -833,9 +833,9 @@ dependencies = [
 
 [[package]]
 name = "dalet"
-version = "1.0.0-pre.28"
+version = "1.0.0-pre.29"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "157bac6522344d1df4f039df7fe211fb492a28cd4ca55f66a47ea01f92a7c755"
+checksum = "4d02458e861c4da0ebf0af4cf26dab5619413cb04b724c32619cd0d215c0d201"
 dependencies = [
  "ariadne",
  "bitcode",
@@ -988,9 +988,9 @@ dependencies = [
 
 [[package]]
 name = "drova_plugins"
-version = "1.0.5"
+version = "1.0.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c947592f0e5412f8fd5fd1e8b81622f886ac040a2b62965fec5f00db8b90e0e1"
+checksum = "140265033053da574e1d400be40b670d27c0842746607e3f570f22da379fbb1c"
 dependencies = [
  "async-trait",
  "bytes",
@@ -1004,9 +1004,9 @@ dependencies = [
 
 [[package]]
 name = "drova_sdk"
-version = "1.0.5"
+version = "1.0.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5d981def3a14a48a33627157b3c6ef048d99fa8ca67ebe3a5ddb4e3df4f243f5"
+checksum = "285a09d940148b73a248bc0adff30724542df373a2fde14d91987b134051329a"
 dependencies = [
  "async-trait",
  "dalet",
@@ -1183,9 +1183,9 @@ dependencies = [
 
 [[package]]
 name = "flate2"
-version = "1.1.0"
+version = "1.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "11faaf5a5236997af9848be0bef4db95824b1d534ebc64d0f0c6cf3e67bd38dc"
+checksum = "7ced92e76e966ca2fd84c8f7aa01a4aea65b0eb6648d72f7c8f3e2764a67fece"
 dependencies = [
  "crc32fast",
  "miniz_oxide",
