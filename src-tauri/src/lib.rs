@@ -8,8 +8,7 @@ use drova_plugins::plugins;
 use drova_sdk::{Core, CoreBuilder, Error};
 use tauri::Manager;
 use types::{
-    DaletProcessingError, PermanentSiteTab, PermanentState, PermanentTabLink, SiteTab, TabLink,
-    VigiError, VigiState,
+    PermanentSiteTab, PermanentState, PermanentTabLink, SiteTab, TabLink, VigiError, VigiState,
 };
 
 struct AppData<'a> {

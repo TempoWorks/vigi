@@ -2,20 +2,6 @@ use dalet::typed::Tag;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
-pub enum DaletProcessingError {
-    Network,
-    Parse,
-
-    UnsupportedProtocol,
-    UnsupportedMimeType,
-    InvalidMimeType,
-
-    InvalidCharset,
-
-    GeminiCerts,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
 pub enum VigiError {
     ReadStateFailed,
     StateSaveFailed,
