@@ -5,6 +5,8 @@ import { invoke } from "@tauri-apps/api/core";
 import type { Page, Tag } from "@txtdot/dalet";
 
 export async function load({ params }) {
+  temporal.loading = false;
+
   const currLink = currentTabLink();
 
   let title: string | undefined = undefined;
@@ -20,6 +22,9 @@ export async function load({ params }) {
   else {
     temporal.loading = true;
     try {
+      let currentTab = vigi.current_tab;
+      let currentLink = vigi.tabs[currentTab].current_link;
+
       const page = (await invoke("process_url", {
         input: params.uri,
       })) as Page;
@@ -28,13 +33,8 @@ export async function load({ params }) {
       title = page.title || undefined;
 
       if (currLink.ty === "RENDER" && currLink.uri === params.uri) {
-        vigi.tabs[vigi.current_tab].links[
-          vigi.tabs[vigi.current_tab].current_link
-        ].body = body;
-
-        vigi.tabs[vigi.current_tab].links[
-          vigi.tabs[vigi.current_tab].current_link
-        ].title = title;
+        vigi.tabs[currentTab].links[currentLink].body = body;
+        vigi.tabs[currentTab].links[currentLink].title = title;
       }
 
       temporal.loading = false;
