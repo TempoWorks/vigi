@@ -1,19 +1,24 @@
-mod processing;
 mod types;
 
 use std::fs;
 
 use dalet::typed::Page;
-use processing::process_input;
+
+use drova_plugins::plugins;
+use drova_sdk::{Core, CoreBuilder, Error};
 use tauri::Manager;
 use types::{
     DaletProcessingError, PermanentSiteTab, PermanentState, PermanentTabLink, SiteTab, TabLink,
     VigiError, VigiState,
 };
 
+struct AppData<'a> {
+    drova_core: Core<'a>,
+}
+
 #[tauri::command]
-async fn process_url(input: &str) -> Result<Page, DaletProcessingError> {
-    process_input(input).await
+async fn process_url(input: &str, app: tauri::AppHandle) -> Result<Page, Error> {
+    app.state::<AppData>().drova_core.process(input).await
 }
 
 #[tauri::command]
@@ -118,6 +123,12 @@ async fn get_state(app_handle: tauri::AppHandle) -> Result<VigiState, VigiError>
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        .setup(|app| {
+            app.manage(AppData {
+                drova_core: CoreBuilder::default().plugin(plugins).build(),
+            });
+            Ok(())
+        })
         .plugin(tauri_plugin_opener::init())
         .invoke_handler(tauri::generate_handler![process_url, save_state, get_state])
         .run(tauri::generate_context!())
