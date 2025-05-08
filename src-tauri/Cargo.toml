@@ -28,7 +28,6 @@ dalet = "1.0.0-pre.28"
 tokio = { version = "1", features = ["full"] }
 
 tokio-gemini = { version = "0.5.2" }
-
 bytes = "1.10.1"
 
 reqwest = "0.12.5"
@@ -38,5 +37,5 @@ async-trait = "0.1.88"
 
 bitcode = { version = "0.6.6", features = ["serde"] }
 
-drova_sdk = "1.0.6"
-drova_plugins = "1.0.6"
+drova_sdk = "1.0.7"
+drova_plugins = "1.0.7"

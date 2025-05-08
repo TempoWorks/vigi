@@ -17,9 +17,10 @@ export async function load({ params }) {
     currLink.uri === params.uri &&
     currLink.body &&
     currLink.title
-  )
+  ) {
     body = currLink.body;
-  else {
+    title = currLink.title;
+  } else {
     temporal.loading = true;
     try {
       let currentTab = vigi.current_tab;
@@ -39,6 +40,7 @@ export async function load({ params }) {
 
       temporal.loading = false;
     } catch (e) {
+      manageLink("RENDER", params.uri, title);
       temporal.loading = false;
       throw e;
     }
