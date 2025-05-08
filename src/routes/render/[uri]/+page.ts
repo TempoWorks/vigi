@@ -1,17 +1,18 @@
 import { manageLink } from "$lib/management";
-import { temporal, vigi } from "$lib/state.svelte.js";
-import { convertError, currentTabLink } from "$lib/utils.js";
-import { error } from "@sveltejs/kit";
-import { invoke } from "@tauri-apps/api/core";
-import type { Page, Tag } from "@txtdot/dalet";
+import type { DrovaError } from "$lib/types.js";
+import { currentTab, currentTabLink, loadTab, updateLink } from "$lib/utils.js";
+import type { Tag } from "@txtdot/dalet";
 
 export async function load({ params }) {
-  temporal.loading = false;
+  const currTab = currentTab();
+
+  updateLink(currTab.id, { loading: undefined });
 
   const currLink = currentTabLink();
 
-  let title: string | undefined = undefined;
-  let body: Tag[];
+  let title: string | undefined;
+  let body: Tag[] | undefined;
+  let error: DrovaError | undefined;
 
   if (
     currLink.ty === "RENDER" &&
@@ -22,42 +23,16 @@ export async function load({ params }) {
     body = currLink.body;
     title = currLink.title;
   } else {
-    temporal.loading = true;
+    const res = await loadTab(currTab.id, params.uri);
 
-    let currentTab = vigi.current_tab;
-    let currentLink = vigi.tabs[currentTab].current_link;
-
-    try {
-      const page = (await invoke("process_url", {
-        input: params.uri,
-      })) as Page;
-
-      body = page.body;
-      title = page.title || undefined;
-
-      if (currLink.ty === "RENDER" && currLink.uri === params.uri) {
-        vigi.tabs[currentTab].links[currentLink].body = body;
-        vigi.tabs[currentTab].links[currentLink].title = title;
-      }
-
-      temporal.loading = false;
-    } catch (e) {
-      let err = convertError(e);
-
-      vigi.tabs[currentTab].errored = true;
-      vigi.tabs[currentTab].links[currentLink].title = `Failed: ${err.message}`;
-
-      manageLink("RENDER", params.uri, title);
-
-      temporal.loading = false;
-
-      error(500, err);
-    }
+    body = res.body;
+    error = res.error;
   }
 
   manageLink("RENDER", params.uri, title, body);
 
   return {
     body,
+    error,
   };
 }

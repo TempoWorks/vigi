@@ -8,6 +8,7 @@ export const vigi: VigiState = $state({
     {
       id: 0,
       current_link: 0,
+
       links: [
         {
           ty: "RENDER",

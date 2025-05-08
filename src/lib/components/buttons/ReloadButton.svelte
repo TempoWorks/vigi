@@ -1,9 +1,14 @@
 <script>
   import { invalidateAll } from "$app/navigation";
   import Reload from "$lib/icons/Reload.svelte";
-  import { temporal, vigi } from "$lib/state.svelte";
+  import { vigi } from "$lib/state.svelte";
 
   import Button from "../Button.svelte";
+
+  let loading = $derived(
+    vigi.tabs[vigi.current_tab].links[vigi.tabs[vigi.current_tab].current_link]
+      .loading
+  );
 </script>
 
 <Button
@@ -13,7 +18,7 @@
     ].body = undefined;
     invalidateAll();
   }}
-  disabled={temporal.loading}
+  disabled={loading}
 >
-  <Reload class={temporal.loading ? "loading" : ""} />
+  <Reload class={loading ? "loading" : ""} />
 </Button>

@@ -18,8 +18,6 @@ export interface SiteTab {
   id: number;
   current_link: number;
   links: TabLink[];
-
-  errored?: true;
 }
 
 export interface TabLink {
@@ -28,10 +26,12 @@ export interface TabLink {
 
   ty: TabType;
   uri: string;
+
+  error?: DrovaError;
+  loading?: true;
 }
 
 export interface TemporalState {
-  loading: boolean;
   top_bar_open: boolean;
   first_load: boolean;
 }

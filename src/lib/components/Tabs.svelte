@@ -10,6 +10,7 @@
   import Button from "./Button.svelte";
   import X from "$lib/icons/X.svelte";
   import WorldX from "$lib/icons/WorldX.svelte";
+  import { findTabById } from "$lib/utils";
 
   let dragging = false;
 
@@ -22,9 +23,7 @@
   function handleFinalize(e: CustomEvent<DndEvent<SiteTab>>) {
     vigi.tabs = e.detail.items;
 
-    goToTab(
-      vigi.tabs.findIndex((tab) => tab.id === parseInt(e.detail.info.id))
-    );
+    goToTab(findTabById(parseInt(e.detail.info.id)));
 
     dragging = false;
   }
@@ -50,9 +49,9 @@
         onclick={() => goToTab(idx)}
       >
         <div>
-          {#if tab.errored}
+          {#if tab.links[tab.current_link].error}
             <WorldX />
-          {:else if vigi.current_tab === idx && temporal.loading}
+          {:else if vigi.current_tab === idx && tab.links[tab.current_link].loading}
             <Loading />
           {:else if currentLink.ty === "RENDER"}
             <World />
@@ -65,7 +64,9 @@
         </div>
       </button>
       <Button
-        className="tab-close"
+        className="tab-close{!dragging && vigi.current_tab === idx
+          ? ' selected'
+          : ''}"
         onclick={() => {
           closeTab(idx);
         }}><X /></Button

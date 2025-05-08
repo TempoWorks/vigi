@@ -1,7 +1,57 @@
 import { vigi } from "./state.svelte";
-import type { DrovaError, TabLink, VigiState } from "./types";
+import type { DrovaError, SiteTab, TabLink, VigiState } from "./types";
 import { goto } from "$app/navigation";
 import { invoke } from "@tauri-apps/api/core";
+import type { Page, Tag } from "@txtdot/dalet";
+
+export function findTabById(id: number) {
+  return vigi.tabs.findIndex((tab) => tab.id === id);
+}
+
+export function currentTabLinkById(id: number) {
+  let tid = findTabById(id);
+
+  return vigi.tabs[tid].links[vigi.tabs[tid].current_link];
+}
+
+export function updateLink(tab_id: number, val: Partial<TabLink>) {
+  const tabIndex = findTabById(tab_id);
+
+  vigi.tabs[tabIndex].links[vigi.tabs[tabIndex].current_link] = {
+    ...vigi.tabs[tabIndex].links[vigi.tabs[tabIndex].current_link],
+    ...val,
+  };
+}
+
+export async function loadTab(id: number, uri: string) {
+  let title: string | undefined;
+  let body: Tag[] | undefined;
+  let error: DrovaError | undefined;
+
+  updateLink(id, { loading: true });
+
+  try {
+    const page = (await invoke("process_url", {
+      input: uri,
+    })) as Page;
+
+    body = page.body;
+    title = page.title || undefined;
+
+    const currLink = currentTabLinkById(id);
+
+    if (currLink.ty === "RENDER" && currLink.uri === uri) {
+      updateLink(id, { body, title, error: undefined });
+    }
+
+    updateLink(id, { loading: undefined });
+  } catch (e) {
+    error = convertError(e);
+    updateLink(id, { loading: undefined, error });
+  }
+
+  return { body, error };
+}
 
 export function convertError(e: any): DrovaError {
   if (typeof e === "string") return { message: e };
@@ -51,7 +101,7 @@ export function innerURN(link: TabLink): string {
 
 export function linkToURI(link: TabLink) {
   if (link.ty === "RENDER") return link.uri;
-  else return `${link.ty}://${link.uri}`;
+  else return `${link.ty.toLowerCase()}://${link.uri}`;
 }
 
 export function renderLink(uri: string, relative?: boolean) {

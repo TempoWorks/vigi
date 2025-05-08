@@ -57,7 +57,9 @@
     {/if}
     <div
       class="browser"
-      class:loading-pulse={temporal.loading}
+      class:loading-pulse={vigi.tabs[vigi.current_tab].links[
+        vigi.tabs[vigi.current_tab].current_link
+      ].loading}
       bind:this={browserEl}
     >
       {@render children()}
