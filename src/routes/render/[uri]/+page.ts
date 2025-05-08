@@ -42,12 +42,16 @@ export async function load({ params }) {
 
       temporal.loading = false;
     } catch (e) {
+      let err = convertError(e);
+
       vigi.tabs[currentTab].errored = true;
+      vigi.tabs[currentTab].links[currentLink].title = `Failed: ${err.message}`;
+
       manageLink("RENDER", params.uri, title);
 
       temporal.loading = false;
 
-      error(500, convertError(e));
+      error(500, err);
     }
   }
 
