@@ -10,7 +10,7 @@
   import Button from "./Button.svelte";
   import X from "$lib/icons/X.svelte";
   import WorldX from "$lib/icons/WorldX.svelte";
-  import { findTabById } from "$lib/utils";
+  import { tabIndexById } from "$lib/utils";
 
   let dragging = false;
 
@@ -23,7 +23,7 @@
   function handleFinalize(e: CustomEvent<DndEvent<SiteTab>>) {
     vigi.tabs = e.detail.items;
 
-    goToTab(findTabById(parseInt(e.detail.info.id)));
+    goToTab(tabIndexById(parseInt(e.detail.info.id)));
 
     dragging = false;
   }

@@ -1,7 +1,7 @@
 import type { TabType } from "$lib/types";
 import {
   currentTab,
-  currentTabLink,
+  currentLink,
   saveState,
   innerURN,
   newTabLink,
@@ -17,7 +17,7 @@ export function manageLink(
   body?: Tag[]
 ) {
   const currTab = currentTab();
-  const currLink = currentTabLink();
+  const currLink = currentLink();
 
   if (currLink.ty !== type || currLink.uri !== uri) {
     if (currTab.current_link !== currTab.links.length - 1) {

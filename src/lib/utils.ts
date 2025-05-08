@@ -3,23 +3,26 @@ import type { DrovaError, SiteTab, TabLink, VigiState } from "./types";
 import { goto } from "$app/navigation";
 import { invoke } from "@tauri-apps/api/core";
 import type { Page, Tag } from "@txtdot/dalet";
-import { manageLink } from "./management";
 
-export function findTabById(id: number) {
+export function tabIndexById(id: number) {
   return vigi.tabs.findIndex((tab) => tab.id === id);
 }
 
-export function currentTabLinkById(id: number) {
-  let tid = findTabById(id);
+export function tabById(id: number) {
+  return vigi.tabs[tabIndexById(id)];
+}
+
+export function currentLinkByTabId(id: number) {
+  let tid = tabIndexById(id);
 
   return vigi.tabs[tid].links[vigi.tabs[tid].current_link];
 }
 
-export function updateLink(tab_id: number, val: Partial<TabLink>) {
-  const tabIndex = findTabById(tab_id);
+export function updateLinkByTabId(tab_id: number, val: Partial<TabLink>) {
+  const tab = tabById(tab_id);
 
-  vigi.tabs[tabIndex].links[vigi.tabs[tabIndex].current_link] = {
-    ...vigi.tabs[tabIndex].links[vigi.tabs[tabIndex].current_link],
+  tab.links[tab.current_link] = {
+    ...tab.links[tab.current_link],
     ...val,
   };
 }
@@ -29,7 +32,7 @@ export async function loadTab(id: number, uri: string) {
   let body: Tag[] | undefined;
   let error: DrovaError | undefined;
 
-  updateLink(id, { loading: true });
+  updateLinkByTabId(id, { loading: true });
 
   try {
     const page = (await invoke("process_url", {
@@ -39,14 +42,19 @@ export async function loadTab(id: number, uri: string) {
     body = page.body;
     title = page.title || undefined;
 
-    const currLink = currentTabLinkById(id);
+    const currLink = currentLinkByTabId(id);
 
     if (currLink.ty === "RENDER" && currLink.uri === uri)
-      updateLink(id, { body, title, error: undefined, loading: undefined });
-    else updateLink(id, { loading: undefined });
+      updateLinkByTabId(id, {
+        body,
+        title,
+        error: undefined,
+        loading: undefined,
+      });
+    else updateLinkByTabId(id, { loading: undefined });
   } catch (e) {
     error = convertError(e);
-    updateLink(id, { loading: undefined, error });
+    updateLinkByTabId(id, { loading: undefined, error });
   }
 
   return { body, error };
@@ -80,14 +88,14 @@ export function currentTab() {
   return vigi.tabs[vigi.current_tab];
 }
 
-export function currentTabLink() {
+export function currentLink() {
   const current = currentTab();
 
   return current.links[current.current_link];
 }
 
 export function currentTabInnerURN() {
-  return innerURN(currentTabLink());
+  return innerURN(currentLink());
 }
 
 export function innerURN(link: TabLink): string {
@@ -107,7 +115,7 @@ export function renderLink(uri: string, relative?: boolean) {
   if (relative) {
     try {
       return `/render/${encodeURIComponent(
-        new URL(uri, currentTabLink().uri).toString()
+        new URL(uri, currentLink().uri).toString()
       )}`;
     } catch {}
   }

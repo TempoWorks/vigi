@@ -1,20 +1,15 @@
 <script lang="ts">
   import { onNavigate } from "$app/navigation";
   import { temporal } from "$lib/state.svelte";
-  import {
-    currentTabLink,
-    formatInputLink,
-    gotoTBI,
-    linkToURI,
-  } from "$lib/utils";
+  import { currentLink, formatInputLink, gotoTBI, linkToURI } from "$lib/utils";
 
   let iEl: HTMLInputElement;
 
-  let input = $state(formatInputLink(currentTabLink()));
+  let input = $state(formatInputLink(currentLink()));
   let currentInput = $state("");
 
   onNavigate(() => {
-    input = formatInputLink(currentTabLink());
+    input = formatInputLink(currentLink());
     currentInput = "";
   });
 </script>
@@ -34,7 +29,7 @@
     }
   }}
   onfocus={() => {
-    input = currentInput || linkToURI(currentTabLink());
+    input = currentInput || linkToURI(currentLink());
 
     setTimeout(() => {
       iEl.select();
@@ -44,7 +39,7 @@
     }, 1);
   }}
   onfocusout={() => {
-    const currLink = currentTabLink();
+    const currLink = currentLink();
 
     if (input) currentInput = input;
     else currentInput = linkToURI(currLink);

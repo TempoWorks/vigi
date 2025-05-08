@@ -1,17 +1,20 @@
 import { invalidateAll } from "$app/navigation";
 import { manageLink } from "$lib/management";
 import type { DrovaError } from "$lib/types.js";
-import { currentTab, currentTabLink, loadTab, updateLink } from "$lib/utils.js";
+import {
+  currentTab,
+  currentLink,
+  loadTab,
+  updateLinkByTabId,
+} from "$lib/utils.js";
 import type { Tag } from "@txtdot/dalet";
 
 export async function load({ params }) {
-  manageLink("RENDER", params.uri);
-
   const currTab = currentTab();
 
-  updateLink(currTab.id, { loading: undefined });
+  updateLinkByTabId(currTab.id, { loading: undefined });
 
-  const currLink = currentTabLink();
+  const currLink = currentLink();
 
   let body: Tag[] | undefined;
   let error: DrovaError | undefined;
@@ -24,6 +27,8 @@ export async function load({ params }) {
   ) {
     body = currLink.body;
   } else {
+    manageLink("RENDER", params.uri);
+
     const res = await loadTab(currTab.id, params.uri);
 
     body = res.body;
