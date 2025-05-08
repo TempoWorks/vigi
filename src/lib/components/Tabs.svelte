@@ -9,6 +9,7 @@
   import WorldCog from "$lib/icons/WorldCog.svelte";
   import Button from "./Button.svelte";
   import X from "$lib/icons/X.svelte";
+  import WorldX from "$lib/icons/WorldX.svelte";
 
   let dragging = false;
 
@@ -49,7 +50,9 @@
         onclick={() => goToTab(idx)}
       >
         <div>
-          {#if vigi.current_tab === idx && temporal.loading}
+          {#if tab.errored}
+            <WorldX />
+          {:else if vigi.current_tab === idx && temporal.loading}
             <Loading />
           {:else if currentLink.ty === "RENDER"}
             <World />

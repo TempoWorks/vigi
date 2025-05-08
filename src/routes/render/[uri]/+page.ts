@@ -1,6 +1,7 @@
 import { manageLink } from "$lib/management";
 import { temporal, vigi } from "$lib/state.svelte.js";
-import { currentTabLink } from "$lib/utils.js";
+import { convertError, currentTabLink } from "$lib/utils.js";
+import { error } from "@sveltejs/kit";
 import { invoke } from "@tauri-apps/api/core";
 import type { Page, Tag } from "@txtdot/dalet";
 
@@ -22,10 +23,11 @@ export async function load({ params }) {
     title = currLink.title;
   } else {
     temporal.loading = true;
-    try {
-      let currentTab = vigi.current_tab;
-      let currentLink = vigi.tabs[currentTab].current_link;
 
+    let currentTab = vigi.current_tab;
+    let currentLink = vigi.tabs[currentTab].current_link;
+
+    try {
       const page = (await invoke("process_url", {
         input: params.uri,
       })) as Page;
@@ -40,9 +42,12 @@ export async function load({ params }) {
 
       temporal.loading = false;
     } catch (e) {
+      vigi.tabs[currentTab].errored = true;
       manageLink("RENDER", params.uri, title);
+
       temporal.loading = false;
-      throw e;
+
+      error(500, convertError(e));
     }
   }
 

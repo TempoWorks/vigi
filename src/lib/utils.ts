@@ -1,7 +1,16 @@
 import { vigi } from "./state.svelte";
-import type { TabLink, VigiState } from "./types";
+import type { DrovaError, TabLink, VigiState } from "./types";
 import { goto } from "$app/navigation";
 import { invoke } from "@tauri-apps/api/core";
+
+export function convertError(e: any): DrovaError {
+  if (typeof e === "string") return { message: e };
+  else {
+    let err: [string, string][] = Object.entries(e);
+
+    return { message: err[0][0], body: err[0][1].toString() };
+  }
+}
 
 export function saveState() {
   invoke("save_state", { state: vigi });
