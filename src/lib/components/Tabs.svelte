@@ -51,7 +51,7 @@
         <div>
           {#if tab.links[tab.current_link].error}
             <WorldX />
-          {:else if vigi.current_tab === idx && tab.links[tab.current_link].loading}
+          {:else if tab.links[tab.current_link].loading}
             <Loading />
           {:else if currentLink.ty === "RENDER"}
             <World />

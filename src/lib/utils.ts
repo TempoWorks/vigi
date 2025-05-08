@@ -3,6 +3,7 @@ import type { DrovaError, SiteTab, TabLink, VigiState } from "./types";
 import { goto } from "$app/navigation";
 import { invoke } from "@tauri-apps/api/core";
 import type { Page, Tag } from "@txtdot/dalet";
+import { manageLink } from "./management";
 
 export function findTabById(id: number) {
   return vigi.tabs.findIndex((tab) => tab.id === id);
@@ -40,11 +41,9 @@ export async function loadTab(id: number, uri: string) {
 
     const currLink = currentTabLinkById(id);
 
-    if (currLink.ty === "RENDER" && currLink.uri === uri) {
-      updateLink(id, { body, title, error: undefined });
-    }
-
-    updateLink(id, { loading: undefined });
+    if (currLink.ty === "RENDER" && currLink.uri === uri)
+      updateLink(id, { body, title, error: undefined, loading: undefined });
+    else updateLink(id, { loading: undefined });
   } catch (e) {
     error = convertError(e);
     updateLink(id, { loading: undefined, error });
