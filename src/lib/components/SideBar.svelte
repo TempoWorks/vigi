@@ -12,6 +12,7 @@
   import WorldX from "$lib/icons/WorldX.svelte";
   import { tabIndexById } from "$lib/utils";
   import WorldQuestion from "$lib/icons/WorldQuestion.svelte";
+  import { slide } from "svelte/transition";
 
   let dragging = false;
 
@@ -40,6 +41,7 @@
   }}
   onconsider={handleConsider}
   onfinalize={handleFinalize}
+  transition:slide={{ axis: "x" }}
 >
   {#each vigi.tabs as tab, idx (tab.id)}
     {@const currentLink = tab.links[tab.current_link]}

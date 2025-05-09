@@ -7,7 +7,7 @@
   import { afterNavigate, beforeNavigate } from "$app/navigation";
   import { page } from "$app/state";
   import BotBar from "$lib/components/BotBar.svelte";
-  import Tabs from "$lib/components/Tabs.svelte";
+  import SideBar from "$lib/components/SideBar.svelte";
 
   const { children } = $props();
 
@@ -45,9 +45,9 @@
 
 <svelte:window bind:innerWidth={width} />
 
-<div class="grid gap-2 w-full" class:grid-cols-6={sidebar_open}>
+<div class="flex w-full">
   {#if sidebar_open}
-    <Tabs />
+    <SideBar />
   {/if}
   <div class="main-window">
     {#if is_desktop}

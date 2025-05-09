@@ -36,7 +36,7 @@ body {
 }
 
 .tabs {
-  @apply overflow-y-auto text-wrap overflow-x-hidden flex gap-1 flex-col-reverse justify-end;
+  @apply overflow-y-auto text-wrap overflow-x-hidden flex gap-1 flex-col-reverse justify-end w-80 mr-2;
 }
 
 .tab-container {
@@ -109,7 +109,7 @@ body {
 }
 
 .main-window {
-  @apply col-span-5 flex flex-col overflow-y-auto gap-0 lg:gap-2;
+  @apply flex flex-col overflow-y-auto gap-0 lg:gap-2 grow;
 }
 
 .top-bar-search-input {
