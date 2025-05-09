@@ -63,7 +63,7 @@
           class="tab"
           class:selected={!dragging && vigi.current_tab === idx}
           onclick={() => {
-            if (!is_desktop) vigi.sidebar_open = false;
+            if (!is_desktop) temporal.sidebar_open = false;
             goToTab(idx);
           }}
         >

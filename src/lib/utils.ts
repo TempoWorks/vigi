@@ -77,7 +77,6 @@ export async function loadState() {
     const new_state: VigiState = await invoke("get_state");
 
     vigi.current_tab = new_state.current_tab;
-    vigi.sidebar_open = new_state.sidebar_open;
     vigi.tabs = new_state.tabs;
     vigi.tab_counter = new_state.tab_counter;
   } catch {}

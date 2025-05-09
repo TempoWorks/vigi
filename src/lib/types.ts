@@ -10,7 +10,6 @@ export interface DrovaError {
 export interface VigiState {
   current_tab: number;
   tab_counter: number;
-  sidebar_open: boolean;
   tabs: SiteTab[];
 }
 
@@ -35,4 +34,5 @@ export interface TemporalState {
   top_bar_open: boolean;
   first_load: boolean;
   sidebar_scroll: number;
+  sidebar_open: boolean;
 }

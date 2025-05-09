@@ -1,14 +1,13 @@
 <script lang="ts">
   import TopBarDesktop from "$lib/components/TopBarDesktop.svelte";
   import TopBarMobile from "$lib/components/TopBarMobile.svelte";
-  import { vigi } from "$lib/state.svelte";
+  import { temporal, vigi } from "$lib/state.svelte";
   import { onMount } from "svelte";
   import "../app.css";
   import { afterNavigate, beforeNavigate } from "$app/navigation";
   import { page } from "$app/state";
   import BotBar from "$lib/components/BotBar.svelte";
   import SideBar from "$lib/components/SideBar.svelte";
-  import { fade } from "svelte/transition";
 
   const { children } = $props();
 
@@ -35,18 +34,22 @@
     ) {
       return;
     }
-    if (e.code === "KeyQ") vigi.sidebar_open = !vigi.sidebar_open;
+    if (e.code === "KeyQ") temporal.sidebar_open = !temporal.sidebar_open;
   });
 
   let width: number = $state(0);
 
   let is_desktop = $derived(width >= 1024);
+
+  onMount(() => {
+    if (!is_desktop) temporal.sidebar_open = false;
+  });
 </script>
 
 <svelte:window bind:innerWidth={width} />
 
 <div class="flex w-full">
-  {#if vigi.sidebar_open}
+  {#if temporal.sidebar_open}
     <SideBar {is_desktop} />
   {/if}
   <div class="main-window">

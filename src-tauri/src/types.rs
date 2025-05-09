@@ -18,7 +18,6 @@ pub enum TabType {
 pub struct VigiState {
     pub current_tab: usize,
     pub tab_counter: usize,
-    pub sidebar_open: bool,
     pub tabs: Vec<SiteTab>,
 }
 
@@ -41,7 +40,6 @@ pub struct TabLink {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct PermanentState {
     pub current_tab: usize,
-    pub sidebar_open: bool,
     pub tabs: Vec<PermanentSiteTab>,
 }
 

@@ -32,7 +32,6 @@ async fn save_state(state: VigiState, app_handle: tauri::AppHandle) -> Result<()
 
     let permanent = PermanentState {
         current_tab: state.current_tab,
-        sidebar_open: state.sidebar_open,
         tabs: state
             .tabs
             .into_iter()
@@ -89,7 +88,6 @@ async fn get_state(app_handle: tauri::AppHandle) -> Result<VigiState, VigiError>
     Ok(VigiState {
         current_tab: permanent.current_tab,
         tab_counter: permanent.tabs.len(),
-        sidebar_open: permanent.sidebar_open,
         tabs: permanent
             .tabs
             .into_iter()

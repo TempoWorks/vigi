@@ -45,7 +45,7 @@ export function browserLinkManager(urn: string, title: string) {
 }
 
 export function manageSidebar() {
-  vigi.sidebar_open = !vigi.sidebar_open;
+  temporal.sidebar_open = !temporal.sidebar_open;
   saveState();
 }
 
