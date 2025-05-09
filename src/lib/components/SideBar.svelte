@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { vigi } from "$lib/state.svelte";
+  import { temporal, vigi } from "$lib/state.svelte";
   import { dndzone, type DndEvent } from "svelte-dnd-action";
   import { flip } from "svelte/animate";
   import { closeTab, goToTab } from "$lib/management";
@@ -13,8 +13,12 @@
   import { tabIndexById } from "$lib/utils";
   import WorldQuestion from "$lib/icons/WorldQuestion.svelte";
   import { fade, slide } from "svelte/transition";
+  import { onMount } from "svelte";
+
+  export let is_desktop: boolean;
 
   let dragging = false;
+  let el: HTMLDivElement;
 
   function handleConsider(e: CustomEvent<DndEvent<SiteTab>>) {
     vigi.tabs = e.detail.items;
@@ -29,11 +33,15 @@
 
     dragging = false;
   }
+
+  onMount(() => {
+    el.scrollTo({ top: temporal.sidebar_scroll });
+  });
 </script>
 
 <section transition:fade={{ duration: 250 }}>
   <div
-    class="tabs"
+    class="sidebar"
     use:dndzone={{
       items: vigi.tabs,
       flipDurationMs: 150,
@@ -42,7 +50,11 @@
     }}
     onconsider={handleConsider}
     onfinalize={handleFinalize}
-    transition:slide={{ axis: "x" }}
+    onscrollend={() => {
+      temporal.sidebar_scroll = el.scrollTop;
+    }}
+    bind:this={el}
+    transition:slide={{ axis: "x", duration: 300 }}
   >
     {#each vigi.tabs as tab, idx (tab.id)}
       {@const currentLink = tab.links[tab.current_link]}
@@ -50,7 +62,10 @@
         <button
           class="tab"
           class:selected={!dragging && vigi.current_tab === idx}
-          onclick={() => goToTab(idx)}
+          onclick={() => {
+            if (!is_desktop) vigi.sidebar_open = false;
+            goToTab(idx);
+          }}
         >
           <div>
             {#if tab.links[tab.current_link].error}

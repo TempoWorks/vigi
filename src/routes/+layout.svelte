@@ -1,13 +1,14 @@
 <script lang="ts">
   import TopBarDesktop from "$lib/components/TopBarDesktop.svelte";
   import TopBarMobile from "$lib/components/TopBarMobile.svelte";
-  import { temporal, vigi } from "$lib/state.svelte";
+  import { vigi } from "$lib/state.svelte";
   import { onMount } from "svelte";
   import "../app.css";
   import { afterNavigate, beforeNavigate } from "$app/navigation";
   import { page } from "$app/state";
   import BotBar from "$lib/components/BotBar.svelte";
   import SideBar from "$lib/components/SideBar.svelte";
+  import { fade } from "svelte/transition";
 
   const { children } = $props();
 
@@ -40,14 +41,13 @@
   let width: number = $state(0);
 
   let is_desktop = $derived(width >= 1024);
-  let sidebar_open = $derived(is_desktop && vigi.sidebar_open);
 </script>
 
 <svelte:window bind:innerWidth={width} />
 
 <div class="flex w-full">
-  {#if sidebar_open}
-    <SideBar />
+  {#if vigi.sidebar_open}
+    <SideBar {is_desktop} />
   {/if}
   <div class="main-window">
     {#if is_desktop}

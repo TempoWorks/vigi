@@ -2,7 +2,7 @@
   import CompactBlock from "./CompactBlock.svelte";
   import ThinBlock from "./ThinBlock.svelte";
 
-  import Sidebar from "./buttons/Sidebar.svelte";
+  import SideBarButton from "./buttons/SideBarButton.svelte";
   import HistoryBack from "./buttons/HistoryBack.svelte";
   import HistoryForward from "./buttons/HistoryForward.svelte";
   import ReloadButton from "./buttons/ReloadButton.svelte";
@@ -14,7 +14,7 @@
 
 <div class="top-bar">
   <CompactBlock className="navigation-buttons">
-    <Sidebar />
+    <SideBarButton />
     <PlusTabButton />
   </CompactBlock>
 

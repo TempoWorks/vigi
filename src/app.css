@@ -32,11 +32,17 @@ body {
 }
 
 .sidebar {
-  @apply flex flex-col;
+  @apply overflow-y-auto text-wrap overflow-x-hidden flex gap-1 flex-col mr-2;
+  @apply w-full h-full lg:max-w-80;
+  @apply theme-90 z-40;
+  @apply max-lg:absolute max-lg:pb-16 max-lg:p-2;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-.tabs {
-  @apply overflow-y-auto text-wrap overflow-x-hidden flex gap-1 flex-col-reverse justify-end w-80 mr-2;
+.sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 .tab-container {
@@ -55,7 +61,7 @@ body {
 }
 
 .tab.selected {
-  @apply theme-30 hover:theme-25 active:theme-15 border-r-4;
+  @apply theme-30 hover:theme-25 active:theme-15 border-l-4;
 }
 
 .tab .tab-text {
@@ -76,10 +82,6 @@ body {
   transition-property: opacity, padding, color, background-color;
 }
 
-.tab-close.selected {
-  @apply right-2;
-}
-
 .tab-container:hover .tab-close {
   @apply lg:opacity-100;
 }
@@ -93,7 +95,7 @@ body {
 }
 
 .bot-bar {
-  @apply flex gap-1 lg:gap-2 max-lg:theme-60;
+  @apply flex gap-1 lg:gap-2 max-lg:theme-60 z-50;
 }
 
 .navigation-buttons {
@@ -101,11 +103,11 @@ body {
 }
 
 .bot-bar-navigation-buttons {
-  @apply flex items-center gap-1 w-full justify-between;
+  @apply flex items-center gap-1 w-full justify-between rounded;
 }
 
 .tab-count {
-  @apply outline-2 font-bold p-0! hover:p-0! w-6 h-6 hover:w-8 text-center;
+  @apply outline-2 font-bold rounded-lg! p-0! hover:p-0! w-6 h-6 hover:w-8 text-center;
 }
 
 .main-window {

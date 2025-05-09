@@ -34,4 +34,5 @@ export interface TabLink {
 export interface TemporalState {
   top_bar_open: boolean;
   first_load: boolean;
+  sidebar_scroll: number;
 }
