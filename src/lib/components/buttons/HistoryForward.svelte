@@ -5,13 +5,14 @@
   import { currentTabInnerURN } from "$lib/utils";
 
   import Button from "../Button.svelte";
+
+  let currTab = $derived(vigi.tabs[vigi.current_tab]);
 </script>
 
 <Button
-  disabled={vigi.tabs[vigi.current_tab].current_link >=
-    vigi.tabs[vigi.current_tab].links.length - 1}
+  disabled={currTab.current_link >= currTab.links.length - 1}
   onclick={() => {
-    vigi.tabs[vigi.current_tab].current_link += 1;
+    currTab.current_link += 1;
     goto(currentTabInnerURN());
   }}
 >

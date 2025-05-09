@@ -39,12 +39,10 @@
     }, 1);
   }}
   onfocusout={() => {
-    const currLink = currentLink();
-
     if (input) currentInput = input;
-    else currentInput = linkToURI(currLink);
+    else currentInput = "";
 
-    input = formatInputLink(currLink);
+    input = formatInputLink(currentLink());
 
     temporal.top_bar_open = false;
   }}

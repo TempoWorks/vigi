@@ -13,9 +13,8 @@ export function tabById(id: number) {
 }
 
 export function currentLinkByTabId(id: number) {
-  let tid = tabIndexById(id);
-
-  return vigi.tabs[tid].links[vigi.tabs[tid].current_link];
+  const tab = vigi.tabs[tabIndexById(id)];
+  return tab.links[tab.current_link];
 }
 
 export function updateLinkByTabId(tab_id: number, val: Partial<TabLink>) {

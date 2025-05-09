@@ -17,24 +17,21 @@ export function manageLink(
   body?: Tag[]
 ) {
   const currTab = currentTab();
-  const currLink = currentLink();
+  const currLink = currTab.links[currTab.current_link];
 
   if (currLink.ty !== type || currLink.uri !== uri) {
     if (currTab.current_link !== currTab.links.length - 1) {
-      vigi.tabs[vigi.current_tab].links = currTab.links.slice(
-        0,
-        currTab.current_link + 1
-      );
+      currTab.links = currTab.links.slice(0, currTab.current_link + 1);
     }
 
-    vigi.tabs[vigi.current_tab].links.push({
+    currTab.links.push({
       ty: type,
       title: title || undefined,
       body,
       uri,
     });
 
-    vigi.tabs[vigi.current_tab].current_link += 1;
+    currTab.current_link += 1;
   }
 
   if (temporal.first_load) temporal.first_load = false;
@@ -67,13 +64,7 @@ export function openNewTab() {
 export function goToTab(idx: number) {
   vigi.current_tab = idx;
 
-  goto(
-    innerURN(
-      vigi.tabs[vigi.current_tab].links[
-        vigi.tabs[vigi.current_tab].current_link
-      ]
-    )
-  );
+  goto(innerURN(currentLink()));
 }
 
 export function closeTab(idx: number) {

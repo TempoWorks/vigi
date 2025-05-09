@@ -5,17 +5,13 @@
 
   import Button from "../Button.svelte";
 
-  let loading = $derived(
-    vigi.tabs[vigi.current_tab].links[vigi.tabs[vigi.current_tab].current_link]
-      .loading
-  );
+  let currTab = $derived(vigi.tabs[vigi.current_tab]);
+  let loading = $derived(currTab.links[currTab.current_link].loading);
 </script>
 
 <Button
   onclick={() => {
-    vigi.tabs[vigi.current_tab].links[
-      vigi.tabs[vigi.current_tab].current_link
-    ].body = undefined;
+    currTab.links[currTab.current_link].body = undefined;
     invalidateAll();
   }}
   disabled={loading}

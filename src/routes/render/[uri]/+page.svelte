@@ -1,6 +1,6 @@
 <script lang="ts">
   import DaletRenderer from "$lib/components/DaletRenderer.svelte";
-  import CompassLoop from "$lib/icons/CompassLoop.svelte";
+  import Alert from "$lib/icons/Alert.svelte";
 
   let { data } = $props();
 </script>
@@ -9,7 +9,7 @@
   <div
     class="flex max-lg:flex-col items-center lg:justify-center h-full gap-5 mx-auto"
   >
-    <CompassLoop width="128" height="128" class="opacity-50" />
+    <Alert width="128" height="128" class="opacity-50" />
 
     <div class="flex flex-col">
       <h1 class="text-4xl font-black max-lg:text-center">
