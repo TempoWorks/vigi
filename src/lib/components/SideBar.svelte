@@ -12,7 +12,7 @@
   import WorldX from "$lib/icons/WorldX.svelte";
   import { tabIndexById } from "$lib/utils";
   import WorldQuestion from "$lib/icons/WorldQuestion.svelte";
-  import { slide } from "svelte/transition";
+  import { fade, slide } from "svelte/transition";
 
   let dragging = false;
 
@@ -31,51 +31,53 @@
   }
 </script>
 
-<div
-  class="tabs"
-  use:dndzone={{
-    items: vigi.tabs,
-    flipDurationMs: 150,
-    dropTargetStyle: {},
-    morphDisabled: true,
-  }}
-  onconsider={handleConsider}
-  onfinalize={handleFinalize}
-  transition:slide={{ axis: "x" }}
->
-  {#each vigi.tabs as tab, idx (tab.id)}
-    {@const currentLink = tab.links[tab.current_link]}
-    <div class="tab-container" animate:flip={{ duration: 150 }}>
-      <button
-        class="tab"
-        class:selected={!dragging && vigi.current_tab === idx}
-        onclick={() => goToTab(idx)}
-      >
-        <div>
-          {#if tab.links[tab.current_link].error}
-            <WorldX />
-          {:else if tab.links[tab.current_link].loading}
-            <Loading />
-          {:else if currentLink.ty === "RENDER" && currentLink.body}
-            <World />
-          {:else if currentLink.ty === "RENDER" && !currentLink.body}
-            <WorldQuestion />
-          {:else}
-            <WorldCog />
-          {/if}
-        </div>
-        <div class="tab-text">
-          {currentLink.title || "No title"}
-        </div>
-      </button>
-      <Button
-        className="tab-close{!dragging && vigi.current_tab === idx
-          ? ' selected'
-          : ''}"
-        onclick={() => {
-          closeTab(idx);
-        }}><X /></Button
-      >
-    </div>
-  {/each}
-</div>
+<section transition:fade={{ duration: 250 }}>
+  <div
+    class="tabs"
+    use:dndzone={{
+      items: vigi.tabs,
+      flipDurationMs: 150,
+      dropTargetStyle: {},
+      morphDisabled: true,
+    }}
+    onconsider={handleConsider}
+    onfinalize={handleFinalize}
+    transition:slide={{ axis: "x" }}
+  >
+    {#each vigi.tabs as tab, idx (tab.id)}
+      {@const currentLink = tab.links[tab.current_link]}
+      <div class="tab-container" animate:flip={{ duration: 150 }}>
+        <button
+          class="tab"
+          class:selected={!dragging && vigi.current_tab === idx}
+          onclick={() => goToTab(idx)}
+        >
+          <div>
+            {#if tab.links[tab.current_link].error}
+              <WorldX />
+            {:else if tab.links[tab.current_link].loading}
+              <Loading />
+            {:else if currentLink.ty === "RENDER" && currentLink.body}
+              <World />
+            {:else if currentLink.ty === "RENDER" && !currentLink.body}
+              <WorldQuestion />
+            {:else}
+              <WorldCog />
+            {/if}
+          </div>
+          <div class="tab-text">
+            {currentLink.title || "No title"}
+          </div>
+        </button>
+        <Button
+          className="tab-close{!dragging && vigi.current_tab === idx
+            ? ' selected'
+            : ''}"
+          onclick={() => {
+            closeTab(idx);
+          }}><X /></Button
+        >
+      </div>
+    {/each}
+  </div>
+</section>
