@@ -12,6 +12,7 @@
 <Button
   onclick={() => {
     currTab.links[currTab.current_link].body = undefined;
+    currTab.links[currTab.current_link].error = undefined;
     invalidateAll();
   }}
   disabled={loading}

@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { onNavigate } from "$app/navigation";
-  import { temporal } from "$lib/state.svelte";
+  import { temporal, vigi } from "$lib/state.svelte";
   import { currentLink, formatInputLink, gotoTBI, linkToURI } from "$lib/utils";
 
   let iEl: HTMLInputElement;
@@ -8,8 +7,10 @@
   let input = $state(formatInputLink(currentLink()));
   let currentInput = $state("");
 
-  onNavigate(() => {
-    input = formatInputLink(currentLink());
+  $effect(() => {
+    const current = vigi.tabs[vigi.current_tab];
+
+    input = formatInputLink(current.links[current.current_link]);
     currentInput = "";
   });
 </script>

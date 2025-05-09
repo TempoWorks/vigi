@@ -26,6 +26,8 @@ export async function load({ params }) {
     currLink.title
   ) {
     body = currLink.body;
+  } else if (currLink.error) {
+    error = currLink.error;
   } else {
     manageLink("RENDER", params.uri);
 
