@@ -15,7 +15,7 @@
       <h1 class="text-4xl font-black max-lg:text-center">
         {data.error.message}
       </h1>
-      <div class="text-xl font-semibold opacity-50 max-lg:text-center">
+      <div class="text-xl font-semibold opacity-50 max-w-80">
         {#if data.error.body}
           {data.error.body}
         {/if}

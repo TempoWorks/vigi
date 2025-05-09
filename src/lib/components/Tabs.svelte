@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { temporal, vigi } from "$lib/state.svelte";
+  import { vigi } from "$lib/state.svelte";
   import { dndzone, type DndEvent } from "svelte-dnd-action";
   import { flip } from "svelte/animate";
   import { closeTab, goToTab } from "$lib/management";
@@ -11,6 +11,7 @@
   import X from "$lib/icons/X.svelte";
   import WorldX from "$lib/icons/WorldX.svelte";
   import { tabIndexById } from "$lib/utils";
+  import WorldQuestion from "$lib/icons/WorldQuestion.svelte";
 
   let dragging = false;
 
@@ -53,8 +54,10 @@
             <WorldX />
           {:else if tab.links[tab.current_link].loading}
             <Loading />
-          {:else if currentLink.ty === "RENDER"}
+          {:else if currentLink.ty === "RENDER" && currentLink.body}
             <World />
+          {:else if currentLink.ty === "RENDER" && !currentLink.body}
+            <WorldQuestion />
           {:else}
             <WorldCog />
           {/if}
