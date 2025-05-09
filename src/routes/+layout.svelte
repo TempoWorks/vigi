@@ -41,15 +41,15 @@
 
   let is_desktop = $derived(width >= 1024);
 
-  onMount(() => {
-    if (!is_desktop) temporal.sidebar_open = false;
-  });
+  let sidebar_open = $derived(
+    is_desktop ? temporal.sidebar_open : !temporal.sidebar_open
+  );
 </script>
 
 <svelte:window bind:innerWidth={width} />
 
 <div class="flex w-full">
-  {#if temporal.sidebar_open}
+  {#if sidebar_open}
     <SideBar {is_desktop} />
   {/if}
   <div class="main-window">

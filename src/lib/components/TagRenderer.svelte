@@ -46,6 +46,8 @@
   {/if}
 {:else if tag.Bq}
   <blockquote><BodyRenderer body={tag.Bq.body} /></blockquote>
+{:else if tag.Pre}
+  <pre>{tag.Pre.body}</pre>
 {:else}
   <p class="unsupported">unsupported tag</p>
 {/if}

@@ -49,10 +49,11 @@
   --colorspace: srgb;
 
   --min-bg: #757575;
-  --max-bg: #000000;
+  --max-bg: #080808;
 
-  --min-text: #555;
+  --min-text: #dbdbdb;
   --max-text: #fff;
 
-  --code-bg: #0e0e0e;
+  --code-bg: #000000;
+  --code-comment: #6d6d6d;
 }

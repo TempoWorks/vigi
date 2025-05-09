@@ -988,9 +988,9 @@ dependencies = [
 
 [[package]]
 name = "drova_plugins"
-version = "1.0.7"
+version = "1.0.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "73a6401f1938372c57c86588ec0f56dcac20aa01633968d6b191f0461be8775e"
+checksum = "6a51b5d49163c7bb2eb67f21b13eeb20be38272a4037605838938fa66296d40e"
 dependencies = [
  "async-trait",
  "bytes",
