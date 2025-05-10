@@ -14,9 +14,14 @@ Browser for dalet, text, gemtext with native support of txtdot proxy and local t
 
 ## Features
 
-See also: [Dalet](https://github.com/TxtDot/dalet).
+See also:
+
+- [Dalet](https://github.com/TxtDot/dalet)
+- [Drova](https://github.com/TempoWorks/drova/tree/main)
 
 ### Protocols support
+
+These protocols supported by drova plugins. [See drova plugins](https://github.com/TempoWorks/drova/tree/main/drova_plugins) for full list of supported protocols
 
 - [x] Http/s
 - [x] Gemini
@@ -24,10 +29,13 @@ See also: [Dalet](https://github.com/TxtDot/dalet).
 
 ### Mime type support
 
+These types supported by drova plugins. [See drova plugins](https://github.com/TempoWorks/drova/tree/main/drova_plugins) for full list of supported formats
+
 - [ ] application/daletpack
 - [x] text/plain
 - [x] text/gemini
-- [ ] text/html (through local txtdot)
+- [x] text/markdown
+- [ ] text/html
 
 ### Browser features
 
@@ -39,6 +47,3 @@ See also: [Dalet](https://github.com/TxtDot/dalet).
 - [ ] tabs: restore
 - [x] sidebar hiding
 - [ ] history
-- [ ] txtdot proxy support
-- [ ] local txtdot
-- [ ] proxy support

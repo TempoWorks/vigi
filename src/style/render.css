@@ -54,6 +54,30 @@
   @apply theme-100 p-4 lg:mx-10 my-4 border-l-4 rounded-2xl overflow-auto;
 }
 
+.render blockquote blockquote {
+  @apply theme-90;
+}
+
+.render blockquote blockquote blockquote {
+  @apply theme-80;
+}
+
+.render blockquote blockquote blockquote blockquote {
+  @apply theme-70;
+}
+
+.render blockquote blockquote blockquote blockquote {
+  @apply theme-60;
+}
+
+.render blockquote blockquote blockquote blockquote blockquote {
+  @apply theme-50;
+}
+
 .render .unsupported {
   @apply theme-100 p-2 m-2 rounded-2xl;
+}
+
+.render hr {
+  @apply border-1 my-2 rounded-2xl theme-0;
 }

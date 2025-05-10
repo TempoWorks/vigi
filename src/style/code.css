@@ -1,6 +1,6 @@
 pre code.hljs {
   display: block;
-  @apply p-4 overflow-x-auto;
+  @apply p-4 my-2 overflow-x-auto;
 }
 
 .hljs {

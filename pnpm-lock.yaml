@@ -18,8 +18,8 @@ importers:
         specifier: ^2.2.6
         version: 2.2.6
       '@txtdot/dalet':
-        specifier: 1.0.0-pre9
-        version: 1.0.0-pre9
+        specifier: 1.0.0-pre10
+        version: 1.0.0-pre10
       svelte-dnd-action:
         specifier: ^0.9.61
         version: 0.9.61(svelte@5.28.2)
@@ -533,8 +533,8 @@ packages:
   '@tauri-apps/plugin-opener@2.2.6':
     resolution: {integrity: sha512-bSdkuP71ZQRepPOn8BOEdBKYJQvl6+jb160QtJX/i2H9BF6ZySY/kYljh76N2Ne5fJMQRge7rlKoStYQY5Jq1w==}
 
-  '@txtdot/dalet@1.0.0-pre9':
-    resolution: {integrity: sha512-cH9wOW0njWi508AqgW5a5PVZjphgOXy/sgqCTZZtmQyzoltAsoNyuZqMJOsxkuKG7qGLCC9ILJgPtWZ/DYlEFA==}
+  '@txtdot/dalet@1.0.0-pre10':
+    resolution: {integrity: sha512-7M3J2gF+GdJVjA2PnH516VfVfZWgLchdccgUYACQxS3AIGqvT4drvaZ0zvEmgU1RT53ZO9YUB2H5LmtkN7fzvQ==}
 
   '@types/cookie@0.6.0':
     resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
@@ -1177,7 +1177,7 @@ snapshots:
     dependencies:
       '@tauri-apps/api': 2.5.0
 
-  '@txtdot/dalet@1.0.0-pre9':
+  '@txtdot/dalet@1.0.0-pre10':
     dependencies:
       zod: 3.24.3
 

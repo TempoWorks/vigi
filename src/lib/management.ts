@@ -78,7 +78,7 @@ export function closeTab(idx: number) {
   } else {
     vigi.tabs.splice(idx, 1);
 
-    if (vigi.current_tab >= idx) {
+    if (vigi.current_tab >= idx && vigi.current_tab !== 0) {
       vigi.current_tab -= 1;
 
       if (changed) goToTab(vigi.current_tab);

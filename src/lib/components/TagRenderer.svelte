@@ -12,11 +12,17 @@
 </script>
 
 {#if typeof tag === "string"}
-  <p class="unsupported">unsupported tag</p>
-{:else if tag.El}
-  <BodyRenderer body={tag.El.body} />
-{:else if tag.P}
-  <p><BodyRenderer body={tag.P.body} /></p>
+  {#if tag === "HorizontalBreak"}
+    <hr />
+  {:else if tag === "LineBreak"}
+    <br />
+  {:else}
+    <p class="unsupported">Unsupported Tag: {tag}</p>
+  {/if}
+{:else if tag.Element}
+  <BodyRenderer body={tag.Element.body} />
+{:else if tag.Paragraph}
+  <p><BodyRenderer body={tag.Paragraph.body} /></p>
 {:else if tag.NavLink}
   <a href={renderLink(tag.NavLink.dref, true)}>
     {#if tag.NavLink.body}
@@ -25,8 +31,8 @@
       {tag.NavLink.dref}
     {/if}
   </a>
-{:else if tag.H}
-  {@html `<h${tag.H.heading}>${tag.H.body}</h${tag.H.heading}>`}
+{:else if tag.Heading}
+  {@html `<h${tag.Heading.heading}>${tag.Heading.body}</h${tag.Heading.heading}>`}
 {:else if tag.List}
   <ol class={tag.List.style}>
     {#each tag.List.body as item}
@@ -44,10 +50,14 @@
   {:else}
     <HighlightAuto code={tag.Code.body} />
   {/if}
-{:else if tag.Bq}
-  <blockquote><BodyRenderer body={tag.Bq.body} /></blockquote>
-{:else if tag.Pre}
-  <pre>{tag.Pre.body}</pre>
+{:else if tag.BlockQuote}
+  <blockquote><BodyRenderer body={tag.BlockQuote.body} /></blockquote>
+{:else if tag.Preformatted}
+  <pre>{tag.Preformatted.body}</pre>
 {:else}
-  <p class="unsupported">unsupported tag</p>
+  <pre> <p class="unsupported">Unsupported Tag: {JSON.stringify(
+        tag,
+        null,
+        2
+      )}</p></pre>
 {/if}

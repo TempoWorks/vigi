@@ -17,7 +17,7 @@
     "@tailwindcss/vite": "^4.1.5",
     "@tauri-apps/api": "^2.5.0",
     "@tauri-apps/plugin-opener": "^2.2.6",
-    "@txtdot/dalet": "1.0.0-pre9",
+    "@txtdot/dalet": "1.0.0-pre10",
     "svelte-dnd-action": "^0.9.61",
     "svelte-highlight": "^7.8.3",
     "tailwindcss": "^4.1.5"

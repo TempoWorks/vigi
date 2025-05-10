@@ -23,7 +23,7 @@ tauri = { version = "2", features = [] }
 tauri-plugin-opener = "2"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-dalet = "1.0.0-pre.30"
+dalet = "1.0.0-pre.32"
 
 tokio = { version = "1", features = ["full"] }
 
@@ -37,5 +37,5 @@ async-trait = "0.1.88"
 
 bitcode = { version = "0.6.6", features = ["serde"] }
 
-drova_sdk = "1.0.7"
-drova_plugins = "1.0.8"
+drova_sdk = "1.1.0"
+drova_plugins = "1.1.3"

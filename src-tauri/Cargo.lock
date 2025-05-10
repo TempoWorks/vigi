@@ -823,9 +823,9 @@ dependencies = [
 
 [[package]]
 name = "dalet"
-version = "1.0.0-pre.30"
+version = "1.0.0-pre.32"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1bd0be0bc1b15105240fb2681c0f3e238fce565fa6824116b14b4ff1d5a7bdc1"
+checksum = "9da71f8ebd38b01eba61e523320fd3f3a1773640d203291b38b168d9dea1d846"
 dependencies = [
  "ariadne",
  "bitcode",
@@ -988,14 +988,15 @@ dependencies = [
 
 [[package]]
 name = "drova_plugins"
-version = "1.0.8"
+version = "1.1.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6a51b5d49163c7bb2eb67f21b13eeb20be38272a4037605838938fa66296d40e"
+checksum = "0a73820ef237e9b61737ae25b0d0dd950f243557d907b341b3723c502ccfc8d1"
 dependencies = [
  "async-trait",
  "bytes",
  "dalet",
  "drova_sdk",
+ "markdown",
  "mime",
  "reqwest",
  "tokio-gemini",
@@ -1004,9 +1005,9 @@ dependencies = [
 
 [[package]]
 name = "drova_sdk"
-version = "1.0.7"
+version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ceb5de8eff381ef8d4eea9401efba0247d6ead112d79c6701c6e9fa6b0097d49"
+checksum = "76796c0120911b88499c2fb97c1beaa45e0444274d4fe1f6571ba99fe3452ad8"
 dependencies = [
  "async-trait",
  "dalet",
@@ -2271,6 +2272,15 @@ name = "mac"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c41e0c4fef86961ac6d6f8a82609f55f31b05e4fce149ac5710e439df7619ba4"
+
+[[package]]
+name = "markdown"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a5cab8f2cadc416a82d2e783a1946388b31654d391d1c7d92cc1f03e295b1deb"
+dependencies = [
+ "unicode-id",
+]
 
 [[package]]
 name = "markup5ever"
@@ -4712,6 +4722,12 @@ checksum = "96bd2f2237fe450fcd0a1d2f5f4e91711124f7857ba2e964247776ebeeb7b0c4"
 dependencies = [
  "unic-common",
 ]
+
+[[package]]
+name = "unicode-id"
+version = "0.3.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "10103c57044730945224467c09f71a4db0071c123a0648cc3e818913bde6b561"
 
 [[package]]
 name = "unicode-ident"
