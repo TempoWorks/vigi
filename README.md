@@ -18,6 +18,16 @@ See also:
 - [Dalet](https://github.com/TxtDot/dalet)
 - [Drova](https://github.com/TempoWorks/drova/tree/main)
 
+### Screenshots
+
+<details>
+<summary>Expand</summary>
+
+![vigi desktop screenshot](https://github.com/TempoWorks/.github/raw/main/imgs/vigi_desktop.png)
+![vigi mobile screenshot](https://github.com/TempoWorks/.github/raw/main/imgs/vigi_mobile.png)
+
+</details>
+
 ### Protocols support
 
 These protocols supported by drova plugins. [See drova plugins](https://github.com/TempoWorks/drova/tree/main/drova_plugins) for full list of supported protocols
