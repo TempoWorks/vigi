@@ -62,49 +62,41 @@
   >
     {#each vigi.tabs as tab, idx (tab.id)}
       {@const currentLink = tab.links[tab.current_link]}
-      <section
-        transition:fade={{ duration: fade_duration / 2 }}
-        animate:flip={{ duration: flip_duration }}
-      >
-        <div
-          class="tab-container"
-          transition:slide={{ duration: slide_duration / 2 }}
+      <div class="tab-container" animate:flip={{ duration: flip_duration }}>
+        <button
+          class="tab"
+          class:selected={!dragging && vigi.current_tab === idx}
+          onclick={() => {
+            if (!is_desktop) temporal.sidebar_open = false;
+            goToTab(idx);
+          }}
         >
-          <button
-            class="tab"
-            class:selected={!dragging && vigi.current_tab === idx}
-            onclick={() => {
-              if (!is_desktop) temporal.sidebar_open = false;
-              goToTab(idx);
-            }}
-          >
-            <div>
-              {#if tab.links[tab.current_link].error}
-                <WorldX width="20" />
-              {:else if tab.links[tab.current_link].loading}
-                <Loading width="20" />
-              {:else if currentLink.ty === "RENDER" && currentLink.body}
-                <World width="20" />
-              {:else if currentLink.ty === "RENDER" && !currentLink.body}
-                <WorldQuestion width="20" />
-              {:else}
-                <WorldCog width="20" />
-              {/if}
-            </div>
-            <div class="tab-text">
-              {currentLink.title || "No title"}
-            </div>
-          </button>
-          <Button
-            className="tab-close{!dragging && vigi.current_tab === idx
-              ? ' selected'
-              : ''}"
-            onclick={() => {
-              closeTab(idx);
-            }}><X /></Button
-          >
-        </div>
-      </section>
+          <div>
+            {#if tab.links[tab.current_link].error}
+              <WorldX width="20" />
+            {:else if tab.links[tab.current_link].loading}
+              <Loading width="20" />
+            {:else if currentLink.ty === "RENDER" && currentLink.body}
+              <World width="20" />
+            {:else if currentLink.ty === "RENDER" && !currentLink.body}
+              <WorldQuestion width="20" />
+            {:else}
+              <WorldCog width="20" />
+            {/if}
+          </div>
+          <div class="tab-text">
+            {currentLink.title || "No title"}
+          </div>
+        </button>
+        <Button
+          className="tab-close{!dragging && vigi.current_tab === idx
+            ? ' selected'
+            : ''}"
+          onclick={() => {
+            closeTab(idx);
+          }}><X /></Button
+        >
+      </div>
     {/each}
   </div>
 </section>

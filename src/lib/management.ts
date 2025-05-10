@@ -50,7 +50,7 @@ export function manageSidebar() {
 }
 
 export function openNewTab() {
-  vigi.tabs.push({
+  vigi.tabs.splice(vigi.current_tab + 1, 0, {
     id: vigi.tab_counter,
     current_link: 0,
     links: [newTabLink],
@@ -58,7 +58,7 @@ export function openNewTab() {
 
   vigi.tab_counter += 1;
 
-  goToTab(vigi.tabs.length - 1);
+  goToTab(vigi.current_tab + 1);
 }
 
 export function goToTab(idx: number) {

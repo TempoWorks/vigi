@@ -38,4 +38,4 @@ async-trait = "0.1.88"
 bitcode = { version = "0.6.6", features = ["serde"] }
 
 drova_sdk = "1.1.0"
-drova_plugins = "1.1.3"
+drova_plugins = "1.1.4"
