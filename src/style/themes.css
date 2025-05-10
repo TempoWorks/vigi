@@ -1,0 +1,59 @@
+:root,
+.green-theme {
+  --transition: ease-in-out;
+  --duration: 150ms;
+  --colorspace: oklch;
+
+  --loading-animation-duration: 500ms;
+
+  --selection-color: #ffffff;
+  --selection-bg: #0d2b09;
+
+  --min-bg: #7cb972;
+  --max-bg: #193815;
+
+  --min-text: #b5e4ad;
+  --max-text: #fff;
+
+  --code-bg: #10250e;
+  --code-color: #fff;
+  --code-keyword: #df5045;
+  --code-title: #d2a8ff;
+  --code-attribute: #54a5ec;
+  --code-string: #a5d6ff;
+  --code-symbol: #ff993f;
+  --code-comment: #5f7761;
+  --code-quote: #7ee787;
+  --code-subst: #c9d1d9;
+  --code-section: #1f6feb;
+  --code-bullet: #f2cc60;
+  --code-emphasis: #c9d1d9;
+  --code-strong: #c9d1d9;
+  --code-addition-color: #aff5b4;
+  --code-addition-bg: #033a16;
+  --code-deletion-color: #ffdcd7;
+  --code-deletion-bg: #67060c;
+}
+
+.blue-theme {
+  --min-bg: #3e4ed6;
+  --max-bg: #0a1043;
+
+  --min-text: #7586ff;
+  --max-text: #fff;
+
+  --code-bg: #0a1043;
+}
+
+.dark-theme {
+  --colorspace: srgb;
+
+  --min-bg: #757575;
+  --max-bg: #080808;
+
+  --min-text: #dbdbdb;
+  --max-text: #fff;
+
+  --code-bg: #000000;
+  --code-comment: #6d6d6d;
+}

@@ -1,76 +1,158 @@
-import { invoke as inv } from "@tauri-apps/api";
-import { isLoading, state } from "./stores";
-import type { VigiState } from "./types";
-import { get } from "svelte/store";
-import type { InvokeArgs } from "@tauri-apps/api/tauri";
+import { vigi } from "./state.svelte";
+import type { DrovaError, SiteTab, TabLink, VigiState } from "./types";
+import { goto } from "$app/navigation";
+import { invoke } from "@tauri-apps/api/core";
+import type { Page, Tag } from "@txtdot/dalet";
 
-export async function updateVigiState() {
-  let st = await invoke("get_js_state");
-  state.set(st as VigiState);
+export function tabIndexById(id: number) {
+  return vigi.tabs.findIndex((tab) => tab.id === id);
 }
 
-export async function updateAndLoadInput(input: string, newTab?: boolean) {
-  await invoke("update_input", { input, newTab: !!newTab });
-  await updateVigiState();
-
-  await loadInput(true);
+export function tabById(id: number) {
+  return vigi.tabs[tabIndexById(id)];
 }
 
-export async function addTab() {
-  await invoke("add_tab");
-  await updateVigiState();
+export function currentLinkByTabId(id: number) {
+  const tab = vigi.tabs[tabIndexById(id)];
+  return tab.links[tab.current_link];
 }
 
-export async function selectTab(index: number) {
-  await invoke("select_tab", { index });
-  await updateVigiState();
-  await loadInput();
+export function updateLinkByTabId(tab_id: number, val: Partial<TabLink>) {
+  const tab = tabById(tab_id);
+
+  tab.links[tab.current_link] = {
+    ...tab.links[tab.current_link],
+    ...val,
+  };
 }
 
-export async function removeTab(index: number) {
-  let tabChanged = get(state).current_tab_index === index;
+export async function loadTab(id: number, uri: string) {
+  let title: string | undefined;
+  let body: Tag[] | undefined;
+  let error: DrovaError | undefined;
 
-  await invoke("remove_tab", { index });
-  await updateVigiState();
+  updateLinkByTabId(id, { loading: true });
 
-  if (tabChanged) setTimeout(loadInput, 150);
-}
-
-export async function loadInput(force = true) {
-  document.getElementsByClassName("browser-window")[0]?.scrollTo(0, 0);
-  if (force) {
-    await invoke("load_input_force");
-  } else {
-    await invoke("load_input");
-  }
-  await updateVigiState();
-}
-
-export async function goToLink(link: string, newTab?: boolean) {
-  const top_bar_input = get(state).top_bar_input;
-  const new_input = new URL(link, top_bar_input);
-  await updateAndLoadInput(new_input.toString(), newTab);
-}
-
-function writeError(e: unknown, input?: string) {
-  state.update((st) => {
-    st.current_data = [{ id: 0, body: `Error: ${e}`, argument: null }];
-
-    if (input) st.top_bar_input = input;
-
-    return st;
-  });
-}
-
-export async function invoke(f: string, args?: InvokeArgs): Promise<unknown> {
-  isLoading.set(true);
   try {
-    let result = await inv(f, args);
-    isLoading.set(false);
-    return result;
+    const page = (await invoke("process_url", {
+      input: uri,
+    })) as Page;
+
+    body = page.body;
+    title = page.title || undefined;
+
+    const currLink = currentLinkByTabId(id);
+
+    if (currLink.ty === "RENDER" && currLink.uri === uri)
+      updateLinkByTabId(id, {
+        body,
+        title,
+        error: undefined,
+        loading: undefined,
+      });
+    else updateLinkByTabId(id, { loading: undefined });
   } catch (e) {
-    writeError(e);
-    isLoading.set(false);
-    throw new Error("Invoke failed");
+    error = convertError(e);
+    updateLinkByTabId(id, { loading: undefined, error });
+  }
+
+  return { body, error };
+}
+
+export function convertError(e: any): DrovaError {
+  if (typeof e === "string") return { message: e };
+  else {
+    let err: [string, string][] = Object.entries(e);
+
+    return { message: err[0][0], body: err[0][1].toString() };
   }
 }
+
+export function saveState() {
+  invoke("save_state", { state: vigi });
+}
+
+export async function loadState() {
+  try {
+    const new_state: VigiState = await invoke("get_state");
+
+    vigi.current_tab = new_state.current_tab;
+    vigi.tabs = new_state.tabs;
+    vigi.tab_counter = new_state.tab_counter;
+  } catch {}
+}
+
+export function currentTab() {
+  return vigi.tabs[vigi.current_tab];
+}
+
+export function currentLink() {
+  const current = currentTab();
+
+  return current.links[current.current_link];
+}
+
+export function currentTabInnerURN() {
+  return innerURN(currentLink());
+}
+
+export function innerURN(link: TabLink): string {
+  if (link.ty === "RENDER") {
+    return renderLink(link.uri);
+  } else {
+    return `/${link.ty.toLowerCase()}/${link.uri}`;
+  }
+}
+
+export function linkToURI(link: TabLink) {
+  if (link.ty === "RENDER") return link.uri;
+  else return `${link.ty.toLowerCase()}://${link.uri}`;
+}
+
+export function renderLink(uri: string, relative?: boolean) {
+  if (relative) {
+    try {
+      return `/render/${encodeURIComponent(
+        new URL(uri, currentLink().uri).toString()
+      )}`;
+    } catch {}
+  }
+
+  return `/render/${encodeURIComponent(uri)}`;
+}
+
+export function formatInputLink(link: TabLink): string {
+  const urlString = linkToURI(link);
+  try {
+    if (link.ty === "RENDER") {
+      const url = new URL(urlString);
+      return decodeURI(urlString.replace(`${url.protocol}//`, ""));
+    } else {
+      return link.title || urlString;
+    }
+  } catch {
+    return urlString;
+  }
+}
+
+export function gotoTBI(tbi: string) {
+  const url = isUrl(tbi);
+  if (url)
+    if (url.protocol !== "browser:") goto(renderLink(tbi));
+    else goto(`/browser/${url.hostname}/${url.pathname}`);
+  else goto(`/browser/search/${encodeURIComponent(tbi)}`);
+}
+
+export function isUrl(s: string) {
+  try {
+    return new URL(s);
+  } catch {
+    return false;
+  }
+}
+
+export const newTabLink: TabLink = {
+  ty: "BROWSER",
+  uri: "main",
+  title: "New tab",
+};

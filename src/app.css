@@ -1,187 +1,199 @@
-@import "tags.css";
+@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "./style/themes.css";
+@import "./style/theme-utils.css";
 
-/* Theme */
+@import "./style/render.css";
+@import "./style/code.css";
 
-:root {
-    --colorspace: oklch;
-
-    /* Theme Colors */
-    /* Green */
-    --min-bg: #96e28a;
-    --max-bg: #193815;
-
-    --min-text: #82de73;
-    --max-text: #fff;
-
-    /* Dark */
-    /* --min-bg: #555;
-    --max-bg: #000;
-
-    --min-text: #555;
-    --max-text: #fff; */
+@utility compact-block {
+  @apply theme-60 p-1 rounded-2xl;
 }
 
-/* End theme */
-/* Components */
+@utility thin-block {
+  @apply theme-60 rounded-2xl;
+}
 
 body {
-    @apply color-vigi-90 cursor-default overflow-clip;
-    user-select: none;
+  @apply theme-90 cursor-default overflow-clip;
+  user-select: none;
+
+  @apply p-0 lg:p-2 gap-3 w-screen h-screen;
+  @apply flex;
+
+  @apply ease-out duration-100;
 }
 
-.common-window {
-    @apply p-3 gap-3 w-screen h-screen;
-    @apply flex;
+.browser {
+  @apply overflow-y-auto text-wrap select-text cursor-auto overflow-x-hidden h-full;
+  @apply lg:border-2 p-2 lg:rounded-2xl;
 
-    @apply ease-out duration-100;
-}
-
-.common-window.collapsed {
-    @apply gap-0;
-}
-
-.main-window {
-    @apply grow flex flex-col gap-3 w-3/4;
-}
-
-.browser-window {
-    @apply grow overflow-y-auto text-wrap select-text cursor-auto overflow-x-hidden;
-}
-
-.window-controls {
-    @apply flex justify-start;
-}
-
-.button {
-    @apply p-1 rounded-lg;
-    @apply ease-out duration-150;
-
-    @apply hover:color-vigi-90;
-    @apply cursor-pointer;
-
-    @apply active:color-vigi-100;
-}
-
-.tabs-category {
-    @apply flex justify-between mt-2 mx-2;
-}
-
-.tabs-category-text {
-    @apply overflow-hidden;
-    white-space: nowrap;
-}
-
-.block {
-    @apply p-2 rounded-xl color-vigi-60;
+  border-color: var(--min-text);
 }
 
 .sidebar {
-    @apply shrink-0 grow-0 flex flex-col w-1/5;
-    @apply ease-out duration-300;
+  @apply overflow-y-auto text-wrap overflow-x-hidden flex gap-1 flex-col pr-2;
+  @apply w-60 max-lg:w-full h-full;
+  @apply theme-90 z-40;
+  @apply max-lg:absolute max-lg:pb-16 max-lg:p-2;
 
-    @apply max-md:hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-.sidebar.collapsed {
-    @apply basis-0 w-0;
-
-    @apply p-0 m-0;
-    @apply overflow-hidden;
+.sidebar::-webkit-scrollbar {
+  display: none;
 }
 
-.top-bar {
-    @apply flex max-md:flex-row-reverse gap-3;
-}
-
-.top-bar-buttons {
-    @apply flex;
-}
-
-.hide-sidebar-button,
-.back-button,
-.forward-button {
-    @apply max-md:hidden;
-}
-
-.open-tabs-page-button {
-    @apply md:hidden;
-}
-
-.search-input {
-    @apply px-2 py-1 rounded-xl grow min-w-0;
-
-    @apply color-vigi-60 outline-none;
-    @apply focus:color-vigi-50 hover:color-vigi-55;
-
-    @apply ease-out duration-100;
-}
-
-input::placeholder {
-    @apply color-vigi-60;
-    @apply focus:color-vigi-50 hover:color-vigi-55;
-    @apply ease-out duration-100;
-}
-
-.tabs {
-    @apply flex flex-col-reverse gap-1 mt-2 grow overflow-auto justify-end;
+.tab-container {
+  @apply flex items-center gap-1 relative;
 }
 
 .tab {
-    @apply p-2 rounded-xl color-vigi-50;
-    @apply cursor-pointer;
-    @apply ease-out duration-100;
+  @apply p-2 rounded-xl theme-70;
+  @apply theme-transition;
 
-    @apply hover:color-vigi-55;
+  @apply hover:theme-60;
 
-    @apply hover:px-4;
+  @apply flex items-center gap-2 w-full truncate;
 
-    @apply flex items-center gap-2 w-full truncate;
+  transition-property: padding, color, background-color;
 }
 
-.tab.loading {
-    @apply animate-load-pulse;
+.tab.selected {
+  @apply theme-30 hover:theme-25 active:theme-15 border-l-4;
 }
 
-.close-button {
-    @apply p-1 rounded-lg;
-    @apply ease-out duration-100;
+.tab .tab-text {
+  @apply theme-transition w-full text-left;
 
-    @apply hover:color-vigi-90 active:color-vigi-100;
+  transition-property: padding;
+
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 1) 70%,
+    rgba(0, 0, 0, 0) 90%
+  );
 }
 
-.tab.active {
-    @apply color-vigi-40 font-bold;
-    @apply hover:color-vigi-45;
+.tab-close {
+  @apply lg:opacity-0 absolute right-1 theme-transition;
+
+  transition-property: opacity, padding, color, background-color;
+}
+
+.tab-container:hover .tab-close {
+  @apply lg:opacity-100;
+}
+
+.tab:hover .tab-text {
+  @apply px-2;
+}
+
+.top-bar {
+  @apply flex gap-1 max-lg:theme-60;
+}
+
+.bot-bar {
+  @apply flex gap-1 lg:gap-2 max-lg:theme-60 z-50;
+}
+
+.navigation-buttons {
+  @apply flex items-center gap-1;
+}
+
+.bot-bar-navigation-buttons {
+  @apply flex items-center gap-1 w-full justify-between rounded;
+}
+
+.tab-count {
+  @apply outline-2 font-bold rounded-lg! p-0! hover:p-0! w-6 h-6 hover:w-8 text-center;
+}
+
+.main-window {
+  @apply flex flex-col overflow-y-auto gap-0 lg:gap-2 grow;
+}
+
+.top-bar-search-input {
+  @apply px-2 py-1 grow min-w-0 h-full w-full min-h-10;
+
+  @apply theme-60 outline-none;
+  @apply focus:theme-20 hover:theme-50;
+
+  @apply theme-transition;
+
+  @apply text-center focus:text-start;
+}
+
+.top-bar-input-button {
+  @apply m-1;
+}
+
+.top-bar-input {
+  @apply flex gap-2 w-full;
+}
+
+.button {
+  @apply theme-60 p-1 rounded-xl;
+  @apply theme-transition;
+
+  @apply hover:theme-95 hover:px-2;
+  @apply cursor-pointer;
+
+  @apply active:theme-100;
+}
+
+.disabled-button {
+  @apply p-1 rounded-xl opacity-50 cursor-pointer;
+}
+
+.loading {
+  animation: loading var(--loading-animation-duration) var(--transition)
+    infinite;
+}
+
+@keyframes loading {
+  to {
+    transform: rotate(360deg);
+    opacity: 0.5;
+  }
+}
+
+.loading-pulse {
+  animation: loading-pulse var(--loading-animation-duration) var(--transition)
+    infinite;
+}
+
+@keyframes loading-pulse {
+  to {
+    background-color: #ffffff13;
+  }
 }
 
 ::selection {
-    @apply color-vigi-60;
+  color: var(--selection-color);
+  background-color: var(--selection-bg);
 }
 
 ::-webkit-scrollbar {
-    width: 15px;
-    height: 15px;
+  @apply w-[16px] h-[16px] lg:w-[24px] lg:h-[16px];
 }
 
 ::-webkit-scrollbar-track {
-    @apply bg-transparent;
+  @apply bg-transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-    @apply rounded-xl color-vigi-70 bg-clip-content;
-    border: 6px solid transparent;
+  @apply rounded-xl theme-80 bg-clip-content;
+  border: 6px solid transparent;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    @apply color-vigi-75;
-    border: 5px solid transparent;
+  @apply theme-85;
+  border: 6px solid transparent;
 }
 
 ::-webkit-scrollbar-thumb:active {
-    @apply color-vigi-100;
-    border: 4px solid transparent;
+  @apply theme-100;
+  border: 6px solid transparent;
 }

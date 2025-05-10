@@ -1,8 +1,15 @@
-<script>
-    export let onClick = () => {};
-    export let className = "";
+<script lang="ts">
+  export let onclick = () => {};
+  export let className = "";
+
+  export let disabled: boolean = false;
 </script>
 
-<button class={`button${className ? " " + className : ""}`} on:click={onClick}>
-    <slot />
+<button
+  class={`${disabled ? "disabled-button" : "button"}${className ? " " + className : ""}`}
+  onclick={() => {
+    if (!disabled) onclick();
+  }}
+>
+  <slot />
 </button>

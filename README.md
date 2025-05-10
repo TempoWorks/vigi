@@ -6,15 +6,21 @@
 
 </div>
 
-Browser for dalet, text, gemtext with native support of txtdot proxy and local txtdot engines
+> [!WARNING]
+> Browser is W.I.P.
+
+Browser for dalet, text, gemtext with native support of txtdot proxy and drova plugins.
 
 ## Features
 
-Browser is WIP.
+See also:
 
-See also: [Dalet](https://github.com/TxtDot/dalet).
+- [Dalet](https://github.com/TxtDot/dalet)
+- [Drova](https://github.com/TempoWorks/drova/tree/main)
 
 ### Protocols support
+
+These protocols supported by drova plugins. [See drova plugins](https://github.com/TempoWorks/drova/tree/main/drova_plugins) for full list of supported protocols
 
 - [x] Http/s
 - [x] Gemini
@@ -22,19 +28,26 @@ See also: [Dalet](https://github.com/TxtDot/dalet).
 
 ### Mime type support
 
+These types supported by drova plugins. [See drova plugins](https://github.com/TempoWorks/drova/tree/main/drova_plugins) for full list of supported formats
+
 - [ ] application/daletpack
 - [x] text/plain
 - [x] text/gemini
-- [ ] text/html (through local txtdot)
+- [x] text/markdown
+- [ ] text/html
 
 ### Browser features
 
+- [x] permanent browser state
 - [x] browser window: url processing, reload page
-- [ ] browser window: go forward, go backward
-- [x] current tabs: add,remove,change,save,restore,cache
-- [ ] favorite tabs: add,remove,change,save,restore,cache
+- [x] browser window: go forward, go backward
+- [x] current tabs: add, remove, cache
 - [x] sidebar hiding
+- [ ] tabs: restore
+- [ ] favorite tabs: add, remove
 - [ ] history
-- [ ] txtdot proxy support
-- [ ] local txtdot
-- [ ] proxy support
+- [ ] main page
+- [ ] search page
+- [ ] settings page
+- [ ] settings: choose theme
+- [ ] settings: configure custom theme
