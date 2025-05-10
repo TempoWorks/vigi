@@ -33,7 +33,7 @@ body {
 
 .sidebar {
   @apply overflow-y-auto text-wrap overflow-x-hidden flex gap-1 flex-col pr-2;
-  @apply w-80 max-lg:w-full h-full;
+  @apply w-60 max-lg:w-full h-full;
   @apply theme-90 z-40;
   @apply max-lg:absolute max-lg:pb-16 max-lg:p-2;
 

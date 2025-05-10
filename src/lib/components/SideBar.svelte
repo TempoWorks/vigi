@@ -80,15 +80,15 @@
           >
             <div>
               {#if tab.links[tab.current_link].error}
-                <WorldX />
+                <WorldX width="20" />
               {:else if tab.links[tab.current_link].loading}
-                <Loading />
+                <Loading width="20" />
               {:else if currentLink.ty === "RENDER" && currentLink.body}
-                <World />
+                <World width="20" />
               {:else if currentLink.ty === "RENDER" && !currentLink.body}
-                <WorldQuestion />
+                <WorldQuestion width="20" />
               {:else}
-                <WorldCog />
+                <WorldCog width="20" />
               {/if}
             </div>
             <div class="tab-text">

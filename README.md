@@ -8,9 +8,8 @@
 
 > [!WARNING]
 > Browser is W.I.P.
-> The project updated from tauri v1. All features from vigi v1 implemented in vigi v2.
 
-Browser for dalet, text, gemtext with native support of txtdot proxy and local txtdot engines
+Browser for dalet, text, gemtext with native support of txtdot proxy and drova plugins.
 
 ## Features
 
@@ -39,11 +38,16 @@ These types supported by drova plugins. [See drova plugins](https://github.com/T
 
 ### Browser features
 
-- [ ] permanent browser state
+- [x] permanent browser state
 - [x] browser window: url processing, reload page
 - [x] browser window: go forward, go backward
 - [x] current tabs: add, remove, cache
-- [ ] favorite tabs: add, remove, cache
-- [ ] tabs: restore
 - [x] sidebar hiding
+- [ ] tabs: restore
+- [ ] favorite tabs: add, remove
 - [ ] history
+- [ ] main page
+- [ ] search page
+- [ ] settings page
+- [ ] settings: choose theme
+- [ ] settings: configure custom theme
