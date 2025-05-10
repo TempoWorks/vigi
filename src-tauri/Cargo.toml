@@ -37,5 +37,5 @@ async-trait = "0.1.88"
 
 bitcode = { version = "0.6.6", features = ["serde"] }
 
-drova_sdk = "1.1.0"
-drova_plugins = "1.1.4"
+drova_sdk = "2.0.0"
+drova_plugins = "3.0.0"

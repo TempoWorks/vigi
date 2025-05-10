@@ -4,15 +4,15 @@ use std::fs;
 
 use dalet::typed::Page;
 
-use drova_plugins::plugins;
-use drova_sdk::{Core, CoreBuilder, Error};
+use drova_plugins::requester_plugins;
+use drova_sdk::{Error, Requester, RequesterBuilder};
 use tauri::Manager;
 use types::{
     PermanentSiteTab, PermanentState, PermanentTabLink, SiteTab, TabLink, VigiError, VigiState,
 };
 
 struct AppData<'a> {
-    drova_core: Core<'a>,
+    drova_core: Requester<'a>,
 }
 
 #[tauri::command]
@@ -122,7 +122,9 @@ pub fn run() {
     tauri::Builder::default()
         .setup(|app| {
             app.manage(AppData {
-                drova_core: CoreBuilder::default().plugin(plugins).build(),
+                drova_core: RequesterBuilder::default()
+                    .plugin(requester_plugins)
+                    .build(),
             });
             Ok(())
         })

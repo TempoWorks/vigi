@@ -988,9 +988,9 @@ dependencies = [
 
 [[package]]
 name = "drova_plugins"
-version = "1.1.4"
+version = "3.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "afb99e555b87347c4105cbe663d80544f54fa4e038cc93129e90463370775377"
+checksum = "0a024a99df51de4fe19d91ba2820156377ff37a9518296c7e34c7ca3ef6b09e1"
 dependencies = [
  "async-trait",
  "bytes",
@@ -1005,9 +1005,9 @@ dependencies = [
 
 [[package]]
 name = "drova_sdk"
-version = "1.1.0"
+version = "2.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "76796c0120911b88499c2fb97c1beaa45e0444274d4fe1f6571ba99fe3452ad8"
+checksum = "1b617ed676789d36af99b10d679b06651608cd0c56e74a54fda5569ffc2d6a30"
 dependencies = [
  "async-trait",
  "dalet",
