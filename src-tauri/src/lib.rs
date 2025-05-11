@@ -2,10 +2,10 @@ mod types;
 
 use std::fs;
 
-use dalet::typed::Page;
+use dalet::types::Page;
 
 use drova_plugins::requester_plugins;
-use drova_sdk::{Error, Requester, RequesterBuilder};
+use drova_sdk::requester::{Error, Requester, RequesterBuilder};
 use tauri::Manager;
 use types::{
     PermanentSiteTab, PermanentState, PermanentTabLink, SiteTab, TabLink, VigiError, VigiState,

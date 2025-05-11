@@ -1,4 +1,4 @@
-use dalet::typed::Tag;
+use dalet::types::Tag;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
