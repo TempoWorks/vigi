@@ -697,9 +697,9 @@ dependencies = [
 
 [[package]]
 name = "dalet"
-version = "1.0.0-pre.33"
+version = "1.0.0-pre.34"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a3368f7de3e5f9aaf129c2adc2a7ab4703b358bc4b60ce112353eabf7b48b5c8"
+checksum = "a0620a4336b90b5be3d7258658e040c078b2d12970620bb97022d7182bd1ba61"
 dependencies = [
  "enum-procs",
  "num_enum",
@@ -857,9 +857,9 @@ dependencies = [
 
 [[package]]
 name = "drova_plugins"
-version = "3.0.1"
+version = "3.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3433142381627151bf75be946f849b563ffbf20b9f7287f976495708f0a550a4"
+checksum = "2c16e684057eb7d13863899c5b8a10a16ab7365004f472beb3e99f08fcdca54b"
 dependencies = [
  "async-trait",
  "bytes",
@@ -874,9 +874,9 @@ dependencies = [
 
 [[package]]
 name = "drova_sdk"
-version = "3.0.0"
+version = "3.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "749cbf4002e62f5a5b3f1646ad8f098f88a95a41e5314bbe8d1f1a6a232ec906"
+checksum = "ee667a54a258cef1c881d9a5bc5214ea1b4733dad8c275e909c43848da7a225a"
 dependencies = [
  "async-trait",
  "dalet",

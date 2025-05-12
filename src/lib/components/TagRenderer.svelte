@@ -7,6 +7,7 @@
   import * as languages from "svelte-highlight/languages";
 
   import TagRenderer from "$lib/components/TagRenderer.svelte";
+  import TextRenderer from "./TextRenderer.svelte";
 
   export let tag: Tag;
 </script>
@@ -14,10 +15,10 @@
 {#if typeof tag === "string"}
   {#if tag === "HorizontalBreak"}
     <hr />
-  {:else if tag === "LineBreak"}
-    <br />
   {:else}
-    <p class="unsupported">Unsupported Tag: {tag}</p>
+    <p class="unsupported">
+      <TextRenderer>Unsupported Tag: {tag}</TextRenderer>
+    </p>
   {/if}
 {:else if tag.Element}
   <BodyRenderer body={tag.Element.body} />
@@ -28,11 +29,35 @@
     {#if tag.NavLink.body}
       <BodyRenderer body={tag.NavLink.body} />
     {:else}
-      {tag.NavLink.dref}
+      <TextRenderer>{tag.NavLink.dref}</TextRenderer>
     {/if}
   </a>
 {:else if tag.Heading}
-  {@html `<h${tag.Heading.heading}>${tag.Heading.body}</h${tag.Heading.heading}>`}
+  {#if tag.Heading.heading === 1}
+    <h1>
+      <TextRenderer>{tag.Heading.body}</TextRenderer>
+    </h1>
+  {:else if tag.Heading.heading === 2}
+    <h2>
+      <TextRenderer>{tag.Heading.body}</TextRenderer>
+    </h2>
+  {:else if tag.Heading.heading === 3}
+    <h3>
+      <TextRenderer>{tag.Heading.body}</TextRenderer>
+    </h3>
+  {:else if tag.Heading.heading === 4}
+    <h4>
+      <TextRenderer>{tag.Heading.body}</TextRenderer>
+    </h4>
+  {:else if tag.Heading.heading === 5}
+    <h5>
+      <TextRenderer>{tag.Heading.body}</TextRenderer>
+    </h5>
+  {:else if tag.Heading.heading === 6}
+    <h6>
+      <TextRenderer>{tag.Heading.body}</TextRenderer>
+    </h6>
+  {/if}
 {:else if tag.List}
   <ol class={tag.List.style}>
     {#each tag.List.body as item}
@@ -52,12 +77,11 @@
   {/if}
 {:else if tag.BlockQuote}
   <blockquote><BodyRenderer body={tag.BlockQuote.body} /></blockquote>
-{:else if tag.Preformatted}
-  <pre>{tag.Preformatted.body}</pre>
+{:else if tag.Mono}
+  <pre>
+{tag.Mono.body}</pre>
 {:else}
-  <pre> <p class="unsupported">Unsupported Tag: {JSON.stringify(
-        tag,
-        null,
-        2
-      )}</p></pre>
+  <p class="unsupported">
+    <TextRenderer>Unsupported Tag: {JSON.stringify(tag, null, 2)}</TextRenderer>
+  </p>
 {/if}
